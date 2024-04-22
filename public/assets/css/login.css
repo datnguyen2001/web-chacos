@@ -1,0 +1,256 @@
+.box-sgin-in {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  margin-top: 148px;
+}
+.box-content-login-register {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  margin-top: 40px;
+}
+.item-login-register {
+  width: 48%;
+  padding: 20px;
+  background: none repeat scroll 0 0 #dcdcdc;
+}
+.title-login-register {
+  color: #303030;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+.content-login-register {
+  margin: 10px 0;
+  color: #303030;
+  font-size: 15px;
+}
+.inpit-login {
+  width: 100%;
+  border: unset;
+  outline: unset;
+  padding-left: 10px;
+  margin: 10px 0;
+}
+.lable-login {
+  font-size: 15px;
+  color: #303030;
+}
+.checkbox-label-login {
+  margin-left: 5px;
+  font-size: 15px;
+  color: #303030;
+}
+.link-forgot-pass {
+  margin-top: 10px;
+  color: #004c59;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-login {
+  display: flex;
+  justify-content: center;
+  border: none;
+  padding: 15px 0;
+  margin-top: 20px;
+  background-color: #004c59;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  width: 50%;
+  text-decoration: none;
+}
+.btn-login:hover {
+  background-color: #f65024;
+  color: white;
+}
+ul {
+  padding: 0 0 0 40px;
+  font-size: 15px;
+  color: #303030;
+}
+.link-here {
+  color: #004c59;
+  text-decoration: none;
+}
+.link-here:hover {
+  color: #004c59;
+}
+.box-registration {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  margin-top: 148px;
+}
+.box-content-reg {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.box-left-registration {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+}
+.box-right-registration {
+  width: 78%;
+  display: flex;
+  flex-direction: column;
+}
+.title-menu-child-reg {
+  font-size: 15px;
+  color: #303030;
+  font-weight: bold;
+  margin-bottom: 9px;
+}
+.link-page-reg {
+  color: #004c59;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.title-reg {
+  font-size: 36px;
+  font-weight: bold;
+  color: #004c59;
+  line-height: 30px;
+}
+.box-info-reg {
+  padding: 40px 0 60px 0;
+}
+.line-header-info-reg {
+  display: flex;
+  align-items: center;
+  padding-bottom: 14px;
+  width: 100%;
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 29px;
+}
+.title-info-big-reg {
+  margin-bottom: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #004c59;
+  margin-right: 20px;
+}
+.title-info-small-reg {
+  margin-bottom: 0;
+  font-size: 15px;
+  color: #303030;
+}
+.content-info-reg {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.col-left-info {
+  width: 50%;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.col-right-info {
+  width: 50%;
+  padding-left: 15px;
+}
+.title-lable-info {
+  font-size: 15px;
+  color: #303030;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+.input-value-reg {
+  width: 100%;
+  background-color: #dcdcdc;
+  border: 1px solid #dcdcdc;
+  border-radius: unset;
+  font-size: 15px;
+  padding: 6px 6px 6px 14px;
+  outline: unset;
+  margin-bottom: 16px;
+}
+.title-note {
+  font-size: 15px;
+  font-weight: 500;
+  color: #303030;
+  margin-top: 30px;
+}
+.btn-registrantion {
+  width: 50%;
+  background-color: #004c59;
+  color: white;
+  padding: 10px;
+  border: none;
+  outline: unset;
+}
+@media (max-width: 992px) {
+  .box-sgin-in {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 143px;
+  }
+  .box-registration {
+    padding: 0 20px;
+  }
+  .box-content-reg {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 767px) {
+  .box-sgin-in,
+  .box-registration {
+    margin-top: 51px;
+  }
+  .box-content-login-register {
+    margin-top: 20px;
+  }
+  .btn-login {
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .box-content-login-register {
+    flex-wrap: wrap;
+  }
+  .item-login-register {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .box-left-registration,
+  .box-right-registration {
+    width: 100%;
+  }
+  .title-reg {
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
+  .box-info-reg {
+    padding-top: 20px;
+  }
+  .title-info-big-reg {
+    font-size: 18px;
+  }
+  .title-info-small-reg {
+    font-size: 13px;
+  }
+  .title-lable-info,
+  .input-value-reg,
+  .title-note {
+    font-size: 14px;
+  }
+  .col-left-info {
+    padding-right: 10px;
+  }
+  .col-right-info {
+    padding-left: 10px;
+  }
+  .col-right-info li span {
+    font-size: 14px;
+  }
+}
