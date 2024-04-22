@@ -1,8 +1,8 @@
 @extends('web.index')
-@section('title','Trang chủ')
+@section('title','Đăng nhập')
 
 @section('style_page')
-
+    <link rel="stylesheet" href="{{asset('assets/css/login.css')}}">
 @stop
 {{--content of page--}}
 
@@ -52,5 +52,5 @@
     </div>
 @stop
 @section('script_page')
-    <script src="{{asset('assets/js/home.js')}}"></script>
+
 @stop

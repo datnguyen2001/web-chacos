@@ -33,6 +33,10 @@ class HomeController extends Controller
     {
         return view('web.home.index');
     }
+    public function category()
+    {
+        return view('web.category.index');
+    }
 
     public function returns()
     {
@@ -53,5 +57,9 @@ class HomeController extends Controller
     public function registration()
     {
         return view('web.registration');
+    }
+    public function wishlist()
+    {
+        return view('web.wishlist.index');
     }
 }
