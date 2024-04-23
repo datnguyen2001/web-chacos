@@ -11,17 +11,17 @@
         <div class="line-header-menu-page">
             <a href="{{route('home')}}" class="title-header-menu-page">Trang chủ</a>
             <span style="margin: 0 5px;">/</span>
-            <a href="" class="title-header-menu-page">Tài khoản của tôi</a>
+            <a href="{{route('my-account')}}" class="title-header-menu-page">Tài khoản của tôi</a>
             <span style="margin: 0 5px;">/</span>
-            <a href="" class="title-header-menu-page">Lịch sử đơn hàng</a>
+            <a href="{{route('order-history')}}" class="title-header-menu-page">Lịch sử đơn hàng</a>
         </div>
         <div class="box-content-my-account">
             <div class="box-left-account box-left-wishlist">
                 <p class="title-menu-child-account">Tài khoản của tôi</p>
-                <a href="" class="link-page-account">Chỉnh sửa tài khoản</a>
-                <a href="" class="link-page-account">Địa chỉ</a>
-                <a href="" class="link-page-account">Lịch sử đơn hàng</a>
-                <a href="" class="link-page-account">Đăng xuất</a>
+                <a href="{{route('edit-account')}}" class="link-page-account">Chỉnh sửa tài khoản</a>
+                <a href="{{route('address-account')}}" class="link-page-account">Địa chỉ</a>
+                <a href="{{route('order-history')}}" class="link-page-account">Lịch sử đơn hàng</a>
+                <a href="{{route('login')}}" class="link-page-account">Đăng xuất</a>
             </div>
             <div class="box-right-account box-right-wishlist">
                 <div class="line-title-my-account d-block">

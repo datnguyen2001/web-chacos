@@ -7,7 +7,7 @@
 {{--content of page--}}
 @section('content')
     <div class="line-header-menu-page">
-        <a href="/" class="title-header-menu-page">Home</a>
+        <a href="/" class="title-header-menu-page">Trang chủ</a>
         <span style="margin: 0 5px;">/</span>
         <a href="" class="title-header-menu-page">Men</a>
         <span style="margin: 0 5px;">/</span>
