@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Web\HomeController;
+use \App\Http\Controllers\web\LoginController;
+use \App\Http\Controllers\web\CategoryController;
+use \App\Http\Controllers\web\MyAccountController;
+use \App\Http\Controllers\web\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +18,24 @@ use \App\Http\Controllers\Web\HomeController;
 |
 */
 
+Route::get('dang-nhap', [LoginController::class, 'login'])->name('login');
+Route::get('dang-ky', [LoginController::class, 'registration'])->name('registration');
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('easy-free-returns', [HomeController::class, 'returns'])->name('easy-free-returns');
 Route::get('account', [HomeController::class, 'account'])->name('account');
 Route::get('order-status', [HomeController::class, 'orderStatus'])->name('order-status');
-Route::get('category', [HomeController::class, 'category'])->name('category');
-Route::get('my-account', [HomeController::class, 'myAccount'])->name('my-account');
-Route::get('wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
-Route::get('login', [HomeController::class, 'login'])->name('login');
-Route::get('registration', [HomeController::class, 'registration'])->name('registration');
+Route::get('product-features', [HomeController::class, 'productFeatures'])->name('product-features');
+Route::get('strap-adjuster', [HomeController::class, 'strapAdjuster'])->name('strap-adjuster');
+
+Route::get('danh-muc', [CategoryController::class, 'category'])->name('category');
+Route::get('chi-tiet-san-pham', [ProductController::class, 'index'])->name('detail-product');
+
+Route::get('tai-khoan-cua-toi', [MyAccountController::class, 'index'])->name('my-account');
+Route::get('chinh-sua-tai-khoan', [MyAccountController::class, 'editAccount'])->name('edit-account');
+Route::get('dia-chi', [MyAccountController::class, 'address'])->name('address-account');
+Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
+Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
 
 Route::middleware('auth')->group(function () {
 

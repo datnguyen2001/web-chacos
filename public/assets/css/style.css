@@ -792,8 +792,8 @@ body {
 }
 .quantity-plus,
 .quantity-minus {
-  width: 45px;
-  height: 45px;
+  width: 43px;
+  height: 43px;
   background-color: #fff !important;
   line-height: 55px;
   padding: 0px;

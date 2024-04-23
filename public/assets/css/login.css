@@ -59,8 +59,8 @@
   margin-top: 20px;
   background-color: #004c59;
   color: white;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 600;
   width: 50%;
   text-decoration: none;
 }
@@ -187,6 +187,9 @@ ul {
   padding: 10px;
   border: none;
   outline: unset;
+}
+.btn-dk{
+    width: 75%;
 }
 @media (max-width: 992px) {
   .box-sgin-in {

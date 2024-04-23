@@ -274,15 +274,19 @@
 .box-shop-style {
   width: 100%;
   max-width: 1920px;
-  padding-left: 65px;
+  padding-left: 35px;
   margin: 0 auto;
+    background-color: #f4f1ea;
+    padding-top: 10px;
+    padding-bottom: 50px;
 }
 .title-shop-style {
-  font-size: 65px;
+  font-size: 45px;
   font-weight: 700;
   color: #1d4b58;
   margin-bottom: 20px;
   margin-top: 20px;
+    margin-left: 65px;
 }
 .box-item-product {
   position: relative;
@@ -298,12 +302,34 @@
 }
 .title-product-bottom {
   position: absolute;
-  bottom: 65px;
+  bottom: 95px;
   width: 100%;
-  text-align: center;
   color: #1d4b58;
-  font-size: 17px;
   font-weight: 700;
+    display: flex;
+    justify-content: space-around;
+}
+.title-sp-favo{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.review-number{
+    font-size: 12px;
+    color: #f65024;
+    margin-left: 5px;
+    margin-bottom: 0;
+    margin-top: 2px;
+}
+.reviews{
+    display: flex;
+    align-items: center;
+    margin-top: -6px;
+}
+.price-favo{
+    font-size: 12px;
+}
+.stars .product-star{
+    width: 10px;
 }
 .productSwiper {
   height: 440px !important;
@@ -314,7 +340,7 @@
   max-height: 384px;
 }
 .productSwiper .swiper-pagination-product {
-  bottom: 10px !important;
+  bottom: 0px !important;
   width: 20%;
   left: 50%;
   transform: translateX(-50%);
@@ -328,7 +354,7 @@
   background-color: #1d4b58 !important;
 }
 .productSwiper .swiper-button-next {
-  bottom: 0px !important;
+  bottom: -10px !important;
   top: unset !important;
   right: 36% !important;
   color: #1d4b58 !important;
@@ -339,10 +365,10 @@
   height: 746px;
 }
 .productSwiper .swiper-button-next:after {
-  font-size: 20px !important;
+  font-size: 28px !important;
 }
 .productSwiper .swiper-button-prev {
-  bottom: 0px !important;
+  bottom: -10px !important;
   top: unset !important;
   left: 36% !important;
   color: #1d4b58 !important;
@@ -350,7 +376,7 @@
   z-index: 11;
 }
 .productSwiper .swiper-button-prev:after {
-  font-size: 20px !important;
+  font-size: 28px !important;
 }
 .box-favorites {
   width: 100%;
@@ -367,8 +393,7 @@
 .box-right-favo {
   width: 55%;
   display: flex;
-  align-items: center;
-  padding-left: 20px;
+  align-items: start;
 }
 .title-chacoNation {
   font-size: 32px;
@@ -389,7 +414,7 @@
 }
 .name-product-favo {
   font-size: 14px;
-  color: #000000;
+  color: #004c59;
   font-weight: 400;
   padding: 5px 0;
   overflow: hidden;
@@ -401,7 +426,7 @@
 }
 .price-product-favo {
   font-size: 14px;
-  color: #000000;
+  color: #004c59;
   font-weight: 400;
 }
 .box-fun-adventurous {
@@ -510,6 +535,67 @@
   position: absolute;
   bottom: 0px;
 }
+.overlays-home{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.hero-product-overlay{
+    width: 35%;
+}
+.wrapper{
+    width: 100%;
+    display: flex;
+    align-items: end;
+}
+.text-hero-one{
+    font-size: 20px;
+    text-align: center;
+    color: #004c59;
+}
+.text-hero-two{
+    font-size: 45px;
+    text-align: center;
+    color: #004c59;
+}
+.btn-link-buy{
+    background-color: #004c59;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 25px;
+    margin-bottom: 16px;
+}
+.btn-link-buy:hover{
+    color: white;
+}
+.img-pick{
+    width: 150px;
+    margin-top: -30px;
+}
+.img-banner-hero-home{
+    width: 100%;
+    margin-bottom: 60px;
+    cursor: pointer;
+}
+.link-cate-home{
+    text-decoration: none;
+    color: #f65024;
+    font-size: 19px;
+    font-weight: 700;
+    margin-right: 25px;
+}
+.link-cate-home:hover{
+    color: #004c59;
+}
+.icon-vector-favorites{
+    width: 65px;
+    margin-left: 5px;
+    margin-right: 35px;
+}
 @media (min-width: 1921px) {
   .ag-full-width {
     font-size: 10px;
@@ -581,7 +667,7 @@
   }
   .title-shop-style,
   .title-favorites {
-    font-size: 50px;
+    font-size: 45px;
   }
   .title-content-fun {
     font-size: 39px;

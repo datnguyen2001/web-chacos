@@ -33,10 +33,6 @@ class HomeController extends Controller
     {
         return view('web.home.index');
     }
-    public function category()
-    {
-        return view('web.category.index');
-    }
 
     public function returns()
     {
@@ -44,22 +40,20 @@ class HomeController extends Controller
     }
     public function account()
     {
-        return view('web.info.return');
+        return view('web.info.account');
     }
     public function orderStatus()
     {
         return view('web.info.order-status');
     }
-    public function login()
+    public function productFeatures()
     {
-        return view('web.login');
+        return view('web.product-features');
     }
-    public function registration()
+
+    public function strapAdjuster()
     {
-        return view('web.registration');
+        return view('web.strap-adjuster');
     }
-    public function wishlist()
-    {
-        return view('web.wishlist.index');
-    }
+
 }
