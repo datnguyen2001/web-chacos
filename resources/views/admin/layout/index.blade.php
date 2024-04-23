@@ -49,7 +49,7 @@
 <!-- Vendor JS Files -->
 <script src="{{asset('assets/admin/vendor/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('assets/admin/vendor/chart.js/chart.min.js')}}"></script>
+{{-- <script src="{{asset('assets/admin/vendor/chart.js/chart.min.js')}}"></script> --}}
 <script src="{{asset('assets/admin/vendor/echarts/echarts.min.js')}}"></script>
 <script src="{{asset('assets/admin/vendor/quill/quill.min.js')}}"></script>
 <script src="{{asset('assets/admin/vendor/simple-datatables/simple-datatables.js')}}"></script>
@@ -59,6 +59,7 @@
 <!-- Template Main JS File -->
 <script src="{{asset('assets/admin/js/main.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery.repeater@1.2.1/jquery.repeater.min.js"></script>

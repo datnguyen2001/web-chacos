@@ -10,5 +10,13 @@ return [
             'submenu' => [],
             'number' => 1
         ],
-]
+        [
+            'name' => 'coupon',
+            'title' => 'Coupon',
+            'icon' => 'bi bi-graph-down-arrow',
+            'route' => 'admin.coupon.index',
+            'submenu' => [],
+            'number' => 2
+        ],
+    ],
 ];
