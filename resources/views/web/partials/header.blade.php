@@ -6,19 +6,19 @@
                 <span class="title-header-top box-help-header position-relative">Help</span>
                 <ul class="dropdown-menu dropdown-menu-help">
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="https://www.chacos.com/on/demandware.static/Sites-chacos_us-Site/-/default/dwcb60ea97/images/Icon-clock.png"
+                                src="{{asset('assets/image/Icon-clock.png')}}"
                                 class="mr-2"><span style="padding-left: 5px;">ORDER STATUS</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="https://www.chacos.com/on/demandware.static/Sites-chacos_us-Site/-/default/dw3af3c900/images/Icon-chat-new.png"
+                                src="{{asset('assets/image/Icon-chat-new.png')}}"
                                 class="mr-2"><span style="padding-left: 5px;">CHAT</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="https://www.chacos.com/on/demandware.static/Sites-chacos_us-Site/-/default/dwdda501f6/images/Icon-service-new.png"
+                                src="{{asset('assets/image/Icon-service-new.png')}}"
                                 class="mr-2"><span style="padding-left: 5px;">CUSTOMER SERVICE</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="{{route('easy-free-returns')}}"><img
-                                src="https://www.chacos.com/on/demandware.static/Sites-chacos_us-Site/-/default/dw5cc964b9/images/Icon-return-new.png"
+                                src="{{asset('assets/image/Icon-return-new.png')}}"
                                 class="mr-2"><span style="padding-left: 5px;">EXCHANGE & RETURN</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="https://www.chacos.com/on/demandware.static/Sites-chacos_us-Site/-/default/dw5baa338f/images/Icon-truck-new.png"
+                                src="{{asset('assets/image/Icon-truck-new.png')}}"
                                 class="mr-2"><span style="padding-left: 5px;">SHIPPING INFO</span></a></li>
                     <li>
                         <a class="dropdown-item-help dropdown-item d-flex align-items-baseline"
@@ -110,7 +110,6 @@
                 </div>
                 <div class="title-header-center">MEN</div>
                 <div class="title-header-center">KIDS</div>
-                <div class="title-header-center">GEAR</div>
                 <div class="title-header-center">SALE</div>
                 <div class="title-header-center">INSIDE CHACO</div>
             </div>
@@ -188,7 +187,7 @@
                 apply in checkout.</div>
             <div class="item-sale-style">
                 <img
-                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwc07ae136/content/seasonal-content/promos/2021/09/extole_updates_promotab_03.jpg"
+                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
                     class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
@@ -196,7 +195,7 @@
             </div>
             <div class="item-sale-style">
                 <img
-                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwc07ae136/content/seasonal-content/promos/2021/09/extole_updates_promotab_03.jpg"
+                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
                     class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
@@ -204,7 +203,7 @@
             </div>
             <div class="item-sale-style">
                 <img
-                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwc07ae136/content/seasonal-content/promos/2021/09/extole_updates_promotab_03.jpg"
+                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
                     class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
@@ -212,7 +211,7 @@
             </div>
             <div class="item-sale-style">
                 <img
-                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwc07ae136/content/seasonal-content/promos/2021/09/extole_updates_promotab_03.jpg"
+                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
                     class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
