@@ -48,7 +48,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin-left: 150px;
-  margin-right: 200px;
+  margin-right: 150px;
 }
 .box-item-header-top {
   width: 209px;
@@ -95,7 +95,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-left: 65px;
-  margin-right: 200px;
+  margin-right: 150px;
 }
 .title-header-center {
   padding: 19px 12px 20px 12px;
