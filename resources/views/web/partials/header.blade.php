@@ -36,7 +36,7 @@
                                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
                                 </g>
                             </svg>
-                            <span style="padding-left: 5px;">ACCOUNT SIGN IN</span>
+                            <span style="padding-left: 5px;">{{ Auth::check() ? 'MANAGE ACCOUNT' : 'ACCOUNT SIGN IN' }}</span>
                         </a>
                     </li>
                 </ul>

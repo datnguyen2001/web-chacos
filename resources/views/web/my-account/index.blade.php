@@ -23,7 +23,9 @@
             <div class="box-right-account">
                 <div class="line-title-my-account">
                     <p class="title-account">Tài khoản của tôi | Account</p>
-                    <span style="font-size: 14px;cursor: pointer;">Đăng xuất</span>
+                    <a href="{{ route('logout') }}" class="text-decoration-none text-dark">
+                        <span style="font-size: 14px;cursor: pointer;">Đăng xuất</span>
+                    </a>
                 </div>
                 <div class="box-info-my-account">
                     <div class="line-header-info-account">
@@ -37,7 +39,7 @@
                         </div>
                         <div>
                             <p class="content-item-account" style="font-weight: bold;">Tài khoản Email</p>
-                            <p class="content-item-account">admin@gmail.com</p>
+                            <p class="content-item-account">{{ Auth::user()->email ?? '' }}</p>
                         </div>
                     </div>
                     <div class="line-header-info-account">
