@@ -34,6 +34,10 @@ class HomeController extends Controller
         return view('web.home.index');
     }
 
+    public function shippingInfo()
+    {
+        return view('web.info.shipping');
+    }
     public function returns()
     {
         return view('web.info.return');
@@ -45,6 +49,10 @@ class HomeController extends Controller
     public function orderStatus()
     {
         return view('web.info.order-status');
+    }
+    public function FAQ()
+    {
+        return view('web.info.faq');
     }
     public function productFeatures()
     {
