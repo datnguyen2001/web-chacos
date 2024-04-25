@@ -33,6 +33,24 @@ var swiper = new Swiper(".productSwiper", {
         },
     },
 });
+var swiper = new Swiper(".AlongSaleSwiper", {
+    autoplay: {
+        delay: 5000,
+    },
+    breakpoints: {
+        768: {
+            slidesPerView: 3,
+        },
+        300: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            freeMode: true,
+        },
+    },
+});
 var swiper = new Swiper(".favoritesSwiper", {
     spaceBetween: 30,
     autoplay: {

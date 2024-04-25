@@ -414,7 +414,7 @@
                         <div class="quantity-wrapper ">
                             <span>
                                 <button type="button" class="quantity-minus btn-quantity-sp"
-                                    data-field="quantity"><img src="{{ asset('asset/img/cartqty-minus-new.png') }}"
+                                    data-field="quantity"><img src="{{ asset('assets/image/cartqty-minus-new.png') }}"
                                         alt="Remove Quantity" class="offers-icon"></button>
                             </span>
                             <input type="number" class="value input-quantity-sp" readonly

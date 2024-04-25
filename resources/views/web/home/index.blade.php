@@ -32,27 +32,27 @@
         <div class="title-shop-style">What's <span style="color: #f65024;">YOUR STYLE?</span></div>
         <div class="swiper productSwiper productStyleSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide box-item-product">
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('category')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
-                </div>
+                </a>
             </div>
             <div class="swiper-pagination swiper-pagination-product"></div>
         </div>
@@ -62,13 +62,8 @@
         <article class="ag-full-width home-common" id="home-cards">
             <div class="ag-site-width">
                 <picture>
-                    <img
-                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw1ba170d8/content/seasonal-content/homepage/2024/03/27/home-cards-20240327.png"
-                        width="1920"
-                        height="1130"
-                        alt=" "
-                        class="bg-image"
-                    />
+                    <img src="{{asset('assets/image/home-cards-d.png')}}" width="1920" height="1130" class="bg-image"/>
+                    <img src="{{asset('assets/image/home-cards-m.png')}}" class="img-cards-m">
                 </picture>
                 <h2 class="title">
                     <span>How you want to live</span><br />begins with what you put<br
@@ -76,7 +71,7 @@
                     />
                     on your feet.
                 </h2>
-                <div class="swiper">
+                <div class="swiper AlongSaleSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <img
@@ -133,8 +128,9 @@
                             >
                         </div>
                     </div>
+                    <div class="swiper-pagination sm-only"></div>
                 </div>
-                <div class="swiper-pagination sm-only"></div>
+
             </div>
         </article>
     </div>
@@ -152,7 +148,7 @@
 
         <div class="swiper productSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide box-item-product">
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -170,8 +166,8 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -189,8 +185,8 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -208,8 +204,8 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -227,8 +223,8 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -246,8 +242,8 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -265,8 +261,8 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
-                <div class="swiper-slide box-item-product">
+                </a>
+                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
                     <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
@@ -284,15 +280,20 @@
                         </div>
                         <p class="price-favo">$130.00</p>
                     </div>
-                </div>
+                </a>
             </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
             <div class="swiper-pagination swiper-pagination-product"></div>
         </div>
+        <div class="box-more-style-shop-mobile">
+            <a href="" class="btn-link-shop">SHOP WOMEN'S</a>
+            <a href="" class="btn-link-shop">SHOP MEN'S</a>
+        </div>
     </div>
 
     <img src="{{asset('assets/image/banner1.png')}}" class="img-banner-hero-home">
+    <img src="{{asset('assets/image/banner-mobile.png')}}" class="img-banner-mobile-hero-home">
 
     <div class="box-favorites">
         <div class="box-left-favo-img">
@@ -304,34 +305,35 @@
         </div>
         <div class="box-right-favo">
             <img src="{{asset('assets/image/pick.png')}}" class="img-pick">
+            <img src="{{asset('assets/image/pick-you.png')}}" class="img-pick-mobile">
             <div class="swiper favoritesSwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                    <a href="{{route('detail-product')}}" class="swiper-slide">
                         <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL</div>
                         <div class="price-product-favo">$105.00</div>
-                    </div>
-                    <div class="swiper-slide">
+                    </a>
+                    <a href="{{route('detail-product')}}" class="swiper-slide">
                         <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
                             WOMEN'S ZX/2® CLASSIC SANDAL
                         </div>
                         <div class="price-product-favo">$105.00</div>
-                    </div>
-                    <div class="swiper-slide">
+                    </a>
+                    <a href="{{route('detail-product')}}" class="swiper-slide">
                         <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
                             WOMEN'S ZX/2® CLASSIC SANDAL
                         </div>
                         <div class="price-product-favo">$105.00</div>
-                    </div>
-                    <div class="swiper-slide">
+                    </a>
+                    <a href="{{route('detail-product')}}" class="swiper-slide">
                         <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
                             WOMEN'S ZX/2® CLASSIC SANDAL
                         </div>
                         <div class="price-product-favo">$105.00</div>
-                    </div>
+                    </a>
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -344,20 +346,12 @@
         <img src="{{asset('assets/image/line-top.png')}}" class="line-video-top">
         <figure class="w-100 m-0">
             <video data-src-sm="{{asset('assets/video/customizing-d.mp4')}}"
-                   data-poster-sm="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwa163a259/content/seasonal-content/landing-pages/chacos-for-life/images/customizing-m.png"
-                   data-src-lg="https://chacos-for-life.s3.amazonaws.com/customizing-d.mp4"
-                   data-poster-lg="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw615a2a62/content/seasonal-content/landing-pages/chacos-for-life/images/customizing.png"
                    autoplay="" playsinline="" muted="" loop=""
-                   poster="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw615a2a62/content/seasonal-content/landing-pages/chacos-for-life/images/customizing.png"
-                   src="https://chacos-for-life.s3.amazonaws.com/customizing-d.mp4" class="w-100 video-desktop"></video>
+                   src="{{asset('assets/video/customizing-d.mp4')}}" class="w-100 video-desktop"></video>
 
-            <video data-responsive="" data-src-sm="{{asset('assets/video/customizing-d.mp4')}}"
-                   data-poster-sm="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwa163a259/content/seasonal-content/landing-pages/chacos-for-life/images/customizing-m.png"
-                   data-src-lg="https://chacos-for-life.s3.amazonaws.com/customizing-d.mp4"
-                   data-poster-lg="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw615a2a62/content/seasonal-content/landing-pages/chacos-for-life/images/customizing.png"
+            <video data-responsive="" data-src-sm="{{asset('assets/video/customizing-m.mp4')}}"
                    autoplay="" playsinline="" muted="" loop="" class="customizing-video w-100 video-mobile"
-                   poster="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dwa163a259/content/seasonal-content/landing-pages/chacos-for-life/images/customizing-m.png"
-                   src="https://chacos-for-life.s3.amazonaws.com/customizing-m.mp4"></video>
+                   src="{{asset('assets/video/customizing-m.mp4')}}"></video>
         </figure>
         <img src="{{asset('assets/image/line-bottom.png')}}" class="line-video-bottom">
         <div class="box-content-fun">

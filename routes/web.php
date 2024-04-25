@@ -6,6 +6,7 @@ use \App\Http\Controllers\web\LoginController;
 use \App\Http\Controllers\web\CategoryController;
 use \App\Http\Controllers\web\MyAccountController;
 use \App\Http\Controllers\web\ProductController;
+use \App\Http\Controllers\web\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +37,14 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('shipping-info', [HomeController::class, 'shippingInfo'])->name('shipping-info');
 Route::get('easy-free-returns', [HomeController::class, 'returns'])->name('easy-free-returns');
 Route::get('account', [HomeController::class, 'account'])->name('account');
 Route::get('order-status', [HomeController::class, 'orderStatus'])->name('order-status');
+Route::get('faq', [HomeController::class, 'FAQ'])->name('faq');
 Route::get('product-features', [HomeController::class, 'productFeatures'])->name('product-features');
 Route::get('strap-adjuster', [HomeController::class, 'strapAdjuster'])->name('strap-adjuster');
 
 Route::get('danh-muc', [CategoryController::class, 'category'])->name('category');
 Route::get('chi-tiet-san-pham', [ProductController::class, 'index'])->name('detail-product');
+Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
