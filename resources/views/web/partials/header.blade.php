@@ -14,13 +14,8 @@
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
                                 src="{{asset('assets/image/Icon-service-new.png')}}"
                                 class="mr-2"><span style="padding-left: 5px;">CUSTOMER SERVICE</span></a></li>
-<<<<<<< HEAD
                     <li><a class="dropdown-item-help dropdown-item" href="{{route('easy-free-returns')}}"><img
                                 src="{{asset('assets/image/Icon-return-new.png')}}"
-=======
-                    <li><a class="dropdown-item-help dropdown-item" href="{{ route('easy-free-returns') }}"><img
-                                src="https://www.chacos.com/on/demandware.static/Sites-chacos_us-Site/-/default/dw5cc964b9/images/Icon-return-new.png"
->>>>>>> 55980c7b20c59fd1d9bd2a3d7264c3cdabbab1a5
                                 class="mr-2"><span style="padding-left: 5px;">EXCHANGE & RETURN</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
                                 src="{{asset('assets/image/Icon-truck-new.png')}}"
