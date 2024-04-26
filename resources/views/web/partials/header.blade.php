@@ -127,7 +127,7 @@
     </div>
 
     @foreach ($coupons as $coupon)
-        <div class="header-bottom">
+        <div class="header-bottom header-bottom-active">
             <span class="title-header-bottom">{{ $coupon->details }}</span>
             <a href="#" class="title-link-header-bottom">Use Code: <span
                     class="name-code">{{ $coupon->code }}</span> »</a>
