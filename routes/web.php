@@ -29,6 +29,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('tai-khoan-cua-toi', [MyAccountController::class, 'index'])->name('my-account');
     Route::get('chinh-sua-tai-khoan', [MyAccountController::class, 'editAccount'])->name('edit-account');
+    Route::put('chinh-sua-tai-khoan/{id}', [MyAccountController::class, 'updateAccount'])->name('update-account');
     Route::get('dia-chi', [MyAccountController::class, 'address'])->name('address-account');
     Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');

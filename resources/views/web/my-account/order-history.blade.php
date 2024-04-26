@@ -19,7 +19,7 @@
                 <p class="title-menu-child-account">Tài khoản của tôi</p>
                 <a href="{{route('edit-account')}}" class="link-page-account">Chỉnh sửa tài khoản</a>
                 <a href="{{route('address-account')}}" class="link-page-account">Địa chỉ</a>
-                <a href="{{route('order-history-account')}}" class="link-page-account">Lịch sử đơn hàng ></a>
+                <a href="{{route('order-history')}}" class="link-page-account">Lịch sử đơn hàng ></a>
                 <a href="{{route('login')}}" class="link-page-account">Đăng xuất</a>
             </div>
             <div class="box-right-account">
