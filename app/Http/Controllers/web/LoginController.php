@@ -28,12 +28,12 @@ class LoginController extends Controller
     {
         try {
             $validated = Validator::make($request->all(), [
-                'first_name' => 'required|string|max:20',
-                'last_name' => 'required|string|max:20',
-                'email' => 'required|email|unique:users,email|max:30',
-                'email_confirmed' => 'required|email|same:email',
-                'password' => ['required', 'string', 'min:8', 'regex:/[A-Z]/', 'regex:/[a-z]/', 'regex:/[0-9]/', 'regex:/[\W]/', new NoSpaceRule],
-                'password_confirmed' => ['required', 'same:password']
+                'first_name'            => 'required|string|max:20',
+                'last_name'             => 'required|string|max:20',
+                'email'                 => 'required|email|unique:users,email|max:30',
+                'email_confirmed'       => 'required|email|same:email',
+                'password'              => ['required', 'string', 'min:8', 'regex:/[A-Z]/', 'regex:/[a-z]/', 'regex:/[0-9]/', 'regex:/[\W]/', new NoSpaceRule],
+                'password_confirmed'    => ['required', 'same:password']
             ]);
 
             if ($validated->fails()) {
@@ -45,10 +45,10 @@ class LoginController extends Controller
 
             User::create([
                 'first_name' => $validatedData['first_name'],
-                'last_name' => $validatedData['last_name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-                'status' => UserStatus::ACTIVE,
+                'last_name'  => $validatedData['last_name'],
+                'email'      => $validatedData['email'],
+                'password'   => Hash::make($validatedData['password']),
+                'status'     => UserStatus::ACTIVE,
             ]);
 
             toastr()->success('Đăng ký thành công với email ' . $validatedData['email']);
@@ -63,8 +63,8 @@ class LoginController extends Controller
     {
         try {
             $validated = Validator::make($request->all(), [
-                'email' => 'required|email|exists:users,email|max:30',
-                'password' => ['required', 'min:8', new NoSpaceRule],
+                'email'     => 'required|email|exists:users,email|max:30',
+                'password'  => ['required', 'min:8', new NoSpaceRule],
             ]);
 
             if ($validated->fails()) {
