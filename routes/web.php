@@ -48,3 +48,4 @@ Route::get('strap-adjuster', [HomeController::class, 'strapAdjuster'])->name('st
 Route::get('danh-muc', [CategoryController::class, 'category'])->name('category');
 Route::get('chi-tiet-san-pham', [ProductController::class, 'index'])->name('detail-product');
 Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
+Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
