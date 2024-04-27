@@ -30,7 +30,9 @@
                 <div class="box-info-my-account">
                     <div class="line-header-info-account">
                         <p class="title-info-big-account">Thông tin tài khoản</p>
-                        <p class="title-info-small-account">Xem/Sửa</p>
+                        <a href="{{ route('edit-account') }}">
+                            <p class="title-info-small-account">Xem/Sửa</p>
+                        </a>
                     </div>
                     <div class="box-child-item-account">
                         <div class="item-left-account">
@@ -51,19 +53,28 @@
                     </div>
                     <div class="line-header-info-account">
                         <p class="title-info-big-account">Địa chỉ</p>
-                        <p class="title-info-small-account">Xem tất cả/Chỉnh sửa</p>
+                        <a href="{{ route('address-account') }}">
+                            <p class="title-info-small-account">Xem tất cả/Chỉnh sửa</p>
+                        </a>
                     </div>
                     <div class="box-info-address-book">
                         <div class="box-item-address-book">
                             <p class="title-item-address-book">Địa chỉ giao hàng mặc định</p>
-                            <p class="title-item-address-book">Địa chỉ thanh toán mặc định</p>
-                            <p class="content-item-address-book">12345678</p>
-                            <p class="content-item-address-book">12345678</p>
-                            <p class="content-item-address-book">12345678</p>
-                            <p class="content-item-address-book">12345678</p>
-                            <p class="content-item-address-book">12345678</p>
-                            <p class="content-item-address-book">Số điện thoại:</p>
-                            <p class="content-item-address-book">12345678</p>
+                            {{-- <p class="title-item-address-book">Địa chỉ thanh toán mặc định</p> --}}
+                            <p class="content-item-address-book name">Tên địa chỉ:
+                                <strong>{{ $address->name ?? 'N/a' }}</strong>
+                            </p>
+                            <p class="content-item-address-book full_name">
+                                Tên người nhận: <strong>{{ $address->first_name . ' ' . $address->last_name }}</strong></p>
+                            <p class="content-item-address-book address">Địa chỉ:
+                                <strong>{{ $address->address ?? 'N/a' }}</strong>
+                            </p>
+                            <p class="content-item-address-book city">Thành phố:
+                                <strong>{{ $address->city ?? 'N/a' }}</strong>
+                            </p>
+                            <p class="content-item-address-book phone">Số điện thoại:
+                                <strong>{{ $address->phone }}</strong>
+                            </p>
                         </div>
                     </div>
 
