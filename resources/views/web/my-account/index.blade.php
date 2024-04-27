@@ -65,7 +65,7 @@
                                 <strong>{{ $address->name ?? 'N/a' }}</strong>
                             </p>
                             <p class="content-item-address-book full_name">
-                                Tên người nhận: <strong>{{ $address->first_name . ' ' . $address->last_name }}</strong></p>
+                                Tên người nhận: <strong>{{ $address->first_name ?? 'N/a' . ' ' . $address->last_name ?? 'N/a' }}</strong></p>
                             <p class="content-item-address-book address">Địa chỉ:
                                 <strong>{{ $address->address ?? 'N/a' }}</strong>
                             </p>
@@ -73,7 +73,7 @@
                                 <strong>{{ $address->city ?? 'N/a' }}</strong>
                             </p>
                             <p class="content-item-address-book phone">Số điện thoại:
-                                <strong>{{ $address->phone }}</strong>
+                                <strong>{{ $address->phone ?? 'N/a' }}</strong>
                             </p>
                         </div>
                     </div>
