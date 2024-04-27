@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Web\HomeController;
-use \App\Http\Controllers\web\LoginController;
-use \App\Http\Controllers\web\CategoryController;
-use \App\Http\Controllers\web\MyAccountController;
-use \App\Http\Controllers\web\ProductController;
-use \App\Http\Controllers\web\CartController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\web\LoginController;
+use App\Http\Controllers\web\CategoryController;
+use App\Http\Controllers\web\MyAccountController;
+use App\Http\Controllers\web\ProductController;
+use App\Http\Controllers\web\CartController;
 
 /*
 |--------------------------------------------------------------------------
