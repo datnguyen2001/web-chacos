@@ -19,8 +19,8 @@ return new class extends Migration
             $table->double('discount');
             $table->string('discount_type');
             $table->longText('product_ids')->nullable();
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->integer('status')->default(CouponStatus::INACTIVE);
             $table->timestamps();
             $table->softDeletes();
