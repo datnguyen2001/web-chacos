@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dia-chi', [MyAccountController::class, 'address'])->name('address-account');
     Route::post('dia-chi', [MyAccountController::class, 'storeAddress'])->name('address-account-store');
     Route::put('dia-chi/{id}', [MyAccountController::class, 'updateAddress'])->name('address-account-update');
+    Route::delete('dia-chi/{id}', [MyAccountController::class, 'destroyAddress'])->name('address-account-destroy');
     Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
 

@@ -21,7 +21,7 @@
                 <a href="{{ route('edit-account') }}" class="link-page-account">Chỉnh sửa tài khoản</a>
                 <p class="title-menu-child-account">Địa chỉ ></p>
                 <a href="{{ route('order-history') }}" class="link-page-account">Lịch sử đơn hàng</a>
-                <a href="{{ route('login') }}" class="link-page-account">Đăng xuất</a>
+                <a href="{{ route('logout') }}" class="link-page-account">Đăng xuất</a>
             </div>
             <div class="box-right-account">
                 <div class="line-title-my-account">
@@ -33,25 +33,28 @@
                     <div class="box-info-address-book">
                         <div class="box-item-address-book">
                             @forelse ($addresses as $key => $add)
-                                @if ($key == 0)
-                                    <p class="title-item-address-book">Địa chỉ giao hàng mặc định</p>
-                                    {{-- <p class="title-item-address-book">Địa chỉ thanh toán mặc định</p> --}}
-                                @endif
-                                <hr>
-                                <p class="content-item-address-book name">{{ $add->name }}</p>
-                                <p class="content-item-address-book full_name">
-                                    {{ $add->first_name . ' ' . $add->last_name }}</p>
-                                <p class="content-item-address-book address">{{ $add->address }}</p>
-                                <p class="content-item-address-book city">{{ $add->city }}</p>
-                                <p class="content-item-address-book phone">Số điện thoại:
-                                    <strong>{{ $add->phone }}</strong>
-                                </p>
-                                <div class="line-footer-info-address">
-                                    <p type="button" data-bs-toggle="modal"
-                                        data-bs-target="#staticEditAddress{{ $add->id }}"
-                                        class="title-footer-info-address">Sửa</p>
-                                    <span class="title-footer-info-address"> | </span>
-                                    <a href="#" class="title-footer-info-address">Xóa</a>
+                                <div id="address-{{ $add->id }}">
+                                    @if ($key == 0)
+                                        <p class="title-item-address-book">Địa chỉ giao hàng mặc định</p>
+                                        {{-- <p class="title-item-address-book">Địa chỉ thanh toán mặc định</p> --}}
+                                    @endif
+                                    <hr>
+                                    <p class="content-item-address-book name">{{ $add->name }}</p>
+                                    <p class="content-item-address-book full_name">
+                                        {{ $add->first_name . ' ' . $add->last_name }}</p>
+                                    <p class="content-item-address-book address">{{ $add->address }}</p>
+                                    <p class="content-item-address-book city">{{ $add->city }}</p>
+                                    <p class="content-item-address-book phone">Số điện thoại:
+                                        <strong>{{ $add->phone }}</strong>
+                                    </p>
+                                    <div class="line-footer-info-address">
+                                        <p type="button" data-bs-toggle="modal"
+                                            data-bs-target="#staticEditAddress{{ $add->id }}"
+                                            class="title-footer-info-address">Sửa</p>
+                                        <span class="title-footer-info-address"> | </span>
+                                        <a type="button" onclick="deleteAddress({{ $add->id }})"
+                                            class="title-footer-info-address">Xóa</a>
+                                    </div>
                                 </div>
                             @empty
                                 <p class="title-item-address-book">Bạn chưa thêm địa chỉ nào</p>
@@ -208,4 +211,28 @@
             $('#staticCreateAddress').modal('show');
         }
     </script>
-@stop
+
+    <script>
+        function deleteAddress(id) {
+            var addressTr = $('#address-' + id);
+            if (confirm("Bạn có muốn xóa địa chỉ này không?")) {
+                $.ajax({
+                    url: '{{ route('address-account-destroy', ':id') }}'.replace(':id', id),
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': `{{ csrf_token() }}`
+                    },
+                    success: function(response) {
+                        if (response.error == 0) {
+                            toastr.success(response.message);
+                            addressTr.remove();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                });
+            }
+        }
+    </script>
+@endsection

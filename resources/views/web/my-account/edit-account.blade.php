@@ -21,7 +21,7 @@
                 <p class="title-menu-child-account">Chỉnh sửa tài khoản ></p>
                 <a href="{{ route('address-account') }}" class="link-page-account">Địa chỉ</a>
                 <a href="{{ route('order-history') }}" class="link-page-account">Lịch sử đơn hàng</a>
-                <a href="{{ route('login') }}" class="link-page-account">Đăng xuất</a>
+                <a href="{{ route('logout') }}" class="link-page-account">Đăng xuất</a>
             </div>
             <div class="box-right-account">
                 <div class="line-title-my-account">
@@ -29,7 +29,7 @@
                 </div>
                 <form action="{{ route('update-account', ['id' => Auth::user()->id ?? 0]) }}" method="POST">
                     @csrf
-                    @method("PUT")
+                    @method('PUT')
                     <div class="box-info-reg">
                         <div class="line-header-info-reg">
                             <p class="title-info-big-reg">Thông tin cá nhân</p>

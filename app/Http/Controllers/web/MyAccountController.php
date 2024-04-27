@@ -15,7 +15,8 @@ class MyAccountController extends Controller
 {
     public function index()
     {
-        return view('web.my-account.index');
+        $address = Address::where('user_id', Auth::user()->id)->where('isDefault', 1)->first();
+        return view('web.my-account.index')->with(compact('address'));
     }
 
     public function editAccount()
@@ -182,6 +183,27 @@ class MyAccountController extends Controller
             toastr()->error($e->getMessage());
             session()->put('show_update_modal_ids', [$id]);
             return back()->withInput();
+        }
+    }
+
+    public function destroyAddress($id)
+    {
+        try {
+            if (!$id) {
+                return response()->json(['error' => -1, 'message' => "Id is không được trống"], 400);
+            }
+
+            $address = Address::find($id);
+
+            if (!$address) {
+                return response()->json(['error' => -1, 'message' => "Not found address"], 400);
+            }
+
+            $address->delete();
+
+            return response()->json(['error' => 0, 'message' => "Xoá địa chỉ thành công"]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
         }
     }
 
