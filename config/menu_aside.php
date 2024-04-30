@@ -11,12 +11,20 @@ return [
             'number' => 1
         ],
         [
+            'name' => 'category',
+            'title' => 'Category',
+            'icon' => 'bi bi-view-list',
+            'route' => 'admin.category.index',
+            'submenu' => [],
+            'number' => 2
+        ],
+        [
             'name' => 'coupon',
             'title' => 'Coupon',
             'icon' => 'bi bi-graph-down-arrow',
             'route' => 'admin.coupon.index',
             'submenu' => [],
-            'number' => 2
+            'number' => 3
         ],
     ],
 ];

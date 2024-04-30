@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Enums\CouponStatus;
+use App\Models\Category;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
@@ -28,8 +29,12 @@ class CouponServiceProvider extends ServiceProvider
             $coupons = Coupon::where('status', CouponStatus::ACTIVE)
                 ->where('end_date', '>', Carbon::now())->get();
 
+            //Category
+            $categories = Category::with('children')->get();
+
             // Configure the data for the view
             $view->with('coupons', $coupons);
+            $view->with('categories', $categories);
         });
     }
 }

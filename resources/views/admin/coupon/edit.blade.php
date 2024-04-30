@@ -136,9 +136,11 @@
                     <div class="mb-3">
                         <label for="product_ids" class="form-label">Product applied:</label>
                         <select class="form-select couponParentSelector" id="product_ids" name="product_ids[]" multiple>
-                            <option value="1"{{ in_array('1', explode(',', $coupon->product_ids)) ? 'selected' : '' }}>Product
+                            <option value="1" {{ in_array('1', explode(',', $coupon->product_ids)) ? 'selected' : '' }}>
+                                Product
                                 1</option>
-                            <option value="2"{{ in_array('2', explode(',', $coupon->product_ids)) ? 'selected' : '' }}>Product
+                            <option value="2" {{ in_array('2', explode(',', $coupon->product_ids)) ? 'selected' : '' }}>
+                                Product
                                 2</option>
                         </select>
                     </div>

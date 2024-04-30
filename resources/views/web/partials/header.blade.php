@@ -6,20 +6,20 @@
                 <span class="title-header-top box-help-header position-relative">Help</span>
                 <ul class="dropdown-menu dropdown-menu-help">
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="{{asset('assets/image/Icon-clock.png')}}"
-                                class="mr-2"><span style="padding-left: 5px;">ORDER STATUS</span></a></li>
+                                src="{{ asset('assets/image/Icon-clock.png') }}" class="mr-2"><span
+                                style="padding-left: 5px;">ORDER STATUS</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="{{asset('assets/image/Icon-chat-new.png')}}"
-                                class="mr-2"><span style="padding-left: 5px;">CHAT</span></a></li>
+                                src="{{ asset('assets/image/Icon-chat-new.png') }}" class="mr-2"><span
+                                style="padding-left: 5px;">CHAT</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="{{asset('assets/image/Icon-service-new.png')}}"
-                                class="mr-2"><span style="padding-left: 5px;">CUSTOMER SERVICE</span></a></li>
-                    <li><a class="dropdown-item-help dropdown-item" href="{{route('easy-free-returns')}}"><img
-                                src="{{asset('assets/image/Icon-return-new.png')}}"
-                                class="mr-2"><span style="padding-left: 5px;">EXCHANGE & RETURN</span></a></li>
+                                src="{{ asset('assets/image/Icon-service-new.png') }}" class="mr-2"><span
+                                style="padding-left: 5px;">CUSTOMER SERVICE</span></a></li>
+                    <li><a class="dropdown-item-help dropdown-item" href="{{ route('easy-free-returns') }}"><img
+                                src="{{ asset('assets/image/Icon-return-new.png') }}" class="mr-2"><span
+                                style="padding-left: 5px;">EXCHANGE & RETURN</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
-                                src="{{asset('assets/image/Icon-truck-new.png')}}"
-                                class="mr-2"><span style="padding-left: 5px;">SHIPPING INFO</span></a></li>
+                                src="{{ asset('assets/image/Icon-truck-new.png') }}" class="mr-2"><span
+                                style="padding-left: 5px;">SHIPPING INFO</span></a></li>
                     <li>
                         <a class="dropdown-item-help dropdown-item d-flex align-items-baseline"
                             href="{{ Auth::check() ? route('my-account') : route('login') }}">
@@ -36,7 +36,8 @@
                                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
                                 </g>
                             </svg>
-                            <span style="padding-left: 5px;">{{ Auth::check() ? 'MANAGE ACCOUNT' : 'ACCOUNT SIGN IN' }}</span>
+                            <span
+                                style="padding-left: 5px;">{{ Auth::check() ? 'MANAGE ACCOUNT' : 'ACCOUNT SIGN IN' }}</span>
                         </a>
                     </li>
                 </ul>
@@ -54,26 +55,42 @@
 
     <div class="header-center">
         <div class="box-big-header-center">
+            @php
+                function renderMenuSection($categories, $menuName, $menuBelong)
+                {
+                    foreach ($categories as $cate) {
+                        $menuBelongs = array_merge(
+                            explode(',', $cate->menu_belong),
+                            $cate->children->pluck('menu_belong')->flatten()->toArray(),
+                        );
+                        $isBelong = in_array($menuBelong, $menuBelongs);
+
+                        if (
+                            ($isBelong || in_array($menuBelong, explode(',', $cate->menu_belong))) &&
+                            $cate->parent_id == 0
+                        ) {
+                            echo '<div class="item-menu-header-col">';
+                            echo '<p class="title-big-menu-item">' . $cate->name . '</p>';
+                            echo '<div class="d-flex flex-column">';
+                            foreach ($cate->children as $child) {
+                                echo '<a href="' .
+                                    route('category', ['slug' => $child->slug]) .
+                                    '" class="name-small-item-menu">' .
+                                    $child->name .
+                                    '</a>';
+                            }
+                            echo '</div></div>';
+                        }
+                    }
+                }
+            @endphp
+
             <div class="d-flex align-items-center">
                 <a href="{{ route('home') }}"><img src="{{ asset('assets/image/logo.png') }}" class="img-logo"></a>
+
                 <div class="title-header-center menu-big-1">NEW</div>
                 <div class="box-item-menu-header box-item-small-1">
-                    <div class="item-menu-header-col">
-                        <p class="title-big-menu-item">MEN</p>
-                        <div class="d-flex flex-column">
-                            <a href="{{ route('category') }}" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                        </div>
-                    </div>
-                    <div class="item-menu-header-col">
-                        <p class="title-big-menu-item">MEN</p>
-                        <div class="d-flex flex-column">
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                        </div>
-                    </div>
+                    @php renderMenuSection($categories, 'New', 'New'); @endphp
                     <div class="item-menu-header-col">
                         <div class="d-flex flex-column">
                             <img src="{{ asset('assets/image/nav-header.png') }}" class="w-75">
@@ -84,35 +101,33 @@
 
                 <div class="title-header-center menu-big-2">WOMEN</div>
                 <div class="box-item-menu-header box-item-small-2">
-                    <div class="item-menu-header-col">
-                        <p class="title-big-menu-item">MEN</p>
-                        <div class="d-flex flex-column">
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                        </div>
-                    </div>
-                    <div class="item-menu-header-col">
-                        <p class="title-big-menu-item">MEN</p>
-                        <div class="d-flex flex-column">
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                        </div>
-                    </div>
-                    <div class="item-menu-header-col">
-                        <p class="title-big-menu-item">MEN</p>
-                        <div class="d-flex flex-column">
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                            <a href="" class="name-small-item-menu">1 Strap</a>
-                        </div>
-                    </div>
+                    @php renderMenuSection($categories, 'Woman', 'Woman'); @endphp
                 </div>
-                <div class="title-header-center">MEN</div>
-                <div class="title-header-center">KIDS</div>
-                <div class="title-header-center">SALE</div>
-                <div class="title-header-center">INSIDE CHACO</div>
+
+                <div class="title-header-center menu-big-3">MEN</div>
+                <div class="box-item-menu-header box-item-small-3">
+                    @php renderMenuSection($categories, 'Men', 'Men'); @endphp
+                </div>
+
+                <div class="title-header-center menu-big-4">KIDS</div>
+                <div class="box-item-menu-header box-item-small-4">
+                    @php renderMenuSection($categories, 'Kids', 'Kids'); @endphp
+                </div>
+
+                <div class="title-header-center menu-big-5">GEAR</div>
+                <div class="box-item-menu-header box-item-small-5">
+                    @php renderMenuSection($categories, 'Gear', 'Gear'); @endphp
+                </div>
+
+                <div class="title-header-center menu-big-6">SALE</div>
+                <div class="box-item-menu-header box-item-small-6">
+                    @php renderMenuSection($categories, 'Sale', 'Sale'); @endphp
+                </div>
+
+                <div class="title-header-center menu-big-7">INSIDE CHACO</div>
+                <div class="box-item-menu-header box-item-small-7">
+                    @php renderMenuSection($categories, 'Inside Chaco', 'Inside Chaco'); @endphp
+                </div>
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div class="position-relative box-search-header">
@@ -188,33 +203,25 @@
                 to
                 apply in checkout.</div>
             <div class="item-sale-style">
-                <img
-                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
-                    class="w-100">
+                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
                 </div>
             </div>
             <div class="item-sale-style">
-                <img
-                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
-                    class="w-100">
+                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
                 </div>
             </div>
             <div class="item-sale-style">
-                <img
-                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
-                    class="w-100">
+                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
                 </div>
             </div>
             <div class="item-sale-style">
-                <img
-                    src="{{asset('assets/image/extole_updates_promotab_03.jpg')}}"
-                    class="w-100">
+                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
                 <div class="line-sale-style">
                     No Code Necessary
                 </div>
@@ -414,8 +421,9 @@
                         <div class="quantity-wrapper ">
                             <span>
                                 <button type="button" class="quantity-minus btn-quantity-sp"
-                                    data-field="quantity"><img src="{{ asset('assets/image/cartqty-minus-new.png') }}"
-                                        alt="Remove Quantity" class="offers-icon"></button>
+                                    data-field="quantity"><img
+                                        src="{{ asset('assets/image/cartqty-minus-new.png') }}" alt="Remove Quantity"
+                                        class="offers-icon"></button>
                             </span>
                             <input type="number" class="value input-quantity-sp" readonly
                                 id="mini-cart-quantity-value-0" value="1">
