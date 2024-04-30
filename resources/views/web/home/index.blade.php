@@ -1,25 +1,24 @@
 @extends('web.index')
-@section('title','Trang chủ')
+@section('title', 'Trang chủ')
 
 @section('style_page')
-    <link rel="stylesheet" href="{{asset('assets/css/home.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 @stop
-{{--content of page--}}
+{{-- content of page --}}
 @section('content')
     <div class="box-banner">
         <div class="position-relative">
-            <video data-responsive="" class="w-100" autoplay="" playsinline="" muted="" loop="" fetchpriority="high" src="{{asset('assets/video/home-hero.mp4')}}"></video>
-            <img src="{{asset('assets/image/wavy-overlay.png')}}" class="img-song">
+            <video data-responsive="" class="w-100" autoplay="" playsinline="" muted="" loop=""
+                fetchpriority="high" src="{{ asset('assets/video/home-hero.mp4') }}"></video>
+            <img src="{{ asset('assets/image/wavy-overlay.png') }}" class="img-song">
         </div>
         <div class="overlays-home">
             <div class="wrapper">
-                <img
-                    src="{{asset('assets/image/hero-product.png')}}"
-                    alt=" " class="hero-product-overlay">
+                <img src="{{ asset('assets/image/hero-product.png') }}" alt=" " class="hero-product-overlay">
                 <div class="hero-content mx-2 d-flex align-items-end">
                     <div>
-                    <p class="mb-0 text-hero-one">THE All-NEW</p>
-                    <p class="mb-0 text-hero-two">RAPID PRO</p>
+                        <p class="mb-0 text-hero-one">THE All-NEW</p>
+                        <p class="mb-0 text-hero-two">RAPID PRO</p>
                     </div>
                     <a href="#" class="btn-link-buy btn-pc-link-buy">MUA NGAY</a>
                 </div>
@@ -32,26 +31,26 @@
         <div class="title-shop-style">What's <span style="color: #f65024;">YOUR STYLE?</span></div>
         <div class="swiper productSwiper productStyleSwiper">
             <div class="swiper-wrapper">
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
-                <a href="{{route('category')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/shoes.png')}}" class="img-product-style2">
+                <a href="{{ route('category') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
                 </a>
             </div>
             <div class="swiper-pagination swiper-pagination-product"></div>
@@ -62,58 +61,43 @@
         <article class="ag-full-width home-common" id="home-cards">
             <div class="ag-site-width">
                 <picture>
-                    <img src="{{asset('assets/image/home-cards-d.png')}}" width="1920" height="1130" class="bg-image"/>
-                    <img src="{{asset('assets/image/home-cards-m.png')}}" class="img-cards-m">
+                    <img src="{{ asset('assets/image/home-cards-d.png') }}" width="1920" height="1130"
+                        class="bg-image" />
+                    <img src="{{ asset('assets/image/home-cards-m.png') }}" class="img-cards-m">
                 </picture>
                 <h2 class="title">
-                    <span>How you want to live</span><br />begins with what you put<br
-                        class="sm-only"
-                    />
+                    <span>How you want to live</span><br />begins with what you put<br class="sm-only" />
                     on your feet.
                 </h2>
                 <div class="swiper AlongSaleSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img
-                                src="{{asset('assets/image/35-years-35-and-under.gif')}}"
-                            />
+                            <img src="{{ asset('assets/image/35-years-35-and-under.gif') }}" />
                             <h2>Extra 35% Off Sale</h2>
                             <p>
                                 Ending our birthday month with a bang!<br />
                                 Take an extra 35% off sale items. Now through 4/27.<br />
                                 Use code 35YEARS at checkout.
                             </p>
-                            <a href="https://www.chacos.com/US/en/sale/" class="btn"
-                            >SHOP SALE</a
-                            >
+                            <a href="https://www.chacos.com/US/en/sale/" class="btn">SHOP SALE</a>
                         </div>
                         <div class="swiper-slide">
                             <picture>
-                                <img
-                                    src="{{asset('assets/image/come-hang-out.png')}}"
-                                />
+                                <img src="{{ asset('assets/image/come-hang-out.png') }}" />
                             </picture>
                             <h2>Come Hang Out</h2>
                             <p>
-                                We're hitting the road again in 2024 and can't<br
-                                    class="lg-only"
-                                />
+                                We're hitting the road again in 2024 and can't<br class="lg-only" />
                                 wait<br class="sm-only" />
                                 to get together and celebrate our 35th<br class="lg-only" />
                                 birthday at<br class="sm-only" />
                                 the Chaco For Life Tour!
                             </p>
-                            <a
-                                href="https://www.chacos.com/US/en/chaco-for-life/"
-                                class="btn"
-                            >FOLLOW ALONG</a
-                            >
+                            <a href="https://www.chacos.com/US/en/chaco-for-life/" class="btn">FOLLOW ALONG</a>
                         </div>
                         <div class="swiper-slide">
                             <picture>
-                                <img
-                                    src="{{asset('assets/image/go-to-townes_1.png')}}"
-                                />
+                                <img src="{{ asset('assets/image/go-to-townes_1.png') }}" />
                             </picture>
                             <h2>Go To Townes</h2>
                             <p>
@@ -121,11 +105,7 @@
                                 Townes is an instant classic and your next go-to<br />
                                 sandal for the everyday.
                             </p>
-                            <a
-                                href="https://www.chacos.com/US/en/townes-collection/"
-                                class="btn"
-                            >SHOP TOWNES</a
-                            >
+                            <a href="https://www.chacos.com/US/en/townes-collection/" class="btn">SHOP TOWNES</a>
                         </div>
                     </div>
                     <div class="swiper-pagination sm-only"></div>
@@ -137,8 +117,8 @@
 
     <div class="box-shop-style box-m-top" style="background-color: white;padding-bottom: 0">
         <div class="d-flex align-items-center">
-            <div class="title-shop-style mx-2">#CHACONATION  <span style="color: #f65024;">FAVORITES</span></div>
-            <img src="{{asset('assets/image/vector-favorites.png')}}" class="icon-vector-favorites">
+            <div class="title-shop-style mx-2">#CHACONATION <span style="color: #f65024;">FAVORITES</span></div>
+            <img src="{{ asset('assets/image/vector-favorites.png') }}" class="icon-vector-favorites">
             <div class="d-flex box-more-style-shop">
                 <a href="" class="link-cate-home">Shop Women's »</a>
                 <a href="" class="link-cate-home">Shop Men's »</a>
@@ -148,18 +128,28 @@
 
         <div class="swiper productSwiper">
             <div class="swiper-wrapper">
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -167,18 +157,28 @@
                         <p class="price-favo">$130.00</p>
                     </div>
                 </a>
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -186,18 +186,28 @@
                         <p class="price-favo">$130.00</p>
                     </div>
                 </a>
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -205,18 +215,28 @@
                         <p class="price-favo">$130.00</p>
                     </div>
                 </a>
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -224,18 +244,28 @@
                         <p class="price-favo">$130.00</p>
                     </div>
                 </a>
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -243,18 +273,28 @@
                         <p class="price-favo">$130.00</p>
                     </div>
                 </a>
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -262,18 +302,28 @@
                         <p class="price-favo">$130.00</p>
                     </div>
                 </a>
-                <a href="{{route('detail-product')}}" class="swiper-slide box-item-product">
-                    <img src="{{asset('assets/image/z-sandals.png')}}" class="img-product-style">
+                <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
+                    <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
                     <div class="title-product-bottom">
                         <div>
                             <p class="title-sp-favo">CUSTOMIZABLE Z</p>
                             <div class="reviews">
                                 <div class="stars">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg" alt="Full star">
-                                    <img class="product-star" src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg" alt="Half filled star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                        alt="Full star">
+                                    <img class="product-star"
+                                        src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
+                                        alt="Half filled star">
                                 </div>
                                 <p class="review-number">(304)</p>
                             </div>
@@ -282,8 +332,8 @@
                     </div>
                 </a>
             </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
             <div class="swiper-pagination swiper-pagination-product"></div>
         </div>
         <div class="box-more-style-shop-mobile">
@@ -292,43 +342,41 @@
         </div>
     </div>
 
-    <img src="{{asset('assets/image/banner1.png')}}" class="img-banner-hero-home">
-    <img src="{{asset('assets/image/banner-mobile.png')}}" class="img-banner-mobile-hero-home">
+    <img src="{{ asset('assets/image/banner1.png') }}" class="img-banner-hero-home">
+    <img src="{{ asset('assets/image/banner-mobile.png') }}" class="img-banner-mobile-hero-home">
 
     <div class="box-favorites">
         <div class="box-left-favo-img">
             <picture>
-                <img
-                    src="{{asset('assets/image/home-favorites-20240218.gif')}}"
-                    class="w-100">
+                <img src="{{ asset('assets/image/home-favorites-20240218.gif') }}" class="w-100">
             </picture>
         </div>
         <div class="box-right-favo">
-            <img src="{{asset('assets/image/pick.png')}}" class="img-pick">
-            <img src="{{asset('assets/image/pick-you.png')}}" class="img-pick-mobile">
+            <img src="{{ asset('assets/image/pick.png') }}" class="img-pick">
+            <img src="{{ asset('assets/image/pick-you.png') }}" class="img-pick-mobile">
             <div class="swiper favoritesSwiper">
                 <div class="swiper-wrapper">
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
+                    <a href="{{ route('detail-product') }}" class="swiper-slide">
+                        <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL</div>
                         <div class="price-product-favo">$105.00</div>
                     </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
+                    <a href="{{ route('detail-product') }}" class="swiper-slide">
+                        <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
                             WOMEN'S ZX/2® CLASSIC SANDAL
                         </div>
                         <div class="price-product-favo">$105.00</div>
                     </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
+                    <a href="{{ route('detail-product') }}" class="swiper-slide">
+                        <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
                             WOMEN'S ZX/2® CLASSIC SANDAL
                         </div>
                         <div class="price-product-favo">$105.00</div>
                     </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
+                    <a href="{{ route('detail-product') }}" class="swiper-slide">
+                        <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
                         <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
                             WOMEN'S ZX/2® CLASSIC SANDAL
                         </div>
@@ -343,17 +391,17 @@
     </div>
 
     <div class="box-fun-adventurous">
-        <img src="{{asset('assets/image/line-top.png')}}" class="line-video-top">
+        <img src="{{ asset('assets/image/line-top.png') }}" class="line-video-top">
         <figure class="w-100 m-0">
-            <video data-src-sm="{{asset('assets/video/customizing-d.mp4')}}"
-                   autoplay="" playsinline="" muted="" loop=""
-                   src="{{asset('assets/video/customizing-d.mp4')}}" class="w-100 video-desktop"></video>
+            <video data-src-sm="{{ asset('assets/video/customizing-d.mp4') }}" autoplay="" playsinline=""
+                muted="" loop="" src="{{ asset('assets/video/customizing-d.mp4') }}"
+                class="w-100 video-desktop"></video>
 
-            <video data-responsive="" data-src-sm="{{asset('assets/video/customizing-m.mp4')}}"
-                   autoplay="" playsinline="" muted="" loop="" class="customizing-video w-100 video-mobile"
-                   src="{{asset('assets/video/customizing-m.mp4')}}"></video>
+            <video data-responsive="" data-src-sm="{{ asset('assets/video/customizing-m.mp4') }}" autoplay=""
+                playsinline="" muted="" loop="" class="customizing-video w-100 video-mobile"
+                src="{{ asset('assets/video/customizing-m.mp4') }}"></video>
         </figure>
-        <img src="{{asset('assets/image/line-bottom.png')}}" class="line-video-bottom">
+        <img src="{{ asset('assets/image/line-bottom.png') }}" class="line-video-bottom">
         <div class="box-content-fun">
             <div class="title-content-fun">FUN ADVENTUROUS, <span style="color: #E48665;">UNIQUELY YOU.</span></div>
             <div class="d-flex flex-column">
@@ -503,5 +551,5 @@
     </div>
 @stop
 @section('script_page')
-    <script src="{{asset('assets/js/home.js')}}"></script>
+    <script src="{{ asset('assets/js/home.js') }}"></script>
 @stop

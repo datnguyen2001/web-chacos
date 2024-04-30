@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function category()
+    public function category($slug)
     {
         return view('web.category.index');
     }
