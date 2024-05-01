@@ -11,12 +11,51 @@ return [
             'number' => 1
         ],
         [
+            'name' => 'homepage',
+            'title' => 'Home Page',
+            'icon' => 'bi bi-house-gear',
+            'route' => 'admin.coupon.index',
+            'submenu' => [
+                [
+                    'name' => 'banner',
+                    'title' => 'Banner',
+                    'icon' => 'bi bi-app-indicator',
+                    'route' => 'admin.coupon.index'
+                ],
+                [
+                    'name' => 'style',
+                    'title' => 'Shop by style',
+                    'icon' => 'bi bi-alexa',
+                    'route' => 'admin.coupon.index'
+                ],
+                [
+                    'name' => 'sale_along',
+                    'title' => 'Sale along',
+                    'icon' => 'bi bi-box-seam',
+                    'route' => 'admin.coupon.index'
+                ],
+                [
+                    'name' => 'favorites',
+                    'title' => 'Favorites',
+                    'icon' => 'bi bi-star-fill',
+                    'route' => 'admin.coupon.index'
+                ],
+                [
+                    'name' => 'adventurous',
+                    'title' => 'Adventurous',
+                    'icon' => 'bi bi-palette',
+                    'route' => 'admin.coupon.index'
+                ],
+            ],
+            'number' => 2
+        ],
+        [
             'name' => 'category',
             'title' => 'Category',
             'icon' => 'bi bi-view-list',
             'route' => 'admin.category.index',
             'submenu' => [],
-            'number' => 2
+            'number' => 3
         ],
         [
             'name' => 'coupon',
@@ -24,7 +63,7 @@ return [
             'icon' => 'bi bi-graph-down-arrow',
             'route' => 'admin.coupon.index',
             'submenu' => [],
-            'number' => 3
+            'number' => 4
         ],
     ],
 ];
