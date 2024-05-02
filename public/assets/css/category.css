@@ -375,6 +375,8 @@
   display: none;
   position: relative;
   padding: 0 30px;
+    height: 27px;
+    max-width: 246px;
 }
 .swiperOptionColor {
   width: 285px !important;

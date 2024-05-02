@@ -107,6 +107,7 @@ a{
   font-weight: 700;
   cursor: pointer;
   border: 1px solid white;
+    border-bottom-width: 4px;
   margin: 2px 0;
 }
 .input-search-header {
@@ -444,7 +445,7 @@ a{
   max-width: 1920px;
   margin: 0 auto;
   background-color: #f1f1f2;
-  margin-top: 143px;
+  margin-top: 100px;
 }
 .box-content-menu-contact {
   width: 80%;

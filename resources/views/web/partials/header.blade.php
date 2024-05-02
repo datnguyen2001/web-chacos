@@ -464,8 +464,7 @@
                         class="MiniCart__FooterTotalPrice">$105.00</span></h3>
                 <button class="mini-cart-link-checkout cta-primary">Checkout</button>
                 <div class="MiniCart__FooterViewCart">
-                    <button class="mini-cart-link-checkout cta-primary">View
-                        Cart</button>
+                    <button class="mini-cart-link-checkout cta-primary"><a href="{{route('cart')}}" style="color: white">View Cart</a> </button>
                 </div>
             </div>
         </div>
