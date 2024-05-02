@@ -28,8 +28,8 @@ class HomepageSettingsController extends Controller
     {
         try {
             $validated = Validator::make($request->all(), [
-                'banner'        => 'nullable|mimes:mp4|max:5120',
-                'image'         => 'nullable|mimes:png|max:5120',
+                'banner'        => 'nullable|mimes:mp4|max:10240',
+                'image'         => 'nullable|mimes:png|max:10240',
                 'title'         => 'nullable|string|max:10',
                 'content'       => 'nullable|string|max:10',
                 'button_title'  => 'nullable|string|max:10',
@@ -94,21 +94,33 @@ class HomepageSettingsController extends Controller
 
     public function shopByStyle()
     {
-        return view('');
+        $page_menu = 'homepage';
+        $page_sub = 'style';
+
+        return view('admin.settings.shop-by-style')->with(compact('page_menu', 'page_sub'));
     }
 
     public function saleAlong()
     {
-        return view('');
+        $page_menu = 'homepage';
+        $page_sub = 'sale_along';
+
+        return view('admin.settings.sale-along')->with(compact('page_menu', 'page_sub'));
     }
 
     public function favorites()
     {
-        return view('');
+        $page_menu = 'homepage';
+        $page_sub = 'favorites';
+
+        return view('admin.settings.favorites')->with(compact('page_menu', 'page_sub'));
     }
 
     public function adventurous()
     {
-        return view('');
+        $page_menu = 'homepage';
+        $page_sub = 'adventurous';
+
+        return view('admin.settings.adventurous')->with(compact('page_menu', 'page_sub'));
     }
 }

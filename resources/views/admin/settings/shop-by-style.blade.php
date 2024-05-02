@@ -1,7 +1,8 @@
 @extends('admin.layout.index')
-@section('title', 'Quản lý Banner')
+@section('title', 'Quản lý Shop By Style')
 
 @section('style')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 
     <style>
@@ -86,40 +87,40 @@
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Banner Trang chủ</h1>
+            <h1 class="h3 mb-4 text-gray-800">"Shop by style" Trang chủ</h1>
 
             <hr>
 
-            <div class="box-banner mt-1">
-                @if (isset($banner->banner))
-                    <div class="position-relative">
-                        <video data-responsive="" class="w-100" autoplay="" playsinline="" muted="" loop=""
-                            fetchpriority="high" src="{{ $banner->banner }}"></video>
-                        <img src="{{ asset('assets/image/wavy-overlay.png') }}" class="img-song">
+            <div class="box-shop-style box-mobile-style">
+                <div class="title-shop-style">What's <span style="color: #f65024;">YOUR STYLE?</span></div>
+                <div class="swiper productSwiper productStyleSwiper">
+                    <div class="swiper-wrapper">
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
+                        <a type="button" class="swiper-slide box-item-product">
+                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
+                        </a>
                     </div>
-                @endif
-                <div class="overlays-home">
-                    <div class="wrapper">
-                        <img src="{{ $banner->image ?? '' }}" alt="" class="hero-product-overlay">
-                        <div class="hero-content mx-2 d-flex align-items-end">
-                            <div>
-                                <p class="mb-0 text-hero-one">{{ strtoupper($banner->title ?? '') }}</p>
-                                <p class="mb-0 text-hero-two">{{ strtoupper($banner->content ?? '') }}</p>
-                            </div>
-                            @if (isset($banner->button_title))
-                                <a target="_blank" href="{{ $banner->button_href ?? '#' }}"
-                                    class="btn-link-buy btn-pc-link-buy">{{ $banner->button_title }}</a>
-                            @endif
-                        </div>
-                    </div>
-                    @if (isset($banner->button_title))
-                        <a target="_blank" href="{{ $banner->button_href ?? '#' }}"
-                            class="btn-link-buy btn-mobile-link-buy">{{ $banner->button_title }}</a>
-                    @endif
+                    <div class="swiper-pagination swiper-pagination-product"></div>
                 </div>
             </div>
-
-            <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
+            {{-- <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="mainBanner" class="form-label">Video của banner:</label>
@@ -171,11 +172,13 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Lưu</button>
-            </form>
+            </form> --}}
         </div>
 
     </main>
 @endsection
-@section('script')
 
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ asset('assets/js/home.js') }}"></script>
 @endsection

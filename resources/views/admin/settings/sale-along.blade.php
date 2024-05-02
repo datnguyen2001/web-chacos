@@ -1,5 +1,5 @@
 @extends('admin.layout.index')
-@section('title', 'Quản lý Banner')
+@section('title', 'Quản lý Sale Along')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
@@ -86,40 +86,69 @@
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Banner Trang chủ</h1>
+            <h1 class="h3 mb-4 text-gray-800">"Sale along" Trang chủ</h1>
 
             <hr>
 
-            <div class="box-banner mt-1">
-                @if (isset($banner->banner))
-                    <div class="position-relative">
-                        <video data-responsive="" class="w-100" autoplay="" playsinline="" muted="" loop=""
-                            fetchpriority="high" src="{{ $banner->banner }}"></video>
-                        <img src="{{ asset('assets/image/wavy-overlay.png') }}" class="img-song">
-                    </div>
-                @endif
-                <div class="overlays-home">
-                    <div class="wrapper">
-                        <img src="{{ $banner->image ?? '' }}" alt="" class="hero-product-overlay">
-                        <div class="hero-content mx-2 d-flex align-items-end">
-                            <div>
-                                <p class="mb-0 text-hero-one">{{ strtoupper($banner->title ?? '') }}</p>
-                                <p class="mb-0 text-hero-two">{{ strtoupper($banner->content ?? '') }}</p>
+            <div class="box-along-sale" style="margin-top: 7rem;">
+                <article class="ag-full-width home-common" id="home-cards">
+                    <div class="ag-site-width" style=" margin-bottom: 1rem">
+                        <picture>
+                            <img src="{{ asset('assets/image/home-cards-d.png') }}" width="1920" height="1130"
+                                class="bg-image" />
+                            <img src="{{ asset('assets/image/home-cards-m.png') }}" class="img-cards-m">
+                        </picture>
+                        <h2 class="title">
+                            <span>How you want to live</span><br />begins with what you put<br class="sm-only" />
+                            on your feet.
+                        </h2>
+                        <div class="swiper AlongSaleSwiper" style="margin-top: 1rem">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('assets/image/35-years-35-and-under.gif') }}" style="width: 35em"/>
+                                    <h2>Extra 35% Off Sale</h2>
+                                    <p>
+                                        Ending our birthday month with a bang!<br />
+                                        Take an extra 35% off sale items. Now through 4/27.<br />
+                                        Use code 35YEARS at checkout.
+                                    </p>
+                                    <a href="https://www.chacos.com/US/en/sale/" class="btn">SHOP SALE</a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <picture>
+                                        <img src="{{ asset('assets/image/come-hang-out.png') }}" style="width: 36em"/>
+                                    </picture>
+                                    <h2>Come Hang Out</h2>
+                                    <p>
+                                        We're hitting the road again in 2024 and can't<br class="lg-only" />
+                                        wait<br class="sm-only" />
+                                        to get together and celebrate our 35th<br class="lg-only" />
+                                        birthday at<br class="sm-only" />
+                                        the Chaco For Life Tour!
+                                    </p>
+                                    <a href="https://www.chacos.com/US/en/chaco-for-life/" class="btn">FOLLOW ALONG</a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <picture>
+                                        <img src="{{ asset('assets/image/go-to-townes_1.png') }}" style="width: 36em"/>
+                                    </picture>
+                                    <h2>Go To Townes</h2>
+                                    <p>
+                                        Comfy enough to go, go, go from day one, the<br />
+                                        Townes is an instant classic and your next go-to<br />
+                                        sandal for the everyday.
+                                    </p>
+                                    <a href="https://www.chacos.com/US/en/townes-collection/" class="btn">SHOP TOWNES</a>
+                                </div>
                             </div>
-                            @if (isset($banner->button_title))
-                                <a target="_blank" href="{{ $banner->button_href ?? '#' }}"
-                                    class="btn-link-buy btn-pc-link-buy">{{ $banner->button_title }}</a>
-                            @endif
+                            <div class="swiper-pagination sm-only"></div>
                         </div>
+
                     </div>
-                    @if (isset($banner->button_title))
-                        <a target="_blank" href="{{ $banner->button_href ?? '#' }}"
-                            class="btn-link-buy btn-mobile-link-buy">{{ $banner->button_title }}</a>
-                    @endif
-                </div>
+                </article>
             </div>
 
-            <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
+            {{-- <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="mainBanner" class="form-label">Video của banner:</label>
@@ -171,11 +200,12 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Lưu</button>
-            </form>
+            </form> --}}
         </div>
 
     </main>
 @endsection
+
 @section('script')
 
 @endsection
