@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('homepage_settings', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->longText('value');
+            $table->longText('value')->nullable();
             $table->tinyInteger('isActive')->default(0);
             $table->timestamps();
         });

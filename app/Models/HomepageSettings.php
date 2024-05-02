@@ -12,5 +12,6 @@ class HomepageSettings extends Model
     protected $fillable = [
         'type',
         'value',
+        'isActive'
     ];
 }
