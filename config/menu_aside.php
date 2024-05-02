@@ -20,31 +20,31 @@ return [
                     'name' => 'banner',
                     'title' => 'Banner',
                     'icon' => 'bi bi-app-indicator',
-                    'route' => 'admin.coupon.index'
+                    'route' => 'admin.settings.banner'
                 ],
                 [
                     'name' => 'style',
                     'title' => 'Shop by style',
                     'icon' => 'bi bi-alexa',
-                    'route' => 'admin.coupon.index'
+                    'route' => 'admin.settings.shop.by.style'
                 ],
                 [
                     'name' => 'sale_along',
                     'title' => 'Sale along',
                     'icon' => 'bi bi-box-seam',
-                    'route' => 'admin.coupon.index'
+                    'route' => 'admin.settings.sale.along'
                 ],
                 [
                     'name' => 'favorites',
                     'title' => 'Favorites',
                     'icon' => 'bi bi-star-fill',
-                    'route' => 'admin.coupon.index'
+                    'route' => 'admin.settings.favorites'
                 ],
                 [
                     'name' => 'adventurous',
                     'title' => 'Adventurous',
                     'icon' => 'bi bi-palette',
-                    'route' => 'admin.coupon.index'
+                    'route' => 'admin.settings.adventurous'
                 ],
             ],
             'number' => 2
