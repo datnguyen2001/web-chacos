@@ -11,4 +11,9 @@ class CartController extends Controller
     {
         return view('web.cart.index');
     }
+
+    public function checkout()
+    {
+        return view('web.cart.checkout');
+    }
 }
