@@ -2,8 +2,8 @@
 @section('title', 'Quản lý Shop By Style')
 
 @section('style')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
         .switch {
@@ -91,71 +91,58 @@
 
             <hr>
 
-            <div class="box-shop-style box-mobile-style">
-                <div class="title-shop-style">What's <span style="color: #f65024;">YOUR STYLE?</span></div>
-                <div class="swiper productSwiper productStyleSwiper">
-                    <div class="swiper-wrapper">
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                        <a type="button" class="swiper-slide box-item-product">
-                            <img src="{{ asset('assets/image/shoes.png') }}" class="img-product-style2">
-                        </a>
-                    </div>
-                    <div class="swiper-pagination swiper-pagination-product"></div>
-                </div>
+            <div class="d-flex justify-content-start">
+                <a type="button"
+                    class="btn btn-outline-primary {{ count(json_decode(json_encode($sbs->list), true)) == 3 ? 'd-none' : '' }}"
+                    data-bs-toggle="modal" data-bs-target="#addNewOne"><i
+                        class="bi bi-plus-circle-dotted me-2"></i><span>Thêm mới biểu ngữ</span></a>
             </div>
-            {{-- <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
+
+            <table id="sortable-table" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">STT</th>
+                        <th scope="col" class="text-center">Ảnh</th>
+                        <th scope="col" class="text-center">Tiêu đề</th>
+                        <th scope="col" class="text-center">Nội dung của nút</th>
+                        <th scope="col" class="text-center">Liên kết của nút</th>
+                        <th scope="col" class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sbs->list as $key => $list)
+                        <tr id="list-{{ $key }}">
+                            <td class="text-center">{{ $key }}</td>
+                            <td class="text-center">
+                                <img src="{{ $list->image }}" width="200">
+                            </td>
+                            <td class="text-center">{{ $list->title }}</td>
+                            <td class="text-center">{{ $list->button_title ?? '' }}</td>
+                            <td class="text-center">{{ $list->button_href ?? '#' }}</td>
+                            <td class="text-center">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#editList{{ $key }}"
+                                    class="btn btn-primary me-3"><i class="bi bi-pencil-square"></i></a>
+                                <button onclick="deleteList({{ $key }})" class="btn btn-danger"><i
+                                        class="bi bi-trash3-fill"></i></button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <form class="mt-5" action="{{ route('admin.settings.shop.by.style.update') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label for="mainBanner" class="form-label">Video của banner:</label>
-                    <input class="form-control" accept=".mp4" max-size="10240000" type="file" id="mainBanner"
-                        name="banner">
+                    <label for="title1" class="form-label">Tiêu đề 1 (Chữ vàng):</label>
+                    <input class="form-control" type="text" id="title1" name="title1"
+                        value="{{ old('title1', $sbs->title1) }}">
                 </div>
 
                 <div class="mb-3">
-                    <label for="imageOverlay" class="form-label">Lớp ảnh phủ:</label>
-                    <input class="form-control" accept=".png" max-size="10240000" type="file" id="imageOverlay"
-                        name="image">
-                </div>
-
-                <div class="mb-3">
-                    <label for="title" class="form-label">Tiêu đề (Chữ bé):</label>
-                    <input class="form-control" type="text" id="title" name="title"
-                        value="{{ old('title', $banner->title ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Nội dung (Chữ to):</label>
-                    <input class="form-control" type="text" id="content" name="content"
-                        value="{{ old('content', $banner->content ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="button_title" class="form-label">Tiêu đề nút bấm:</label>
-                    <input class="form-control" type="text" id="button_title" name="button_title"
-                        value="{{ old('button_title', $banner->button_title ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="button_href" class="form-label">Nút điều hướng:</label>
-                    <input class="form-control" type="text" id="button_href" name="button_href"
-                        value="{{ old('button_href', $banner->button_href ?? '') }}">
+                    <label for="title2" class="form-label">Tiêu đề 2 (Chữ trắng):</label>
+                    <input class="form-control" type="text" id="title2" name="title2"
+                        value="{{ old('title2', $sbs->title2) }}">
                 </div>
 
                 <div class="mb-3">
@@ -172,13 +159,194 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Lưu</button>
-            </form> --}}
+            </form>
+
         </div>
+
+        <!-- Add new modal -->
+        <div class="modal fade" id="addNewOne" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="addNewLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form method="POST" action="{{ route('admin.settings.shop.by.style.update') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addNewLabel">Thêm mới biểu ngữ</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="add-image" class="form-label">Ảnh</label>
+                                <input name="image" class="form-control" type="file" id="add-image"
+                                    accept="image/*, .gif" required>
+                                <img class="mt-3" src="" width="200">
+                            </div>
+                            <div class="mb-3">
+                                <label for="add-title" class="form-label">Tiêu đề</label>
+                                <input type="text" class="form-control" id="add-title" name="title"
+                                    value="{{ old('title') }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="add-description" class="form-label">Mô tả</label>
+                                <textarea class="form-control" name="description" id="description" rows="3">{{ old('description') }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="add-button-title" class="form-label">Nội dung nút</label>
+                                <input type="text" class="form-control" id="add-button-title" name="button_title"
+                                    value="{{ old('button_title') }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="add-button-href" class="form-label">Liên kết nút</label>
+                                <input type="text" class="form-control" id="add-button-href" name="button_href"
+                                    value="{{ old('button_href') }}" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @foreach ($sbs->list as $key => $list)
+            <!-- Edit list modal -->
+            <div class="modal fade" id="editList{{ $key }}" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="editListLabel{{ $key }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <form method="POST"
+                            action="{{ route('admin.settings.shop.by.style.update.list', ['key' => $key]) }}"
+                            enctype="multipart/form-data">
+                            @method('PUT')
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editListLabel{{ $key }}">Sửa biểu ngữ
+                                    {{ $key }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="edit-image{{ $key }}" class="form-label">Ảnh</label>
+                                    <input name="image" class="form-control" type="file"
+                                        id="edit-image{{ $key }}" accept="image/*, .gif">
+                                    <img class="mt-3" src="{{ $list->image }}" width="200">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-title{{ $key }}" class="form-label">Tiêu đề</label>
+                                    <input type="text" class="form-control" id="edit-title{{ $key }}"
+                                        name="title" value="{{ old('title', $list->title) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-description{{ $key }}" class="form-label">Mô tả</label>
+                                    <textarea class="form-control" name="description" id="edit-description{{ $key }}" rows="3">{{ old('description', $list->description) }}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-button-title{{ $key }}" class="form-label">Nội dung
+                                        nút</label>
+                                    <input type="text" class="form-control" id="edit-button-title{{ $key }}"
+                                        name="button_title" value="{{ old('button_title', $list->button_title ?? '') }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-button-href{{ $key }}" class="form-label">Liên kết
+                                        nút</label>
+                                    <input type="text" class="form-control" id="edit-button-href{{ $key }}"
+                                        name="button_href" value="{{ old('button_href', $list->button_href ?? '#') }}">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
 
     </main>
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{ asset('assets/js/home.js') }}"></script>
+
+    @if (session('open_store_modal'))
+        <script>
+            $(document).ready(function() {
+                openStoreSBSModal();
+            });
+        </script>
+    @endif
+
+    <script>
+        function openStoreSBSModal() {
+            $('#addNewOne').modal('show');
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('input[name="image"]').on('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                var previewImage = $(this).siblings('img');
+
+                reader.onload = function(e) {
+                    previewImage.attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var table = $("#sortable-table").DataTable({
+                paging: false,
+                searching: true,
+                ordering: true,
+                info: true,
+                rowReorder: {
+                    selector: 'tr',
+                    update: function(evt, ui, $node) {
+                        // Perform any logic when a row is reordered
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function deleteList(key) {
+            var listTr = $('#list-' + key);
+            if (confirm("Bạn có chắc chắn muốn xóa biểu ngữ này?")) {
+                $.ajax({
+                    url: '{{ route('admin.settings.shop.by.style.destroy', ':key') }}'.replace(':key', key),
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': `{{ csrf_token() }}`
+                    },
+                    success: function(response) {
+                        if (response.error == 0) {
+                            toastr.success(response.message);
+                            listTr.remove();
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                });
+            }
+        }
+    </script>
 @endsection
