@@ -2,8 +2,6 @@
 @section('title', 'Quản lý Banner')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-
     <style>
         .switch {
             --circle-dim: 1.4em;
@@ -90,47 +88,21 @@
 
             <hr>
 
-            <div class="box-banner mt-1">
-                @if (isset($banner->banner))
-                    <div class="position-relative">
-                        <video data-responsive="" class="w-100" autoplay="" playsinline="" muted="" loop=""
-                            fetchpriority="high" src="{{ $banner->banner }}"></video>
-                        <img src="{{ asset('assets/image/wavy-overlay.png') }}" class="img-song">
-                    </div>
-                @endif
-                <div class="overlays-home">
-                    <div class="wrapper">
-                        <img src="{{ $banner->image ?? '' }}" alt="" class="hero-product-overlay">
-                        <div class="hero-content mx-2 d-flex align-items-end">
-                            <div>
-                                <p class="mb-0 text-hero-one">{{ strtoupper($banner->title ?? '') }}</p>
-                                <p class="mb-0 text-hero-two">{{ strtoupper($banner->content ?? '') }}</p>
-                            </div>
-                            @if (isset($banner->button_title))
-                                <a target="_blank" href="{{ $banner->button_href ?? '#' }}"
-                                    class="btn-link-buy btn-pc-link-buy">{{ $banner->button_title }}</a>
-                            @endif
-                        </div>
-                    </div>
-                    @if (isset($banner->button_title))
-                        <a target="_blank" href="{{ $banner->button_href ?? '#' }}"
-                            class="btn-link-buy btn-mobile-link-buy">{{ $banner->button_title }}</a>
-                    @endif
-                </div>
-            </div>
-
             <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="mainBanner" class="form-label">Video của banner:</label>
-                    <input class="form-control" accept=".mp4" max-size="10240000" type="file" id="mainBanner"
+                    <input class="form-control mb-3" accept=".mp4" max-size="10240000" type="file" id="mainBanner"
                         name="banner">
+                    <video data-responsive="" class="w-50" autoplay="" playsinline="" muted="" loop=""
+                        fetchpriority="high" src="{{ $banner->banner }}"></video>
                 </div>
 
                 <div class="mb-3">
                     <label for="imageOverlay" class="form-label">Lớp ảnh phủ:</label>
                     <input class="form-control" accept=".png" max-size="10240000" type="file" id="imageOverlay"
                         name="image">
+                    <img id="image-preview" class="mt-3" src="{{ $banner->image }}" width="200">
                 </div>
 
                 <div class="mb-3">
@@ -177,5 +149,33 @@
     </main>
 @endsection
 @section('script')
+    <script>
+        $(document).ready(function() {
+            $('input[name="image"]').on('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                var previewImage = $(this).siblings('img');
 
+                reader.onload = function(e) {
+                    previewImage.attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+
+        $(document).ready(function() {
+            $('input[name="banner"]').on('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                var previewBanner = $(this).siblings('video');
+
+                reader.onload = function(e) {
+                    previewBanner.attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
 @endsection
