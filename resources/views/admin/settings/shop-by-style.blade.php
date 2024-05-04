@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
+        .ui-sortable-helper {
+            background-color: #f8f9fa !important;
+            border: 1px solid #ced4da !important;
+            opacity: 0.8;
+        }
+
         .switch {
             --circle-dim: 1.4em;
             font-size: 17px;
@@ -111,7 +117,7 @@
                 </thead>
                 <tbody>
                     @foreach ($sbs->list as $key => $list)
-                        <tr id="list-{{ $key }}">
+                        <tr id="list-{{ $key }}" data-id="{{ $key }}">
                             <td class="text-center">{{ $key }}</td>
                             <td class="text-center">
                                 <img src="{{ $list->image }}" width="200">
@@ -291,6 +297,18 @@
 
     <script>
         $(document).ready(function() {
+            var showModalIds = {!! json_encode(session('show_update_modal_ids', [])) !!};
+            showModalIds.forEach(function(modalId) {
+                var modal = $('#editList' + modalId);
+                if (modal.length) {
+                    modal.modal('show');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
             $('input[name="image"]').on('change', function(e) {
                 var file = e.target.files[0];
                 var reader = new FileReader();
@@ -311,14 +329,54 @@
                 paging: false,
                 searching: true,
                 ordering: true,
-                info: true,
-                rowReorder: {
-                    selector: 'tr',
-                    update: function(evt, ui, $node) {
-                        // Perform any logic when a row is reordered
-                    }
-                }
+                info: false
             });
+
+            $("#sortable-table tbody").sortable({
+                cursor: "move",
+                axis: "y",
+                containment: "parent",
+                update: function(event, ui) {
+                    // Get the current and target IDs
+                    var currentId = ui.item.attr("id");
+                    var targetId = ui.item.prev().attr("id") || ui.item.next().attr("id");
+
+                    // Get the order of the rows after dragging
+                    var newOrder = $(this).sortable("toArray", {
+                        attribute: "data-id"
+                    });
+
+                    // Send the updated order and IDs to the server
+                    updateRowOrder(newOrder, currentId, targetId);
+                }
+
+            }).disableSelection();
+
+            function updateRowOrder(newOrder) {
+                console.log(newOrder)
+                $.ajax({
+                    url: "{{ route('admin.settings.shop.by.style.list.reorder') }}",
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': `{{ csrf_token() }}`
+                    },
+                    data: {
+                        'newOrder': newOrder
+                    },
+                    success: function(response) {
+                        if (response.error == 0) {
+                            toastr.success(response.message);
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                });
+            }
         });
     </script>
 
