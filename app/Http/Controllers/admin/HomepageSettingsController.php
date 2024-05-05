@@ -197,6 +197,7 @@ class HomepageSettingsController extends Controller
 
             if ($validated->fails()) {
                 toastr()->error($validated->errors()->first());
+                session()->put('show_update_modal_ids', [$key]);
                 return back()->withInput();
             }
 
@@ -206,7 +207,7 @@ class HomepageSettingsController extends Controller
 
             $sbsValue = json_decode($sbs->value, true);
 
-            $list = $sbsValue['list'][$key] ?? [];  
+            $list = $sbsValue['list'][$key] ?? [];
 
             $changedItem = [];
             // IMAGES
@@ -239,7 +240,49 @@ class HomepageSettingsController extends Controller
             return back();
         } catch (\Exception $e) {
             toastr()->error($e->getMessage());
+            session()->put('show_update_modal_ids', [$key]);
             return back()->withInput();
+        }
+    }
+
+    public function shopByStyleListReorder(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'newOrder' => 'required|array|size:3|distinct',
+                'newOrder.*' => 'integer',
+            ]);
+
+            if ($validated->fails()) {
+                return response()->json(['error' => -1, 'message' => $validated->errors()->first()], 400);
+            }
+
+            $validatedData = $validated->validated();
+
+            $newOrder = $validatedData['newOrder'];
+
+            $sbs = HomepageSettings::where('type', 'shop_by_style')->first();
+
+            $sbsValue = json_decode($sbs->value, true);
+
+            $list = $sbsValue['list'];
+
+            // Reorder the $list array based on the $newOrder keys
+            $reorderedList = [];
+            foreach ($newOrder as $key => $index) {
+                $reorderedList[$key + 1] = $list[$index];
+            }
+
+            // Update the value in $sbsValue
+            $sbsValue['list'] = $reorderedList;
+
+            // Update the value in the database
+            $sbs->value = json_encode($sbsValue);
+            $sbs->save();
+
+            return response()->json(['error' => 0, 'message' => "Thay đổi thứ tự thành công"]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
         }
     }
 
