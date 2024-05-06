@@ -50,7 +50,7 @@ a{
   max-width: 1920px;
   display: flex;
   justify-content: space-between;
-  margin-left: 150px;
+  margin-left: 205px;
   margin-right: 150px;
 }
 .box-item-header-top {
@@ -938,6 +938,15 @@ button.cta-primary {
   .box-active-search-header {
     left: 50%;
   }
+    .line-header-page-item,.box-detail-product{
+        width: 91%;
+    }
+    .box-big-header-center{
+        max-width: 1304px;
+    }
+    .box-big-header-top{
+        max-width: 1219px;
+    }
 }
 @media (max-width: 1450px) {
   .box-big-header-top {

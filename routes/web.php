@@ -53,4 +53,5 @@ Route::get('danh-muc/{slug?}', [CategoryController::class, 'category'])->name('c
 Route::get('chi-tiet-san-pham', [ProductController::class, 'index'])->name('detail-product');
 Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
 Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
+Route::get('hoan-thanh', [CartController::class, 'complete'])->name('complete');
 Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
