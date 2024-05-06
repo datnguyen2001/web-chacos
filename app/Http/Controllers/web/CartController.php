@@ -16,4 +16,9 @@ class CartController extends Controller
     {
         return view('web.cart.checkout');
     }
+
+    public function complete()
+    {
+        return view('web.cart.complete');
+    }
 }

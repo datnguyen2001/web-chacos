@@ -3,6 +3,7 @@
 
 @section('style_page')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/product.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/detail-product.css')}}">
 @stop
 {{--content of page--}}
@@ -14,7 +15,7 @@
         <span style="margin: 0 5px;">/</span>
         <a href="" class="title-header-menu-page">Sandanls</a>
     </div>
-    <div class="box-detail-product">
+    <div class="box-detail-product mb-5">
         <div class="box-detail-product-left">
             <div class="box-img-product">
                 <div class="swiper swiperImageSmall">
@@ -256,39 +257,39 @@
                                     <p class="title-item-parameter">Rating Snapshot</p>
                                     <p class="content-item-parameter">Select a row below to filter reviews.</p>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">5 start</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">5 start</span>
                                         <div class="line-percent">
                                             <div class="percent-content" style="width: 50%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">4 start</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">4 start</span>
                                         <div class="line-percent">
                                             <div class="percent-content" style="width: 40%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">3 start</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">3 start</span>
                                         <div class="line-percent">
                                             <div class="percent-content" style="width: 30%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">2 start</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">2 start</span>
                                         <div class="line-percent">
                                             <div class="percent-content" style="width: 20%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">1 start</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">1 start</span>
                                         <div class="line-percent">
                                             <div class="percent-content" style="width: 10%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 13px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
                                     </div>
                                 </div>
                                 <div class="item-parameter-review">
@@ -306,96 +307,101 @@
                                 </div>
                                 <div class="item-parameter-review">
                                     <p class="title-item-parameter">Review this Product</p>
-                                    <div class="box-star-product">
-                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"
-                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"
-                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">
-                                                        <g transform="translate(337.000000, 399.000000)">
-                                                            <g transform="translate(241.000000, 0.000000)">
-                                                                <g transform="translate(10.192308, 10.192308)">
-                                                                    <path
-                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">
-                                                                    </path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg></div>
-                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"
-                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"
-                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">
-                                                        <g transform="translate(337.000000, 399.000000)">
-                                                            <g transform="translate(241.000000, 0.000000)">
-                                                                <g transform="translate(10.192308, 10.192308)">
-                                                                    <path
-                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">
-                                                                    </path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg></div>
-                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"
-                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"
-                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">
-                                                        <g transform="translate(337.000000, 399.000000)">
-                                                            <g transform="translate(241.000000, 0.000000)">
-                                                                <g transform="translate(10.192308, 10.192308)">
-                                                                    <path
-                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">
-                                                                    </path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg></div>
-                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"
-                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"
-                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">
-                                                        <g transform="translate(337.000000, 399.000000)">
-                                                            <g transform="translate(241.000000, 0.000000)">
-                                                                <g transform="translate(10.192308, 10.192308)">
-                                                                    <path
-                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">
-                                                                    </path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg></div>
-                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"
-                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"
-                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">
-                                                        <g transform="translate(337.000000, 399.000000)">
-                                                            <g transform="translate(241.000000, 0.000000)">
-                                                                <g transform="translate(10.192308, 10.192308)">
-                                                                    <path
-                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">
-                                                                    </path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg></div>
-                                    </div>
-                                    <p class="content-item-parameter">Adding a review will require a valid email for verification
-                                    </p>
+                                    <a class="btn-write-review" data-bs-toggle="modal" data-bs-target="#staticReview">Write a product review</a>
+{{--                                    <div class="box-star-product">--}}
+{{--                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"--}}
+{{--                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+{{--                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"--}}
+{{--                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">--}}
+{{--                                                        <g transform="translate(337.000000, 399.000000)">--}}
+{{--                                                            <g transform="translate(241.000000, 0.000000)">--}}
+{{--                                                                <g transform="translate(10.192308, 10.192308)">--}}
+{{--                                                                    <path--}}
+{{--                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">--}}
+{{--                                                                    </path>--}}
+{{--                                                                </g>--}}
+{{--                                                            </g>--}}
+{{--                                                        </g>--}}
+{{--                                                    </g>--}}
+{{--                                                </g>--}}
+{{--                                            </svg></div>--}}
+{{--                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"--}}
+{{--                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+{{--                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"--}}
+{{--                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">--}}
+{{--                                                        <g transform="translate(337.000000, 399.000000)">--}}
+{{--                                                            <g transform="translate(241.000000, 0.000000)">--}}
+{{--                                                                <g transform="translate(10.192308, 10.192308)">--}}
+{{--                                                                    <path--}}
+{{--                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">--}}
+{{--                                                                    </path>--}}
+{{--                                                                </g>--}}
+{{--                                                            </g>--}}
+{{--                                                        </g>--}}
+{{--                                                    </g>--}}
+{{--                                                </g>--}}
+{{--                                            </svg></div>--}}
+{{--                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"--}}
+{{--                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+{{--                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"--}}
+{{--                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">--}}
+{{--                                                        <g transform="translate(337.000000, 399.000000)">--}}
+{{--                                                            <g transform="translate(241.000000, 0.000000)">--}}
+{{--                                                                <g transform="translate(10.192308, 10.192308)">--}}
+{{--                                                                    <path--}}
+{{--                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">--}}
+{{--                                                                    </path>--}}
+{{--                                                                </g>--}}
+{{--                                                            </g>--}}
+{{--                                                        </g>--}}
+{{--                                                    </g>--}}
+{{--                                                </g>--}}
+{{--                                            </svg></div>--}}
+{{--                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"--}}
+{{--                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+{{--                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"--}}
+{{--                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">--}}
+{{--                                                        <g transform="translate(337.000000, 399.000000)">--}}
+{{--                                                            <g transform="translate(241.000000, 0.000000)">--}}
+{{--                                                                <g transform="translate(10.192308, 10.192308)">--}}
+{{--                                                                    <path--}}
+{{--                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">--}}
+{{--                                                                    </path>--}}
+{{--                                                                </g>--}}
+{{--                                                            </g>--}}
+{{--                                                        </g>--}}
+{{--                                                    </g>--}}
+{{--                                                </g>--}}
+{{--                                            </svg></div>--}}
+{{--                                        <div class="item-star-sp"><svg aria-hidden="true" width="15px" height="15px" fill="none"--}}
+{{--                                                                       viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">--}}
+{{--                                                    <g transform="translate(-588.000000, -409.000000)" fill="#FFFFFF"--}}
+{{--                                                       fill-rule="nonzero" stroke="#004C59" stroke-width="1.5">--}}
+{{--                                                        <g transform="translate(337.000000, 399.000000)">--}}
+{{--                                                            <g transform="translate(241.000000, 0.000000)">--}}
+{{--                                                                <g transform="translate(10.192308, 10.192308)">--}}
+{{--                                                                    <path--}}
+{{--                                                                        d="M16.3076923,1.76513255 L20.8381599,11.4172719 L31.0592597,12.978917 L23.6603835,20.5621906 L25.3975353,31.2117909 L16.3076923,26.1870493 L7.21784935,31.2117909 L8.95500108,20.5621906 L1.55612493,12.978917 L11.7772247,11.4172719 L16.3076923,1.76513255 Z">--}}
+{{--                                                                    </path>--}}
+{{--                                                                </g>--}}
+{{--                                                            </g>--}}
+{{--                                                        </g>--}}
+{{--                                                    </g>--}}
+{{--                                                </g>--}}
+{{--                                            </svg></div>--}}
+{{--                                    </div>--}}
                                 </div>
+                            </div>
+                            <div class="content-review">
+
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center line-see-more">
+
                             </div>
                         </div>
                     </div>
@@ -415,8 +421,8 @@
                 </div>
             </div>
             <div class="d-flex align-items-center mt-4">
-                <p style="font-size: 18px;font-weight: bold;margin-bottom: 0;color: #303030;">Select a Type:</p>
-                <p style="margin-bottom: 0;margin-left: 5px;font-size: 18px;">Medium</p>
+                <p class="title-bold">Select a Type:</p>
+                <p class="title-light">Medium</p>
             </div>
             <div class="d-flex justify-content-between w-100">
                 <div class="item-select-type item-select-type-active">Medium</div>
@@ -498,6 +504,55 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal review -->
+    <div class="modal fade" id="staticReview" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex ">
+{{--                        <img src="{{asset($product->thumbnail_img)}}" style="width: 52px;height: 52px;object-fit: cover">--}}
+{{--                        <p class="mx-2">{{$product->name}}</p>--}}
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body" style="height: 450px;overflow: auto">
+{{--                        <input type="text" value="{{$product->id}}" name="product_id" hidden>--}}
+                        <div class="mb-3">
+                            <p class="title-review-modal">Full name</p>
+                            <input type="text" required class="input-review" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <p class="title-review-modal">Content</p>
+                            <textarea class="input-review" required name="content" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <p class="title-review-modal">Attach photo</p>
+                            <span style="font-size: 12px;color: #cdcdcd;margin-bottom: 10px;display: block">Reviews with photos unrelated to the product may be deleted without notice.</span>
+                            <input type="file" name="file[]" id="fileInput" multiple>
+                            <div id="imageContainer"></div>
+                        </div>
+                        <div class="mb-3">
+                            <p class="title-review-modal">Satisfaction</p>
+                            <select name="star" class="form-select select-review">
+                                <option value="5">5 sao</option>
+                                <option value="4">4 sao</option>
+                                <option value="3">3 sao</option>
+                                <option value="2">2 sao</option>
+                                <option value="1">1 sao</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-review">Write a review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('script_page')
