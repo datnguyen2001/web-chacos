@@ -2,6 +2,7 @@
 @section('title', 'Quản lý Sale Along')
 
 @section('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 
     <style>
@@ -85,67 +86,102 @@
 @section('main')
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
-            <!-- Page Heading -->
+            <!-- Page Preview -->
             <h1 class="h3 mb-4 text-gray-800">"Sale along" Trang chủ</h1>
+            <form class="mt-5" action="{{ route('admin.settings.sale.along.update') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="title" class="form-label">Tiêu đề:</label>
+                    <input class="form-control" type="text" id="title" name="title"
+                        value="{{ old('title', $sale['title']) }}">
+                </div>
+
+                <div class="mb-3" id="repeater">
+                    @forelse ($sale['list'] as $index => $item)
+                        <div class="d-flex align-items-center row repeater-item">
+                            <div class="col-md-1 delete-repeater-div">
+                                @if ($index != 0)
+                                    <button class="btn btn-outline-danger delete-btn" data-index="{{ $index }}"><i
+                                            class="fa-solid fa-x"></i></button>
+                                @endif
+                            </div>
+                            <div class="col-md-4">
+                                <label for="file{{ $index }}" class="form-label">Ảnh:</label>
+                                <input class="form-control" accept="image/*,.gif" type="file"
+                                    id="file{{ $index }}" name="file[]">
+                            </div>
+                            <div class="repeater-item col-md-4">
+                                <div class="form-group">
+                                    <input type="hidden" name="old_file[{{ $index }}]" value="{{ $item }}">
+                                    <img class="mt-3 viewFile" src="{{ $item }}" width="200" height="100">
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="d-flex align-items-center row repeater-item">
+                            <div class="col-md-1 delete-repeater-div">
+                                {{-- <button class="btn btn-outline-danger delete-btn" data-index="1"><i class="fa-solid fa-x"></i></button> --}}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="file" class="form-label">Ảnh:</label>
+                                <input class="form-control" accept="image/*,.gif" type="file" id="file"
+                                    name="file[]">
+                            </div>
+                            <div class="repeater-item col-md-4">
+                                <div class="form-group">
+                                    <img class="mt-3 viewFile" src="" width="200" height="100">
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
+                </div>
+
+                <button type="button" class="btn btn-outline-primary mb-3" id="addBtn"><i
+                        class="fa-solid fa-plus"></i></button>
+
+                <div class="mb-3">
+                    <label for="isActive" class="form-label me-3">Công khai?</label>
+                    <label class="switch">
+                        <input type="checkbox" id="isActive" name="isActive" value="true"
+                            {{ $isActive ? 'checked' : '' }}>
+                        <div class="slider"></div>
+                        <div class="slider-card">
+                            <div class="slider-card-face slider-card-front"></div>
+                            <div class="slider-card-face slider-card-back"></div>
+                        </div>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+            <hr>
+        </div>
+
+        <div class="">
+            <!-- Page Preview -->
+            <h1 class="h3 mb-4 text-gray-800">Xem trước</h1>
 
             <hr>
 
-            <div class="box-along-sale" style="margin-top: 7rem;">
-                <article class="ag-full-width home-common" id="home-cards">
-                    <div class="ag-site-width" style=" margin-bottom: 1rem">
-                        <picture>
-                            <img src="{{ asset('assets/image/home-cards-d.png') }}" width="1920" height="1130"
-                                class="bg-image" />
-                            <img src="{{ asset('assets/image/home-cards-m.png') }}" class="img-cards-m">
-                        </picture>
-                        <h2 class="title">
-                            <span>How you want to live</span><br />begins with what you put<br class="sm-only" />
-                            on your feet.
-                        </h2>
-                        <div class="swiper AlongSaleSwiper" style="margin-top: 1rem">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('assets/image/35-years-35-and-under.gif') }}" style="width: 35em"/>
-                                    <h2>Extra 35% Off Sale</h2>
-                                    <p>
-                                        Ending our birthday month with a bang!<br />
-                                        Take an extra 35% off sale items. Now through 4/27.<br />
-                                        Use code 35YEARS at checkout.
-                                    </p>
-                                    <a href="https://www.chacos.com/US/en/sale/" class="btn">SHOP SALE</a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <picture>
-                                        <img src="{{ asset('assets/image/come-hang-out.png') }}" style="width: 36em"/>
-                                    </picture>
-                                    <h2>Come Hang Out</h2>
-                                    <p>
-                                        We're hitting the road again in 2024 and can't<br class="lg-only" />
-                                        wait<br class="sm-only" />
-                                        to get together and celebrate our 35th<br class="lg-only" />
-                                        birthday at<br class="sm-only" />
-                                        the Chaco For Life Tour!
-                                    </p>
-                                    <a href="https://www.chacos.com/US/en/chaco-for-life/" class="btn">FOLLOW ALONG</a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <picture>
-                                        <img src="{{ asset('assets/image/go-to-townes_1.png') }}" style="width: 36em"/>
-                                    </picture>
-                                    <h2>Go To Townes</h2>
-                                    <p>
-                                        Comfy enough to go, go, go from day one, the<br />
-                                        Townes is an instant classic and your next go-to<br />
-                                        sandal for the everyday.
-                                    </p>
-                                    <a href="https://www.chacos.com/US/en/townes-collection/" class="btn">SHOP TOWNES</a>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination sm-only"></div>
-                        </div>
-
+            <div class="box-shop-style box-mobile-style" style="margin-top: -40px">
+                @php
+                    $words = explode(' ', $sale['title']);
+                    $firstWord = $words[0];
+                    $otherWords = implode(' ', array_slice($words, 1));
+                @endphp
+                <div class="title-shop-style">{{ $firstWord }} <span style="color: #f65024;">{{ $otherWords }}</span>
+                </div>
+                <div class="swiper productSwiper productStyleSwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($sale['list'] as $index => $item)
+                            <a href="{{ route('home') }}" class="swiper-slide box-item-product">
+                                <img src="{{ $item }}" class="img-product-style2">
+                            </a>
+                        @endforeach
                     </div>
-                </article>
+                    <div class="swiper-pagination swiper-pagination-product"></div>
+                </div>
             </div>
 
             {{-- <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
@@ -207,5 +243,51 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ asset('assets/js/home.js') }}"></script>
 
+    <script>
+        //REPEATER
+        $(document).ready(function() {
+            var counter = 2;
+
+            $('#addBtn').click(function() {
+                var clone = $('.repeater-item:first').clone();
+                clone.find('input[type="file"]').attr('name',
+                    'file[]');
+                clone.find('input[type="file"]').val('');
+                clone.find('.delete-repeater-div').html(
+                    `<button class="btn btn-outline-danger delete-btn" data-index="` + counter + `"><i
+                                            class="fa-solid fa-x"></i></button>`);
+                clone.find('input[type="hidden"]').remove();
+                clone.find('.viewFile').attr('src', '');
+                clone.appendTo('#repeater');
+                counter++;
+            });
+
+            $(document).on('click', '.delete-btn', function() {
+                var index = $(this).data('index');
+                $(this).closest('.repeater-item').remove();
+                // Update the counter and reindex the remaining items
+                counter--;
+                $('.delete-btn').each(function(idx) {
+                    $(this).data('index', idx);
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).on('change', 'input[name="file[]"]', function(e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            var previewImage = $(this).closest('.repeater-item').find('.viewFile');
+
+            reader.onload = function(e) {
+                previewImage.attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
 @endsection

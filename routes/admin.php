@@ -33,14 +33,18 @@ Route::middleware('check-admin-auth')->group(function () {
 
     //HOMEPAGE SETTINGS
     Route::group(['prefix' => 'settings'], function () {
+        //BANNER
         Route::get('banner', [HomepageSettingsController::class, 'banner'])->name('settings.banner');
         Route::post('banner', [HomepageSettingsController::class, 'bannerUpdate'])->name('settings.banner.update');
+        //SALE-ALONG
+        Route::get('sale-along', [HomepageSettingsController::class, 'saleAlong'])->name('settings.sale.along');
+        Route::post('sale-along', [HomepageSettingsController::class, 'saleAlongUpdate'])->name('settings.sale.along.update');
+        //SHOP BY STYLE
         Route::get('shop-by-style', [HomepageSettingsController::class, 'shopByStyle'])->name('settings.shop.by.style');
         Route::post('shop-by-style', [HomepageSettingsController::class, 'shopByStyleUpdate'])->name('settings.shop.by.style.update');
         Route::post('shop-by-style-reorder', [HomepageSettingsController::class, 'shopByStyleListReorder'])->name('settings.shop.by.style.list.reorder');
         Route::put('shop-by-style/{key}', [HomepageSettingsController::class, 'shopByStyleListUpdate'])->name('settings.shop.by.style.update.list');
         Route::delete('shop-by-style/{key}', [HomepageSettingsController::class, 'shopByStyleDestroy'])->name('settings.shop.by.style.destroy');
-        Route::get('sale-along', [HomepageSettingsController::class, 'saleAlong'])->name('settings.sale.along');
         Route::get('favorites', [HomepageSettingsController::class, 'favorites'])->name('settings.favorites');
         Route::get('adventurous', [HomepageSettingsController::class, 'adventurous'])->name('settings.adventurous');
     });

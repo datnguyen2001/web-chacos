@@ -286,9 +286,6 @@ class HomepageSettingsController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function shopByStyleDestroy($key)
     {
         try {
@@ -324,7 +321,92 @@ class HomepageSettingsController extends Controller
         $page_menu = 'homepage';
         $page_sub = 'sale_along';
 
-        return view('admin.settings.sale-along')->with(compact('page_menu', 'page_sub'));
+        $sale = HomepageSettings::where('type', 'sale_along')->first();
+
+        $isActive = $sale->isActive ?? 0;
+
+        $sale = json_decode($sale->value, true);
+
+        return view('admin.settings.sale-along')->with(compact('page_menu', 'page_sub', 'isActive', 'sale'));
+    }
+
+    public function saleAlongUpdate(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'title'        => 'required|string|max:30',
+                'file.*'       => 'required|file|mimes:jpeg,jpg,png,gif|max:5120',
+            ]);
+
+            if ($validated->fails()) {
+                toastr()->error($validated->errors()->first());
+                return back()->withInput();
+            }
+
+            $validatedData = $validated->validated();
+
+            $oldFiles = $request->input('old_file');
+
+            $sbs = HomepageSettings::where('type', 'sale_along')->first();
+
+            $currentFiles = json_decode($sbs->value, true)['list'] ?? [];
+
+            $newFiles = $request->file('file');
+
+            // Find the missing index
+            $missingIndex = [];
+            if ($currentFiles != null && $oldFiles != null) {
+                $missingIndex = array_diff(array_keys($currentFiles), array_keys($oldFiles));
+            }
+
+            // Remove the missing index from $currentFiles and delete the URL file
+            if (!empty($missingIndex)) {
+                $index = array_keys($missingIndex);
+
+                foreach ($index as $value) {
+                    if (isset($currentFiles[$value]) && Storage::exists(str_replace('/storage', 'public', parse_url($currentFiles[$value], PHP_URL_PATH)))) {
+                        //Convert to `/storage/...`
+                        Storage::delete(str_replace('/storage', 'public', parse_url($currentFiles[$value], PHP_URL_PATH)));
+                    }
+
+                    unset($currentFiles[$value]);
+                }
+            }
+
+            // Process and store the uploaded new files
+            if (isset($newFiles)) {
+                foreach ($newFiles as $index => $newFile) {
+                    // Remove the old file if it exists
+                    if (isset($currentFiles[$index]) && Storage::exists(str_replace('/storage', 'public', parse_url($currentFiles[$index], PHP_URL_PATH)))) {
+                        Storage::delete(str_replace('/storage', 'public', parse_url($currentFiles[$index], PHP_URL_PATH)));
+                    }
+
+                    $itemPath = $newFile->store('sale_along', 'public');
+                    $fileUrl = asset('storage/' . $itemPath);
+
+                    // Add the URL to the list
+                    $currentFiles[$index] = $fileUrl;
+                }
+            }
+
+            $data = [
+                'title' => $validatedData['title'],
+                'list' => array_values($currentFiles)
+            ];
+
+            HomepageSettings::updateOrCreate([
+                'type' => 'sale_along',
+            ], [
+                'value' => json_encode($data),
+                'isActive' => $request->input('isActive') ? 1 : 0,
+            ]);
+
+            toastr()->success("Thay đổi cấu hình sale along thành công");
+            return back();
+        } catch (\Exception $e) {
+            toastr()->error($e->getMessage());
+            return back()->withInput();
+        }
     }
 
     public function favorites()
