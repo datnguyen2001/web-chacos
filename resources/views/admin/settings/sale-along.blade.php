@@ -114,9 +114,7 @@
                             <div class="repeater-item col-md-4">
                                 <div class="form-group">
                                     <input type="hidden" name="old_file[{{ $index }}]" value="{{ $item }}">
-                                    @if (@get_headers($item))
-                                        <img class="mt-3 viewFile" src="{{ $item }}" width="200" height="100">
-                                    @endif
+                                    <img class="mt-3 viewFile" src="{{ $item }}" width="200" height="100">
                                 </div>
                             </div>
                         </div>
