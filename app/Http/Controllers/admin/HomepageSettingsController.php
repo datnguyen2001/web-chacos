@@ -414,7 +414,131 @@ class HomepageSettingsController extends Controller
         $page_menu = 'homepage';
         $page_sub = 'favorites';
 
-        return view('admin.settings.favorites')->with(compact('page_menu', 'page_sub'));
+        $favorites = HomepageSettings::where('type', 'favorites')->first();
+
+        $isActive = $favorites->isActive ?? 0;
+
+        $favorites = json_decode($favorites->value);
+
+        return view('admin.settings.favorites')->with(compact(
+            'page_menu',
+            'page_sub',
+            'favorites',
+            'isActive'
+        ));
+    }
+
+    public function favoritesUpdate(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'hashtag'              => 'required|string|max:50',
+                'banner'               => 'nullable|mimes:jpeg,png,gif|max:5120',
+                'banner_mobile'        => 'nullable|mimes:jpeg,png,gif|max:5120',
+                'left_image'           => 'nullable|mimes:jpeg,png,gif|max:5120',
+                'right_image'          => 'nullable|mimes:jpeg,png,gif|max:5120',
+                'right_image_mobile'   => 'nullable|mimes:jpeg,png,gif|max:5120',
+            ]);
+
+            if ($validated->fails()) {
+                toastr()->error($validated->errors()->first());
+                return back()->withInput();
+            }
+
+            $validatedData = $validated->validated();
+
+            $favorites = HomepageSettings::where('type', 'favorites')->first();
+
+            $favoritesValue = json_decode($favorites->value);
+
+            // BANNER
+            if ($request->hasFile('banner')) {
+                $bannerPath = Storage::url($request->file('banner')->store('favorites', 'public'));
+
+                //Delete existed
+                if (isset($favoritesValue->banner) && Storage::exists(str_replace('/storage', 'public', $favoritesValue->banner))) {
+                    Storage::delete(str_replace('/storage', 'public', $favoritesValue->banner));
+                }
+
+                $validatedData['banner'] = $bannerPath;
+            } else {
+                // Use the existing image if no new file is uploaded
+                $validatedData['banner'] = $favoritesValue->banner ?? null;
+            }
+
+            // BANNER MOBILE
+            if ($request->hasFile('banner_mobile')) {
+                $bannerPath = Storage::url($request->file('banner_mobile')->store('favorites', 'public'));
+
+                //Delete existed
+                if (isset($favoritesValue->banner_mobile) && Storage::exists(str_replace('/storage', 'public', $favoritesValue->banner_mobile))) {
+                    Storage::delete(str_replace('/storage', 'public', $favoritesValue->banner_mobile));
+                }
+
+                $validatedData['banner_mobile'] = $bannerPath;
+            } else {
+                // Use the existing image if no new file is uploaded
+                $validatedData['banner_mobile'] = $favoritesValue->banner_mobile ?? null;
+            }
+
+            // LEFT IMAGES
+            if ($request->hasFile('left_image')) {
+                $imagePath = Storage::url($request->file('left_image')->store('favorites', 'public'));
+
+                //Delete existed
+                if (isset($favoritesValue->left_image) && Storage::exists(str_replace('/storage', 'public', $favoritesValue->left_image))) {
+                    Storage::delete(str_replace('/storage', 'public', $favoritesValue->left_image));
+                }
+
+                $validatedData['left_image'] = $imagePath;
+            } else {
+                // Use the existing image if no new file is uploaded
+                $validatedData['left_image'] = $favoritesValue->left_image ?? null;
+            }
+
+            // RIGHT IMAGES
+            if ($request->hasFile('right_image')) {
+                $imagePath = Storage::url($request->file('right_image')->store('favorites', 'public'));
+
+                //Delete existed
+                if (isset($favoritesValue->right_image) && Storage::exists(str_replace('/storage', 'public', $favoritesValue->right_image))) {
+                    Storage::delete(str_replace('/storage', 'public', $favoritesValue->right_image));
+                }
+
+                $validatedData['right_image'] = $imagePath;
+            } else {
+                // Use the existing image if no new file is uploaded
+                $validatedData['right_image'] = $favoritesValue->right_image ?? null;
+            }
+
+            // RIGHT IMAGES MOBILE
+            if ($request->hasFile('right_image_mobile')) {
+                $imagePath = Storage::url($request->file('right_image_mobile')->store('favorites', 'public'));
+
+                //Delete existed
+                if (isset($favoritesValue->right_image_mobile) && Storage::exists(str_replace('/storage', 'public', $favoritesValue->right_image_mobile))) {
+                    Storage::delete(str_replace('/storage', 'public', $favoritesValue->right_image_mobile));
+                }
+
+                $validatedData['right_image_mobile'] = $imagePath;
+            } else {
+                // Use the existing image if no new file is uploaded
+                $validatedData['right_image_mobile'] = $favoritesValue->right_image_mobile ?? null;
+            }
+
+            HomepageSettings::updateOrCreate([
+                'type' => 'favorites',
+            ], [
+                'value' => json_encode($validatedData),
+                'isActive' => $request->input('isActive') ? 1 : 0,
+            ]);
+
+            toastr()->success("Thay đổi cấu hình favorites thành công");
+            return back();
+        } catch (\Exception $e) {
+            toastr()->error($e->getMessage());
+            return back()->withInput();
+        }
     }
 
     public function adventurous()

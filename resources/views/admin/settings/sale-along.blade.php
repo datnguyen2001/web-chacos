@@ -183,60 +183,6 @@
                     <div class="swiper-pagination swiper-pagination-product"></div>
                 </div>
             </div>
-
-            {{-- <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                    <label for="mainBanner" class="form-label">Video của banner:</label>
-                    <input class="form-control" accept=".mp4" max-size="10240000" type="file" id="mainBanner"
-                        name="banner">
-                </div>
-
-                <div class="mb-3">
-                    <label for="imageOverlay" class="form-label">Lớp ảnh phủ:</label>
-                    <input class="form-control" accept=".png" max-size="10240000" type="file" id="imageOverlay"
-                        name="image">
-                </div>
-
-                <div class="mb-3">
-                    <label for="title" class="form-label">Tiêu đề (Chữ bé):</label>
-                    <input class="form-control" type="text" id="title" name="title"
-                        value="{{ old('title', $banner->title ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Nội dung (Chữ to):</label>
-                    <input class="form-control" type="text" id="content" name="content"
-                        value="{{ old('content', $banner->content ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="button_title" class="form-label">Tiêu đề nút bấm:</label>
-                    <input class="form-control" type="text" id="button_title" name="button_title"
-                        value="{{ old('button_title', $banner->button_title ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="button_href" class="form-label">Nút điều hướng:</label>
-                    <input class="form-control" type="text" id="button_href" name="button_href"
-                        value="{{ old('button_href', $banner->button_href ?? '') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="isActive" class="form-label me-3">Is active?</label>
-                    <label class="switch">
-                        <input type="checkbox" id="isActive" name="isActive" value="true"
-                            {{ $isActive ? 'checked' : '' }}>
-                        <div class="slider"></div>
-                        <div class="slider-card">
-                            <div class="slider-card-face slider-card-front"></div>
-                            <div class="slider-card-face slider-card-back"></div>
-                        </div>
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </form> --}}
         </div>
 
     </main>

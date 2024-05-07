@@ -119,11 +119,11 @@
         <div class="d-flex align-items-center">
             <div class="title-shop-style mx-2">#CHACONATION <span style="color: #f65024;">FAVORITES</span></div>
             <img src="{{ asset('assets/image/vector-favorites.png') }}" class="icon-vector-favorites">
-            <div class="d-flex box-more-style-shop">
+            {{-- <div class="d-flex box-more-style-shop">
                 <a href="" class="link-cate-home">Shop Women's »</a>
                 <a href="" class="link-cate-home">Shop Men's »</a>
                 <a href="" class="link-cate-home">Shop Kids' »</a>
-            </div>
+            </div> --}}
         </div>
 
         <div class="swiper productSwiper">
