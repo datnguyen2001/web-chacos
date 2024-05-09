@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\admin\LoginController;
 use \App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomepageSettingsController;
+use \App\Http\Controllers\admin\ProductController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/dologin', [LoginController::class, 'doLogin'])->name('doLogin');
@@ -29,6 +30,19 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::post('store', [CategoryController::class, 'store'])->name('category.store');
         Route::put('update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    });
+
+    //PRODUCT
+    Route::prefix('products')->name('products.')->group(function () {
+        Route::get('', [ProductController::class, 'index'])->name('index');
+        Route::get('create', [ProductController::class, 'create'])->name('create');
+        Route::post('store', [ProductController::class, 'store'])->name('store');
+        Route::get('delete/{id}', [ProductController::class, 'delete'])->name('delete');
+        Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [ProductController::class, 'update'])->name('update');
+        Route::post('delete-img', [ProductController::class, 'deleteImg']);
+        Route::get('delete-color/{id}', [ProductController::class, 'deleteColor']);
+        Route::get('delete-size/{id}', [ProductController::class, 'deleteSize']);
     });
 
     //HOMEPAGE SETTINGS
