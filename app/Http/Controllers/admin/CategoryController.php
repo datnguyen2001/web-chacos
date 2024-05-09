@@ -181,4 +181,27 @@ class CategoryController extends Controller
             return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
         }
     }
+
+    public function getChildrenC2 (Request $request)
+    {
+        try{
+            $listCategory = Category::where('parent_id',$request->cate_id)->get();
+            $html = null;
+            if (count($listCategory)){
+                foreach ($listCategory as $value){
+                    $option = '<div class="d-flex align-items-center category list_category_children p-1">
+                                                <div class="d-flex align-items-center" style="margin-right: 10px"><input type="radio" id="'.$value->id.'" style="width: 20px; height: 20px" value="'.$value->id.'" name="'.$request->get('name').'"></div>
+                                                <label for="'.$value->id.'" class="m-0">'.$value->name.'</label>
+                                            </div>';
+                    $html .= $option;
+                }
+            }
+            $data['html'] = $html;
+            $data['status'] = true;
+            $data['name'] = $request->get('name');
+            return $data;
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
+    }
 }
