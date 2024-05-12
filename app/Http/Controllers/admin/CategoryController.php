@@ -40,6 +40,8 @@ class CategoryController extends Controller
                 'slug'          => 'required|unique:categories,slug',
                 'parent_id'     => 'required|integer',
                 'menu_belong'   => 'nullable',
+                'title'   => 'nullable',
+                'describe'   => 'nullable',
             ]);
 
             if ($validated->fails()) {
@@ -105,6 +107,8 @@ class CategoryController extends Controller
                 'slug'          => 'required|unique:categories,slug,' . $id,
                 'parent_id'     => 'required|integer',
                 'menu_belong'   => 'nullable',
+                'title'   => 'nullable',
+                'describe'   => 'nullable',
             ]);
 
             if ($validated->fails()) {
