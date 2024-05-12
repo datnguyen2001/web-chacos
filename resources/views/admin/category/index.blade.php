@@ -128,6 +128,15 @@
                                         Chaco</option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="add-category-title" class="form-label">Tiêu đề </label>
+                                <input type="text" class="form-control" id="add-category-title" name="title"
+                                       value="{{ old('title') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="add-category-describe" class="form-label">Mô tả </label>
+                                <textarea name="describe" class="form-control" id="add-category-describe" rows="3">{{ old('describe') }}</textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -223,6 +232,15 @@
                                             Inside
                                             Chaco</option>
                                     </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="add-category-title" class="form-label">Tiêu đề </label>
+                                    <input type="text" class="form-control" id="add-category-title" name="title"
+                                           value="{{ @$cate->title }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="add-category-describe" class="form-label">Mô tả </label>
+                                    <textarea name="describe" class="form-control" id="add-category-describe" rows="3">{{ @$cate->describe }}</textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">

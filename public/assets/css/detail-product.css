@@ -104,13 +104,13 @@
 .item-color-product {
   width: 55px;
   height: 28px;
-  background-color: black;
+  background-color: white;
   margin-bottom: 15px;
   cursor: pointer;
 }
 .item-color-active {
   border: 2px solid red;
-  padding: 3px;
+  /*padding: 3px;*/
 }
 .box-w-S {
   width: 49%;
@@ -254,8 +254,12 @@
 .description-content {
   font-size: 14px;
   color: #303030;
-  width: 72%;
-  margin-right: 15px;
+  width: 100%;
+}
+.description-content img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 .accordion-item:last-of-type {
   border-radius: unset;

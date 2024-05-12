@@ -7,88 +7,75 @@
 {{--content of page--}}
 @section('content')
     <div class="line-header-menu-page">
-        <a href="/" class="title-header-menu-page">Trang chủ</a>
+        <a href="{{route('home')}}" class="title-header-menu-page">Trang chủ</a>
         <span style="margin: 0 5px;">/</span>
-        <a href="" class="title-header-menu-page">Men</a>
+        <a class="title-header-menu-page">{{$category->menu_belong}}</a>
         <span style="margin: 0 5px;">/</span>
-        <a href="" class="title-header-menu-page">Sandanls</a>
+        <a class="title-header-menu-page">{{$category->name}}</a>
     </div>
 
-    <div class="box-slide-category">
-        <p class="title-category-slide">FEATURED WOMEN'S Z/SANDALS</p>
-        <div class="swiper categorySwiper">
-            <div class="swiper-wrapper">
-                @for($i = 0;$i<7;$i++)
-                <div class="swiper-slide slide-col-item-category">
-                    <div class="line-add-cart-slide ">
-                        <img src="{{asset('assets/image/add-to-cart.png')}}">
-                        <span class="title-quick">Quick Add</span>
-                    </div>
-                    <div class="position-relative">
-                        <span class="tag-hot">NEW ARRIVAL</span>
-                        <img src="{{asset('assets/image/img-sp2.jpg')}}" class="w-100 img-big-slide-sp">
-                        <div class="box-wishlist">
-                            <div class="item-wishlist">
-                                Wishlist
+    @if(isset($product_hot) && count($product_hot) > 0)
+        <div class="box-slide-category">
+            <p class="title-category-slide text-uppercase">FEATURED {{$category->menu_belong}} {{$category->name}}</p>
+            <div class="swiper categorySwiper">
+                <div class="swiper-wrapper">
+                    @foreach($product_hot as $item)
+                        <div class="swiper-slide slide-col-item-category">
+                            <div class="line-add-cart-slide ">
+                                <img src="{{asset('assets/image/add-to-cart.png')}}">
+                                <span class="title-quick">Quick Add</span>
                             </div>
-                        </div>
-                        <img src="{{asset('assets/image/heart.svg')}}" class="icon-heart" onclick="toggleHeart(this)"
-                             onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
-
-                    </div>
-                    <div>
-                        <a class="link-color">20 colors</a>
-                        <div class="box-option-color-style p-0">
-                            <div class="swiper swiperOptionColor">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide slide-item-option-style"><img
-                                            src="{{asset('assets/image/img-sp3.jpg')}}" class="img-option-color">
+                            <div class="position-relative">
+                                {{--                        <span class="tag-hot">NEW ARRIVAL</span>--}}
+                                <img src="{{asset($item->image)}}" class="w-100 img-big-slide-sp">
+                                <div class="box-wishlist">
+                                    <div class="item-wishlist">
+                                        Wishlist
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-button-next btn-option-color-next"></div>
-                            <div class="swiper-button-prev btn-option-color-prev"></div>
-                        </div>
-                        <a href="" class="title-sp">WOMEN'S Z/1 ADJUSTABLE STRAP
-                            CLASSIC SANDAL</a>
-                        <p class="title-price-sp">$105.00</p>
-                    </div>
-                </div>
-                @endfor
-            </div>
-        </div>
-        <div class="swiper-button-next next-category"></div>
-        <div class="swiper-button-prev prev-category"></div>
-        <div class="swiper-pagination swiper-pagination-category"></div>
+                                <img
+                                    src="@if($item->wish) {{asset('assets/image/heart-solid.svg')}} @else {{asset('assets/image/heart.svg')}} @endif"
+                                    class="icon-heart" onclick="toggleHeart(this)"
+                                    onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
 
-    </div>
+                            </div>
+                            <div>
+                                <a class="link-color">{{count($item->color)}} colors</a>
+                                <div class="box-option-color-style p-0">
+                                    <div class="swiper swiperOptionColor">
+                                        <div class="swiper-wrapper">
+                                            @foreach($item->color as $color)
+                                                <div class="swiper-slide slide-item-option-style"><img
+                                                        src="{{asset($color->image)}}" class="img-option-color">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next btn-option-color-next"></div>
+                                    <div class="swiper-button-prev btn-option-color-prev"></div>
+                                </div>
+                                <a href="{{route('detail-product',$item->slug)}}" class="title-sp">{{$item->name}}</a>
+                                <div class="d-flex align-items-center">
+                                    <p class="title-price-sp"
+                                       style="margin-right: 10px;text-decoration: line-through">{{number_format($item->color[0]->price)}}
+                                        đ</p>
+                                    <p class="title-price-sp"
+                                       style="color: red">{{number_format($item->color[0]->price)}} đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="swiper-button-next next-category"></div>
+            <div class="swiper-button-prev prev-category"></div>
+            <div class="swiper-pagination swiper-pagination-category"></div>
+        </div>
+    @endif
 
     <div class="box-content-sp">
-        <p class="title-big-cate-sp">WOMEN'S Z/SANDALS <span class="count-cate-sp">30 Products</span></p>
+        <p class="title-big-cate-sp text-uppercase">{{$category->menu_belong}} {{$category->name}} <span
+                class="count-cate-sp">{{$count_product}} sản phẩm</span></p>
         <div class="box-line-filter-mobie">
             <div class="filter-mobile-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilterMobile"
                  aria-controls="offcanvasFilterMobile">
@@ -109,9 +96,10 @@
             <div class="box-filter">
                 <div class="select-wrapper">
                     <label for="sort-select" class="select-label">SORT BY</label>
-                    <select id="sort-select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option value="1">Best Seller</option>
-                        <option value="2">Newest</option>
+                    <select id="sort-select" class="form-select form-select-lg mb-3"
+                            aria-label=".form-select-lg example">
+                        <option value="1">Newest</option>
+                        <option value="2">Low Price</option>
                         <option value="3">High Price</option>
                     </select>
                 </div>
@@ -121,7 +109,7 @@
                         Find the right product for you. Choose your size, color and more.
                     </div>
                     <div class="name-filter">
-                        FILTER <span class="count-filter-sp">(247 Products)</span>
+                        FILTER <span class="count-filter-sp">({{$count_product}} sản phẩm)</span>
                     </div>
 
                     <div class="accordion accordion-flush" id="accordionFilter">
@@ -276,95 +264,79 @@
 
             </div>
             <div class="box-sp">
-
-                @for($i = 0;$i<12;$i++)
-
-                <div class="item-sp-filter">
-                    <div class="line-add-cart">
-                        <img src="{{asset('assets/image/add-to-cart.png')}}" alt="">
-                        <span class="title-quick">Quick Add</span>
-                    </div>
-                    <div class="position-relative img-big-sp">
-                        <span class="tag-hot">NEW ARRIVAL</span>
-                        <img src="{{asset('assets/image/img-sp3.jpg')}}" class="w-100 img-big-option">
-                        <div class="box-wishlist">
-                            <div class="item-wishlist">
-                                Wishlist
+                @if(isset($product) && count($product)>0)
+                    @foreach($product as $pro)
+                        <div class="item-sp-filter">
+                            <div class="line-add-cart">
+                                <img src="{{asset('assets/image/add-to-cart.png')}}" alt="">
+                                <span class="title-quick">Quick Add</span>
                             </div>
-                        </div>
-                        <img src="{{asset('assets/image/heart.svg')}}" class="icon-heart" onclick="toggleHeart(this)"
-                             onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
-                    </div>
-                    <div>
-                        <a class="link-color">20 colors</a>
-                        <div class="box-option-color-style">
-                            <div class="swiper swiperOptionColor">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
-                                    </div>
-                                    <div class="swiper-slide"><img src="{{asset('assets/image/img-sp3.jpg')}}"
-                                                                   class="img-option-color">
+                            <div class="position-relative img-big-sp">
+                                {{--                        <span class="tag-hot">NEW ARRIVAL</span>--}}
+                                <img src="{{asset($pro->image)}}" class="w-100 img-big-option">
+                                <div class="box-wishlist">
+                                    <div class="item-wishlist">
+                                        Wishlist
                                     </div>
                                 </div>
+                                <img
+                                    src="@if($pro->wish) {{asset('assets/image/heart-solid.svg')}} @else {{asset('assets/image/heart.svg')}} @endif"
+                                    class="icon-heart" onclick="toggleHeart(this)"
+                                    onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
                             </div>
-                            <div class="swiper-button-next btn-option-color-next"></div>
-                            <div class="swiper-button-prev btn-option-color-prev"></div>
-                        </div>
-                        <a href="" class="title-sp">WOMEN'S Z/1 ADJUSTABLE STRAP
-                            CLASSIC SANDAL</a>
-                        <p class="title-price-sp mb-1">$69.99 - $105.00</p>
-                        <div class="d-flex mb-1">
-                            <div class="product-rate">
-                                <div class="star-rating" style="--rating:4"></div>
+                            <div>
+                                <a class="link-color">{{count($pro->color)}} colors</a>
+                                <div class="box-option-color-style">
+                                    <div class="swiper swiperOptionColor">
+                                        <div class="swiper-wrapper">
+                                            @foreach($pro->color as $color_pro)
+                                                <div class="swiper-slide"><img src="{{asset($color_pro->image)}}"
+                                                                               class="img-option-color">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next btn-option-color-next"></div>
+                                    <div class="swiper-button-prev btn-option-color-prev"></div>
+                                </div>
+                                <a href="{{route('detail-product',$pro->slug)}}" class="title-sp">{{$pro->name}}</a>
+                                <div class="d-flex align-items-center mb-1">
+                                    <p class="title-price-sp"
+                                       style="margin-right: 10px;text-decoration: line-through">{{number_format($pro->color[0]->price)}}
+                                        đ</p>
+                                    <p class="title-price-sp"
+                                       style="color: red">{{number_format($pro->color[0]->price)}} đ</p>
+                                </div>
+                                <div class="d-flex mb-1">
+                                    <div class="product-rate">
+                                        <div class="star-rating" style="--rating:4"></div>
+                                    </div>
+                                    <div class="ts-star">4.5 (1058)</div>
+                                </div>
+                                <img src="{{asset('assets/image/customize.png')}}" class="w-100">
                             </div>
-                            <div class="ts-star">4.5 (1058)</div>
                         </div>
-                        <img src="{{asset('assets/image/customize.png')}}" class="w-100">
-                    </div>
-                </div>
-                @endfor
+                    @endforeach
+                @endif
             </div>
         </div>
 
-        <div class="w-100 d-flex justify-content-end">
-            <div class="line-load-more">
-                <button class="btn-load-more">LOAD MORE</button>
+        @if(count($product)==20)
+{{--            <div class="w-100 d-flex justify-content-end">--}}
+{{--                <div class="line-load-more">--}}
+{{--                    <button class="btn-load-more">LOAD MORE</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            <div class="d-flex justify-content-center">
+                {{ $product->appends(request()->all())->links('web.partials.pagination') }}
             </div>
-        </div>
+        @endif
 
     </div>
 
     <div class="box-introduce">
-        <p class="title-introduce">MEN’S NEW SANDALS AND SHOES</p>
-        <p class="content-introduce">Get a fresh look for the season from men’s new sandals and shoes from Chaco. Whether
-            you’re looking for an
-            upgrade for your sandals before spring break, a pair of protective men's water shoes for your next rafting
-            trip, or boots or shoes as the cooler months start coming in, we have what you need for outdoor adventures any
-            time of year. While our styles and webbings change, you’ll still find the LUVSEAT™ footbed in our men’s new
-            sandals, shoes, and boots so you’ll have the all-day support and comfort you love in Chaco products all year
-            round. Find your next pair of new Chacos for men!=</p>
+        <p class="title-introduce">{{@$category->title}}</p>
+        <p class="content-introduce">{{@$category->describe}}</p>
     </div>
 @stop
 
@@ -373,14 +345,14 @@
     <script>
         function toggleHeart(heart) {
             if (heart.src.includes('heart-solid.svg')) {
-                heart.src = window.location.origin+'/assets/image/heart.svg';
+                heart.src = window.location.origin + '/assets/image/heart.svg';
             } else {
-                heart.src = window.location.origin+'/assets/image/heart-solid.svg';
+                heart.src = window.location.origin + '/assets/image/heart-solid.svg';
             }
         }
 
         function toggleActive(item) {
-            document.querySelectorAll('.size-item').forEach(function(el) {
+            document.querySelectorAll('.size-item').forEach(function (el) {
                 el.classList.remove('active-filter');
             });
             item.classList.toggle('active-filter');
