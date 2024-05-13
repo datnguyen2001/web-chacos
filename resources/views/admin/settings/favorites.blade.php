@@ -85,51 +85,51 @@
 @section('main')
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
-            <!-- Page Heading -->
+            <!-- Page Preview -->
             <h1 class="h3 mb-4 text-gray-800">"Favorites" Trang chủ</h1>
-
-            <hr>
-
-            {{-- <form action="{{ route('admin.settings.banner.update') }}" method="POST" enctype="multipart/form-data">
+            <form class="mt-5" action="{{ route('admin.settings.favorites.update') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label for="mainBanner" class="form-label">Video của banner:</label>
-                    <input class="form-control" accept=".mp4" max-size="10240000" type="file" id="mainBanner"
-                        name="banner">
+                    <label for="hashtag" class="form-label">Hashtag:</label>
+                    <input class="form-control" type="text" id="hashtag" name="hashtag"
+                        value="{{ old('hashtag', $favorites->hashtag) }}" autofocus>
                 </div>
 
                 <div class="mb-3">
-                    <label for="imageOverlay" class="form-label">Lớp ảnh phủ:</label>
-                    <input class="form-control" accept=".png" max-size="10240000" type="file" id="imageOverlay"
-                        name="image">
+                    <label for="banner" class="form-label">Ảnh lớn:</label>
+                    <input class="form-control" accept="image/*,.gif" type="file" id="banner" name="banner">
+                    <img class="mt-3" src="{{ $favorites->banner ?? '' }}" width="400">
                 </div>
 
                 <div class="mb-3">
-                    <label for="title" class="form-label">Tiêu đề (Chữ bé):</label>
-                    <input class="form-control" type="text" id="title" name="title"
-                        value="{{ old('title', $banner->title ?? '') }}">
+                    <label for="banner-mobile" class="form-label">Ảnh lớn (Cho điện thoại):</label>
+                    <input class="form-control" accept="image/*,.gif" type="file" id="banner-mobile"
+                        name="banner_mobile">
+                    <img class="mt-3" src="{{ $favorites->banner_mobile ?? '' }}" width="400">
                 </div>
 
                 <div class="mb-3">
-                    <label for="content" class="form-label">Nội dung (Chữ to):</label>
-                    <input class="form-control" type="text" id="content" name="content"
-                        value="{{ old('content', $banner->content ?? '') }}">
+                    <label for="left-image" class="form-label">Ảnh hộp bên trái:</label>
+                    <input class="form-control" accept="image/*,.gif" type="file" id="left-image" name="left_image">
+                    <img class="mt-3" src="{{ $favorites->left_image ?? '' }}" width="400">
                 </div>
 
                 <div class="mb-3">
-                    <label for="button_title" class="form-label">Tiêu đề nút bấm:</label>
-                    <input class="form-control" type="text" id="button_title" name="button_title"
-                        value="{{ old('button_title', $banner->button_title ?? '') }}">
+                    <label for="right-image" class="form-label">Ảnh hộp bên phải:</label>
+                    <input class="form-control" accept="image/*,.gif" type="file" id="right-image" name="right_image">
+                    <img class="mt-3" src="{{ $favorites->right_image ?? '' }}" width="400">
                 </div>
 
                 <div class="mb-3">
-                    <label for="button_href" class="form-label">Nút điều hướng:</label>
-                    <input class="form-control" type="text" id="button_href" name="button_href"
-                        value="{{ old('button_href', $banner->button_href ?? '') }}">
+                    <label for="right-image-mobile" class="form-label">Ảnh hộp bên phải (Cho điện thoại):</label>
+                    <input class="form-control" accept="image/*,.gif" type="file" id="right-image-mobile"
+                        name="right_image_mobile">
+                    <img class="mt-3" src="{{ $favorites->right_image_mobile ?? '' }}" width="400">
                 </div>
 
                 <div class="mb-3">
-                    <label for="isActive" class="form-label me-3">Is active?</label>
+                    <label for="isActive" class="form-label me-3">Công khai?</label>
                     <label class="switch">
                         <input type="checkbox" id="isActive" name="isActive" value="true"
                             {{ $isActive ? 'checked' : '' }}>
@@ -142,12 +142,27 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Lưu</button>
-            </form> --}}
+            </form>
+            <hr>
         </div>
 
     </main>
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function() {
+            $('input[type="file"]').on('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                var previewBanner = $(this).siblings('img');
 
+                reader.onload = function(e) {
+                    previewBanner.attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
 @endsection

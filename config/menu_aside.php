@@ -41,10 +41,10 @@ return [
                     'route' => 'admin.settings.favorites'
                 ],
                 [
-                    'name' => 'adventurous',
-                    'title' => 'Adventurous',
+                    'name' => 'box-around',
+                    'title' => 'Box around',
                     'icon' => 'bi bi-palette',
-                    'route' => 'admin.settings.adventurous'
+                    'route' => 'admin.settings.box.around'
                 ],
             ],
             'number' => 2
