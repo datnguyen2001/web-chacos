@@ -919,6 +919,9 @@ button.cta-primary {
     padding: 4px 10px;
     margin-bottom: 15px;
 }
+.quantity-number{
+    margin-bottom: 0;
+}
 .row-label{
     color: black;
     padding-bottom: 10px;

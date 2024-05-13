@@ -165,9 +165,9 @@
                                 data-bs-target="#collapsereview" aria-expanded="false" aria-controls="collapsereview">
                             Customer Reviews <div class="d-flex star-content-more">
                                 <div class="product-rate">
-                                    <div class="star-rating" style="--rating:4"></div>
+                                    <div class="star-rating" style="--rating:{{@$product->star??0}}"></div>
                                 </div>
-                                <div class="ts-star" style="margin-left: 5px;"> 4.5 (158)</div>
+                                <div class="ts-star" style="margin-left: 5px;"> {{@$product->star}} ({{count($star)??0}})</div>
                             </div>
                         </button>
                     </h2>
@@ -177,55 +177,55 @@
                             <div class="box-parameter-review">
                                 <div class="item-parameter-review">
                                     <p class="title-item-parameter">Rating Snapshot</p>
-                                    <p class="content-item-parameter">Select a row below to filter reviews.</p>
+{{--                                    <p class="content-item-parameter">Select a row below to filter reviews.</p>--}}
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
                                         <span style="color: #303030;font-size: 14px;font-weight: 600;">5 start</span>
                                         <div class="line-percent">
-                                            <div class="percent-content" style="width: 50%;"></div>
+                                            <div class="percent-content" style="width: {{$percent_5}}%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">{{$star_five??0}}</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
                                         <span style="color: #303030;font-size: 14px;font-weight: 600;">4 start</span>
                                         <div class="line-percent">
-                                            <div class="percent-content" style="width: 40%;"></div>
+                                            <div class="percent-content" style="width: {{$percent_4}}%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">{{$star_four??0}}</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
                                         <span style="color: #303030;font-size: 14px;font-weight: 600;">3 start</span>
                                         <div class="line-percent">
-                                            <div class="percent-content" style="width: 30%;"></div>
+                                            <div class="percent-content" style="width: {{$percent_3}}%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">{{$star_three??0}}</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
                                         <span style="color: #303030;font-size: 14px;font-weight: 600;">2 start</span>
                                         <div class="line-percent">
-                                            <div class="percent-content" style="width: 20%;"></div>
+                                            <div class="percent-content" style="width: {{$percent_2}}%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">{{$star_two??0}}</span>
                                     </div>
                                     <div class="d-flex align-items-center" style="padding: 0 10px;">
                                         <span style="color: #303030;font-size: 14px;font-weight: 600;">1 start</span>
                                         <div class="line-percent">
-                                            <div class="percent-content" style="width: 10%;"></div>
+                                            <div class="percent-content" style="width: {{$percent_1}}%;"></div>
                                         </div>
-                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">516</span>
+                                        <span style="color: #303030;font-size: 14px;font-weight: 600;">{{$star_one??0}}</span>
                                     </div>
                                 </div>
                                 <div class="item-parameter-review">
                                     <p class="title-item-parameter">Overall Rating</p>
                                     <div class="d-flex align-items-center">
-                                        <p class="number-big-review">4.4</p>
+                                        <p class="number-big-review">{{@$product->star}}</p>
                                         <div class="d-flex flex-column" style="font-size: 13px;">
                                             <div class="product-rate">
                                                 <div class="star-rating" style="--rating:4"></div>
                                             </div>
-                                            <div class="ts-star"> 700 Reviews</div>
+                                            <div class="ts-star"> {{count($star)??0}} Reviews</div>
                                         </div>
                                     </div>
-                                    <p class="content-item-parameter">240 out of 270 (89%) reviewers recommend this product</p>
+{{--                                    <p class="content-item-parameter">240 out of 270 (89%) reviewers recommend this product</p>--}}
                                 </div>
                                 <div class="item-parameter-review">
                                     <p class="title-item-parameter">Review this Product</p>
@@ -333,7 +333,7 @@
         </div>
         <div class="box-detail-prduct-right">
             <p class="name-product-detail">{{$product->name}}</p>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center flex-wrap-reverse">
                 <div class="d-flex align-items-center">
                     @if($product_color[0]->promotional_price != 0 || $product_color[0]->promotional_price != null)
                         <p class="name-price text-promotional_price" style="color: red;margin-right: 10px">{{number_format($product_color[0]->promotional_price)}} đ</p>
@@ -343,11 +343,11 @@
                         <p class="name-price text-promotional_price"></p>
                     @endif
                 </div>
-                <div class="d-flex mb-1">
+                <div class="d-flex mb-1 ">
                     <div class="product-rate">
-                        <div class="star-rating" style="--rating:4"></div>
+                        <div class="star-rating" style="--rating:{{@$product->star}}"></div>
                     </div>
-                    <div class="ts-star" style="margin-left: 5px;"> 4.5 (158)</div>
+                    <div class="ts-star" style="margin-left: 5px;"> {{@$product->star}} ({{count($star)??0}})</div>
                 </div>
             </div>
             @if($product->type !=0)
@@ -391,7 +391,7 @@
                 <input type="text" name="size_id" class="size_id" value="{{$product_size[0]->id}}" hidden>
                 <button class="btn-add-to-card">ADD TO CART</button>
                 <div class="btn-heart-now">
-                    <img src="{{asset($product_wish?'assets/image/heart.svg':'assets/image/heart.svg')}}" style="width: 45%;">
+                    <img src="{{asset($product_wish?'assets/image/heart.svg':'assets/image/heart.svg')}}" style="width: 45%;" data-value="{{$product->id}}" onclick="toggleHeart(this)">
                 </div>
             </div>
             <div class="accordion" id="accordionExample">
@@ -409,7 +409,7 @@
                         <div class="accordion-body mb-3">
                             <p style="color: #004c59;margin-bottom: 0;">FREE EXPRESS SHIPPING</p>
                             <p style="font-size: 14px;margin-bottom: 0;">Order today to receive</p>
-                            <a href="#" style="color: #004c59;font-size: 14px;font-weight: bold;">See more details.</a>
+                            <a href="{{route('shipping-info')}}" style="color: #004c59;font-size: 14px;font-weight: bold;">See more details.</a>
                         </div>
                     </div>
                 </div>
@@ -426,7 +426,7 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body mb-3">
                             <p style="font-size: 14px;margin-bottom: 0;">We are happy to offer free returns and exchanges.</p>
-                            <a href="#" style="color: #004c59;font-size: 14px;font-weight: bold;">See more details.</a>
+                            <a href="{{route('easy-free-returns')}}" style="color: #004c59;font-size: 14px;font-weight: bold;">See more details.</a>
                         </div>
                     </div>
                 </div>
@@ -444,18 +444,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex ">
-{{--                        <img src="{{asset($product->thumbnail_img)}}" style="width: 52px;height: 52px;object-fit: cover">--}}
-{{--                        <p class="mx-2">{{$product->name}}</p>--}}
+                        <img src="{{asset($product->image)}}" style="width: 52px;height: 52px;object-fit: cover">
+                        <p class="mx-2">{{$product->name}}</p>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{route('save-review')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body" style="height: 450px;overflow: auto">
-{{--                        <input type="text" value="{{$product->id}}" name="product_id" hidden>--}}
+                        <input type="text" value="{{$product->id}}" name="product_id" hidden>
                         <div class="mb-3">
                             <p class="title-review-modal">Full name</p>
-                            <input type="text" required class="input-review" name="name">
+                            <input type="text" required class="input-review" name="name" value="">
                         </div>
                         <div class="mb-3">
                             <p class="title-review-modal">Content</p>
