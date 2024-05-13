@@ -355,8 +355,7 @@
     border-bottom: 1px solid #dddddd;
 }
 .item-left-review {
-    width: 70%;
-    border-right: 1px solid #dddddd;
+    width: 100%;
 }
 .item-right-review {
     width: 30%;
@@ -536,6 +535,12 @@ div {
         width: 100%;
         height: 95px;
         object-fit: cover;
+    }
+    .btn-write-review{
+        padding: 10px 16px;
+    }
+    .content-review{
+        margin-top: 10px;
     }
 }
 @media (max-width: 640px) {

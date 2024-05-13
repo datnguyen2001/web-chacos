@@ -43,3 +43,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+function toggleWishlist(element) {
+    var wishlist = element.parentElement.querySelector('.box-wishlist');
+    wishlist.style.display = "flex";
+}
+
+function hideWishlist(element) {
+    var wishlist = element.parentElement.querySelector('.box-wishlist');
+    wishlist.style.display = "none";
+}
+
+function toggleHeart(heart) {
+    $.ajax({
+        url: window.location.origin + '/save-wish',
+        data: {'product_id':heart.getAttribute('data-value')},
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            if (data.status) {
+                if (heart.src.includes('heart-solid.svg')) {
+                    heart.src = window.location.origin + '/assets/image/heart.svg';
+                } else {
+                    heart.src = window.location.origin + '/assets/image/heart-solid.svg';
+                }
+            }else {
+                toastr.error(data.msg);
+            }
+        }
+    })
+}

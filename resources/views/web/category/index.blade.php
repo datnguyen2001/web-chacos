@@ -33,9 +33,10 @@
                                         Wishlist
                                     </div>
                                 </div>
-                                <img src="@if ($item->wish) {{ asset('assets/image/heart-solid.svg') }} @else {{ asset('assets/image/heart.svg') }} @endif"
-                                    class="icon-heart" onclick="toggleHeart(this)" onmouseover="toggleWishlist(this)"
-                                    onmouseout="hideWishlist(this)">
+                                <img
+                                    src="@if($item->wish) {{asset('assets/image/heart-solid.svg')}} @else {{asset('assets/image/heart.svg')}} @endif"
+                                    class="icon-heart" data-value="{{$item->id}}" onclick="toggleHeart(this)"
+                                    onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
 
                             </div>
                             <div>
@@ -85,9 +86,9 @@
             <div class="select-wrapper filter-mobile-right">
                 <label for="sort-select" class="select-label">SORT BY</label>
                 <select id="sort-select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-                    style="font-weight: bold; color: #1d4b58;">
-                    <option value="1">Best Seller</option>
-                    <option value="2">Newest</option>
+                        style="font-weight: bold; color: #1d4b58;">
+                    <option value="1">Newest</option>
+                    <option value="2">Low Price</option>
                     <option value="3">High Price</option>
                 </select>
             </div>
@@ -125,21 +126,21 @@
                                 <div class="accordion-body body-item-filter">
                                     <p class="title-filter-item">Size</p>
                                     <div class="box-item-filter-small">
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">5</button>
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">6</button>
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">7</button>
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">8</button>
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">9</button>
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">10</button>
+                                        @foreach($sizes as $k => $item_sizes)
+                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">{{$item_sizes->name}}</button>
+                                        @endforeach
                                     </div>
 
                                     <p class="title-filter-item">Width</p>
                                     <div class="d-flex flex-column">
                                         <div class="mb-1">
-                                            <input id="input-filter" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter" class="title-input-filter">Medium <span
-                                                    style="color: #6F6F6F;">(211)</span>
+                                            <input id="input-filter" class="input-filter" type="checkbox" value="1">
+                                            <label for="input-filter" class="title-input-filter">Medium
+                                            </label>
+                                        </div>
+                                        <div class="mb-1">
+                                            <input id="input-filter-1" class="input-filter" type="checkbox" value="2">
+                                            <label for="input-filter-1" class="title-input-filter">Wide
                                             </label>
                                         </div>
                                     </div>
@@ -158,50 +159,13 @@
                                 data-bs-parent="#accordionFilter">
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
+                                        @foreach($styles as $k => $item_style )
                                         <div class="mb-1">
-                                            <input id="input-filter-1" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-1" class="title-input-filter">Flip Flops <span
-                                                    style="color: #6F6F6F;">(10)</span>
+                                            <input id="input-filter-{{$k}}" class="input-filter" type="checkbox" value="{{$item_style->id}}">
+                                            <label for="input-filter-{{$k}}" class="title-input-filter">{{$item_style->style}}
                                             </label>
                                         </div>
-                                        <div class="mb-1">
-                                            <input id="input-filter-2" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-2" class="title-input-filter">Sandals <span
-                                                    style="color: #6F6F6F;">(54)</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-filter-3">
-                                <button class="accordion-button collapsed accordion-button-filter" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-filter3" aria-expanded="false"
-                                    aria-controls="flush-filter3">
-                                    COLLECTION
-                                </button>
-                            </h2>
-                            <div id="flush-filter3" class="accordion-collapse collapse" aria-labelledby="flush-filter3"
-                                data-bs-parent="#accordionFilter">
-                                <div class="accordion-body body-item-filter">
-                                    <div class="d-flex flex-column">
-                                        <div class="mb-1">
-                                            <input id="input-filter-1" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-1" class="title-input-filter">Flip Flops <span
-                                                    style="color: #6F6F6F;">(10)</span>
-                                            </label>
-                                        </div>
-                                        <div class="mb-1">
-                                            <input id="input-filter-2" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-2" class="title-input-filter">Sandals <span
-                                                    style="color: #6F6F6F;">(54)</span>
-                                            </label>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -218,20 +182,13 @@
                                 data-bs-parent="#accordionFilter">
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
+                                        @foreach($colors as $k => $item_color)
                                         <div class="mb-1">
-                                            <input id="input-filter-1" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-1" class="title-input-filter">Flip Flops <span
-                                                    style="color: #6F6F6F;">(10)</span>
+                                            <input id="input-filters-{{$k}}" class="input-filter" type="checkbox" value="{{$item_color->id}}">
+                                            <label for="input-filters-{{$k}}" class="title-input-filter">{{$item_color->name}}
                                             </label>
                                         </div>
-                                        <div class="mb-1">
-                                            <input id="input-filter-2" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-2" class="title-input-filter">Sandals <span
-                                                    style="color: #6F6F6F;">(54)</span>
-                                            </label>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -249,17 +206,23 @@
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
                                         <div class="mb-1">
-                                            <input id="input-filter-1" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-1" class="title-input-filter">Flip Flops <span
-                                                    style="color: #6F6F6F;">(10)</span>
+                                            <input id="input-filter--1" class="input-filter" type="checkbox" value="1">
+                                            <label for="input-filter-1" class="title-input-filter">0đ - 300.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter-2" class="input-filter" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter-2" class="title-input-filter">Sandals <span
-                                                    style="color: #6F6F6F;">(54)</span>
+                                            <input id="input-filter--2" class="input-filter" type="checkbox" value="2">
+                                            <label for="input-filter--2" class="title-input-filter">300.000đ - 600.000đ
+                                            </label>
+                                        </div>
+                                        <div class="mb-1">
+                                            <input id="input-filter--3" class="input-filter" type="checkbox" value="3">
+                                            <label for="input-filter--3" class="title-input-filter">600.000đ - 1000.000đ
+                                            </label>
+                                        </div>
+                                        <div class="mb-1">
+                                            <input id="input-filter--4" class="input-filter" type="checkbox" value="4">
+                                            <label for="input-filter--4" class="title-input-filter">1000.000đ - 3000.000đ
                                             </label>
                                         </div>
                                     </div>
@@ -287,9 +250,10 @@
                                         Wishlist
                                     </div>
                                 </div>
-                                <img src="@if ($pro->wish) {{ asset('assets/image/heart-solid.svg') }} @else {{ asset('assets/image/heart.svg') }} @endif"
-                                    class="icon-heart" onclick="toggleHeart(this)" onmouseover="toggleWishlist(this)"
-                                    onmouseout="hideWishlist(this)">
+                                <img
+                                    src="@if($pro->wish) {{asset('assets/image/heart-solid.svg')}} @else {{asset('assets/image/heart.svg')}} @endif"
+                                    class="icon-heart" data-value="{{$pro->id}}" onclick="toggleHeart(this)"
+                                    onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
                             </div>
                             <div>
                                 <a class="link-color">{{ count($pro->color) }} colors</a>
@@ -309,21 +273,24 @@
                                 <a href="{{ route('detail-product', $pro->slug) }}"
                                     class="title-sp">{{ $pro->name }}</a>
                                 <div class="d-flex align-items-center mb-1">
-                                    @if ($pro->color[0]->promotional_price && $pro->color[0]->promotional_price != 0)
+                                    @if($pro->color[0]->promotional_price != 0 || $pro->color[0]->promotional_price != null)
                                         <p class="title-price-sp"
-                                            style="margin-right: 10px;text-decoration: line-through">
-                                            {{ number_format($pro->color[0]->price) }}
+                                           style="color: red;margin-right: 10px;">{{number_format($pro->color[0]->promotional_price)}}
+                                            đ</p>
+                                        <p class="title-price-sp"
+                                           style="text-decoration: line-through">{{number_format($pro->color[0]->price)}}
+                                            đ</p>
+                                    @else
+                                        <p class="title-price-sp"
+                                           style="color: red;margin-right: 10px;">{{number_format($pro->color[0]->price)}}
                                             đ</p>
                                     @endif
-                                    <p class="title-price-sp" style="color: red">
-                                        {{ $pro->color[0]->promotional_price && $pro->color[0]->promotional_price != 0 ? number_format($pro->color[0]->promotional_price) : number_format($pro->color[0]->price) }}
-                                        đ</p>
                                 </div>
                                 <div class="d-flex mb-1">
                                     <div class="product-rate">
-                                        <div class="star-rating" style="--rating:4"></div>
+                                        <div class="star-rating" style="--rating:{{$pro->star}}"></div>
                                     </div>
-                                    <div class="ts-star">4.5 (1058)</div>
+                                    <div class="ts-star">{{$pro->star}} ({{$pro->count_star}})</div>
                                 </div>
                                 <img src="{{ asset('assets/image/customize.png') }}" class="w-100">
                             </div>
@@ -333,12 +300,12 @@
             </div>
         </div>
 
-        @if (count($product) == 20)
-            {{--            <div class="w-100 d-flex justify-content-end"> --}}
-            {{--                <div class="line-load-more"> --}}
-            {{--                    <button class="btn-load-more">LOAD MORE</button> --}}
-            {{--                </div> --}}
-            {{--            </div> --}}
+        @if(count($product)==20)
+            {{--            <div class="w-100 d-flex justify-content-end">--}}
+            {{--                <div class="line-load-more">--}}
+            {{--                    <button class="btn-load-more">LOAD MORE</button>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
             <div class="d-flex justify-content-center">
                 {{ $product->appends(request()->all())->links('web.partials.pagination') }}
             </div>
@@ -355,30 +322,12 @@
 @section('script_page')
     <script src="{{ asset('assets/js/category.js') }}"></script>
     <script>
-        function toggleHeart(heart) {
-            if (heart.src.includes('heart-solid.svg')) {
-                heart.src = window.location.origin + '/assets/image/heart.svg';
-            } else {
-                heart.src = window.location.origin + '/assets/image/heart-solid.svg';
-            }
-        }
-
         function toggleActive(item) {
             document.querySelectorAll('.size-item').forEach(function(el) {
                 el.classList.remove('active-filter');
             });
             item.classList.toggle('active-filter');
 
-        }
-
-        function toggleWishlist(element) {
-            var wishlist = element.parentElement.querySelector('.box-wishlist');
-            wishlist.style.display = "flex";
-        }
-
-        function hideWishlist(element) {
-            var wishlist = element.parentElement.querySelector('.box-wishlist');
-            wishlist.style.display = "none";
         }
     </script>
 @stop
