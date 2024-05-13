@@ -52,7 +52,10 @@ Route::get('strap-adjuster', [HomeController::class, 'strapAdjuster'])->name('st
 Route::get('danh-muc/{slug?}', [CategoryController::class, 'category'])->name('category');
 Route::get('chi-tiet-san-pham/{slug?}', [ProductController::class, 'index'])->name('detail-product');
 Route::post('select-color', [ProductController::class,'selectColor'])->name('select-color');
+Route::post('save-wish', [ProductController::class,'saveWish'])->name('save-wish');
 Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
 Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
 Route::get('hoan-thanh', [CartController::class, 'complete'])->name('complete');
 Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
+Route::post('save-review', [ProductController::class, 'saveReview'])->name('save-review');
+Route::get('get-review', [ProductController::class, 'getReview'])->name('get-review');
