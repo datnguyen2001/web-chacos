@@ -50,6 +50,9 @@ Route::get('product-features', [HomeController::class, 'productFeatures'])->name
 Route::get('strap-adjuster', [HomeController::class, 'strapAdjuster'])->name('strap-adjuster');
 
 Route::get('danh-muc/{slug?}', [CategoryController::class, 'category'])->name('category');
-Route::get('chi-tiet-san-pham', [ProductController::class, 'index'])->name('detail-product');
+Route::get('chi-tiet-san-pham/{slug?}', [ProductController::class, 'index'])->name('detail-product');
+Route::post('select-color', [ProductController::class,'selectColor'])->name('select-color');
 Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
+Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
+Route::get('hoan-thanh', [CartController::class, 'complete'])->name('complete');
 Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');

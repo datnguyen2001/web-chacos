@@ -58,12 +58,20 @@ return [
             'number' => 3
         ],
         [
+            'name' => 'product',
+            'title' => 'Product',
+            'icon' => 'bi bi-view-list',
+            'route' => 'admin.products.index',
+            'submenu' => [],
+            'number' => 4
+        ],
+        [
             'name' => 'coupon',
             'title' => 'Coupon',
             'icon' => 'bi bi-graph-down-arrow',
             'route' => 'admin.coupon.index',
             'submenu' => [],
-            'number' => 4
+            'number' => 5
         ],
     ],
 ];
