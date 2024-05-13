@@ -66,6 +66,38 @@ class HomeSettingsSeeder extends Seeder
             "right_image_mobile"  => "/assets/image/pick-you.png"
         ];
 
+        $boxAroundValue = [
+            "title"     => "Around the Chacosphere",
+            "content"   => "Join the #ChacoNation on Instagram",
+            "row1"      => [
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+            ],
+            "row2"      => [
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+            ],
+            "row3"      => [
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+                "https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg",
+            ],
+        ];
+
         //BANNER
         HomepageSettings::create([
             'type' => 'banner',
@@ -91,6 +123,13 @@ class HomeSettingsSeeder extends Seeder
         HomepageSettings::create([
             'type' => 'favorites',
             'value' => json_encode($favoritesValue),
+            'isActive' => 1,
+        ]);
+
+        //FAVORITES
+        HomepageSettings::create([
+            'type' => 'box_around',
+            'value' => json_encode($boxAroundValue),
             'isActive' => 1,
         ]);
     }

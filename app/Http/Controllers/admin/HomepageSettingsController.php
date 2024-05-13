@@ -541,11 +541,186 @@ class HomepageSettingsController extends Controller
         }
     }
 
-    public function adventurous()
+    public function boxAround()
     {
         $page_menu = 'homepage';
-        $page_sub = 'adventurous';
+        $page_sub = 'box-around';
 
-        return view('admin.settings.adventurous')->with(compact('page_menu', 'page_sub'));
+        $box = HomepageSettings::where('type', 'box_around')->first();
+
+        $isActive = $box->isActive ?? 0;
+
+        $box = json_decode($box->value, true);
+
+        return view('admin.settings.box-around')->with(compact('page_menu', 'page_sub', 'box', 'isActive'));
+    }
+
+    public function boxAroundUpdate(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'title'     => 'nullable|string|max:50',
+                'content'   => 'nullable|string|max:50',
+                'file1.*'   => 'required|file|mimes:jpeg,jpg,png,gif|max:5120',
+                'file2.*'   => 'required|file|mimes:jpeg,jpg,png,gif|max:5120',
+                'file3.*'   => 'required|file|mimes:jpeg,jpg,png,gif|max:5120',
+            ]);
+
+            if ($validated->fails()) {
+                toastr()->error($validated->errors()->first());
+                return back()->withInput();
+            }
+
+            $validatedData = $validated->validated();
+
+            $oldFiles1 = $request->input('old_file1');
+
+            $oldFiles2 = $request->input('old_file2');
+
+            $oldFiles3 = $request->input('old_file3');
+
+            $newFiles1 = $request->file('file1');
+
+            $newFiles2 = $request->file('file2');
+
+            $newFiles3 = $request->file('file3');
+
+            $box = HomepageSettings::where('type', 'box_around')->first();
+
+            // HANDLE ROW 1
+            $currentRow1 = json_decode($box->value, true)['row1'] ?? [];
+
+            // Find the missing index
+            $missingIndex1 = [];
+            if ($currentRow1 != null && $oldFiles1 != null) {
+                $missingIndex1 = array_diff(array_keys($currentRow1), array_keys($oldFiles1));
+            }
+
+            // Remove the missing index from $currentFiles1 and delete the URL file
+            if (!empty($missingIndex1)) {
+                $index = array_keys($missingIndex1);
+
+                foreach ($index as $value) {
+                    if (isset($currentRow1[$value]) && Storage::exists(str_replace('/storage', 'public', $currentRow1[$value]))) {
+                        Storage::delete(str_replace('/storage', 'public', $currentRow1[$value]));
+                    }
+
+                    unset($currentRow1[$value]);
+                }
+            }
+
+            // Process and store the uploaded new files
+            if (isset($newFiles1)) {
+                foreach ($newFiles1 as $index => $newFile) {
+                    // Remove the old file if it exists
+                    if (isset($currentRow1[$index]) && Storage::exists(str_replace('/storage', 'public', $currentRow1[$index]))) {
+                        Storage::delete(str_replace('/storage', 'public', $currentRow1[$index]));
+                    }
+
+                    $fileUrl = Storage::url($newFile->store('box_around', 'public'));
+
+                    // Add the URL to the list
+                    $currentRow1[$index] = $fileUrl;
+                }
+            }
+            // HANDLE ROW 1
+
+            // HANDLE ROW 2
+            $currentRow2 = json_decode($box->value, true)['row2'] ?? [];
+
+            // Find the missing index
+            $missingIndex2 = [];
+            if ($currentRow2 != null && $oldFiles2 != null) {
+                $missingIndex2 = array_diff(array_keys($currentRow2), array_keys($oldFiles2));
+            }
+
+            // Remove the missing index from $currentFiles2 and delete the URL file
+            if (!empty($missingIndex2)) {
+                $index = array_keys($missingIndex2);
+
+                foreach ($index as $value) {
+                    if (isset($currentRow2[$value]) && Storage::exists(str_replace('/storage', 'public', $currentRow2[$value]))) {
+                        Storage::delete(str_replace('/storage', 'public', $currentRow2[$value]));
+                    }
+
+                    unset($currentRow2[$value]);
+                }
+            }
+
+            // Process and store the uploaded new files
+            if (isset($newFiles2)) {
+                foreach ($newFiles2 as $index => $newFile) {
+                    // Remove the old file if it exists
+                    if (isset($currentRow2[$index]) && Storage::exists(str_replace('/storage', 'public', $currentRow2[$index]))) {
+                        Storage::delete(str_replace('/storage', 'public', $currentRow2[$index]));
+                    }
+
+                    $fileUrl = Storage::url($newFile->store('box_around', 'public'));
+
+                    // Add the URL to the list
+                    $currentRow2[$index] = $fileUrl;
+                }
+            }
+            // HANDLE ROW 2
+
+            // HANDLE ROW 3
+            $currentRow3 = json_decode($box->value, true)['row3'] ?? [];
+
+            // Find the missing index
+            $missingIndex3 = [];
+            if ($currentRow3 != null && $oldFiles3 != null) {
+                $missingIndex3 = array_diff(array_keys($currentRow3), array_keys($oldFiles3));
+            }
+
+            // Remove the missing index from $currentFiles3 and delete the URL file
+            if (!empty($missingIndex3)) {
+                $index = array_keys($missingIndex3);
+
+                foreach ($index as $value) {
+                    if (isset($currentRow3[$value]) && Storage::exists(str_replace('/storage', 'public', $currentRow3[$value]))) {
+                        Storage::delete(str_replace('/storage', 'public', $currentRow3[$value]));
+                    }
+
+                    unset($currentRow3[$value]);
+                }
+            }
+
+            // Process and store the uploaded new files
+            if (isset($newFiles3)) {
+                foreach ($newFiles3 as $index => $newFile) {
+                    // Remove the old file if it exists
+                    if (isset($currentRow3[$index]) && Storage::exists(str_replace('/storage', 'public', $currentRow3[$index]))) {
+                        Storage::delete(str_replace('/storage', 'public', $currentRow3[$index]));
+                    }
+
+                    $fileUrl = Storage::url($newFile->store('box_around', 'public'));
+
+                    // Add the URL to the list
+                    $currentRow3[$index] = $fileUrl;
+                }
+            }
+            // HANDLE ROW 3
+
+            $data = [
+                'title'   => $request->input('title'),
+                'content' => $request->input('content'),
+                'row1'    => array_values($currentRow1),
+                'row2'    => array_values($currentRow2),
+                'row3'    => array_values($currentRow3)
+            ];
+
+            HomepageSettings::updateOrCreate([
+                'type' => 'box_around',
+            ], [
+                'value' => json_encode($data),
+                'isActive' => $request->input('isActive') ? 1 : 0,
+            ]);
+
+            toastr()->success("Thay đổi cấu hình sale along thành công");
+            return back();
+        } catch (\Exception $e) {
+            toastr()->error($e->getMessage());
+            return back()->withInput();
+        }
     }
 }

@@ -48,7 +48,9 @@ Route::middleware('check-admin-auth')->group(function () {
         //FAVORITES
         Route::get('favorites', [HomepageSettingsController::class, 'favorites'])->name('settings.favorites');
         Route::post('favorites', [HomepageSettingsController::class, 'favoritesUpdate'])->name('settings.favorites.update');
-        Route::get('adventurous', [HomepageSettingsController::class, 'adventurous'])->name('settings.adventurous');
+        //BOX AROUND
+        Route::get('box-around', [HomepageSettingsController::class, 'boxAround'])->name('settings.box.around');
+        Route::post('box-around', [HomepageSettingsController::class, 'boxAroundUpdate'])->name('settings.box.around.update');
     });
 });
 
