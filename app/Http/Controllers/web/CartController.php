@@ -79,6 +79,98 @@ class CartController extends Controller
         }
     }
 
+    //UPDATE CART QUANTITY
+    public function updateCart(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'product_info' => 'required|integer',
+                'quantity' => 'required|integer|min:1',
+            ]);
+
+            if ($validated->fails()) {
+                return response()->json(['error' => -1, 'message' => $validated->errors()->first()], 400);
+            }
+
+            $validatedData  = $validated->validated();
+
+            $productInfo    = $validatedData['product_info'];
+            //NEW QUANTITY WILL BE UPDATE
+            $quantity       = $validatedData['quantity'];
+
+            $productSize    = ProductSizeModel::findOrFail($productInfo);
+
+            $this->checkQuantityAvailable($quantity, $productSize->quantity);
+
+            // Retrieve the existing cart data from the cookie
+            $cartData   = $request->cookie('cart_data');
+
+            $cartItems  = $cartData ? json_decode($cartData, true) : [];
+
+            // Find the product in the cart
+            $existingProductIndex = collect($cartItems)->search(function ($item) use ($productInfo) {
+                return $item['product_id'] === $productInfo;
+            });
+
+            if ($existingProductIndex === false) {
+                return response()->json(['error' => -1, 'message' => "Not found product in cart"], 400);
+            }
+            // Update cart product's quantity
+            $cartItems[$existingProductIndex]['quantity'] = $quantity;
+
+            $serializedCartData = json_encode(array_values($cartItems));
+
+            // Set the cart data in the cookie with an expiration time
+            $cookie = Cookie::make('cart_data', $serializedCartData, 60 * 24 * 7); //7 days
+
+            return response()->json(['error' => 0, 'message' => "Cập nhật số lượng thành công"])->withCookie($cookie);
+        } catch (\Exception $e) {
+            return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
+        }
+    }
+
+    //REMOVE PRODUCT IN CART
+    public function removeProductInCart(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'product_info' => 'required|integer',
+            ]);
+
+            if ($validated->fails()) {
+                return response()->json(['error' => -1, 'message' => $validated->errors()->first()], 400);
+            }
+
+            $validatedData = $validated->validated();
+
+            $productInfo = $validatedData['product_info'];
+
+            // Retrieve the existing cart data from the cookie
+            $cartData = $request->cookie('cart_data');
+
+            $cartItems = $cartData ? json_decode($cartData, true) : [];
+
+            // Find the product in the cart
+            $existingProductIndex = collect($cartItems)->search(function ($item) use ($productInfo) {
+                return $item['product_id'] === $productInfo;
+            });
+
+            if ($existingProductIndex === false) {
+                return response()->json(['error' => -1, 'message' => "Không tìm thấy sản phẩm trong giỏ hàng"], 400);
+            }
+            // Remove the product from the cart
+            array_splice($cartItems, $existingProductIndex, 1);
+
+            $serializedCartData = json_encode(array_values($cartItems));
+
+            $cookie = Cookie::make('cart_data', $serializedCartData, 60 * 24 * 7); // 7 days
+
+            return response()->json(['error' => 0, 'message' => "Xóa khỏi giỏ hàng thành công"])->withCookie($cookie);
+        } catch (\Exception $e) {
+            return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
+        }
+    }
+
     // GET CART VALUE
     public function getCartData(Request $request)
     {
@@ -105,6 +197,7 @@ class CartController extends Controller
                 $total += $subTotal;
 
                 $cartRawData[] = [
+                    'info'        => $item->product_id,
                     'id'          => $productInfo->color->product->id,
                     'product'     => $productInfo->color->product->name ?? 'Trống',
                     'thumbnail'   => $productInfo->color->image ?? '',
