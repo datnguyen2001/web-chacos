@@ -17,8 +17,8 @@ class ProductColorModel extends Model
         'promotional_price'
     ];
 
-    public function sizes()
+    public function product()
     {
-        return $this->hasMany(ProductSizeModel::class, 'color_id');
+        return $this->hasOne(ProductModel::class, 'id', 'product_id');
     }
 }
