@@ -62,3 +62,5 @@ Route::get('get-review', [ProductController::class, 'getReview'])->name('get-rev
 
 Route::get('cart', [CartController::class, 'getCartData'])->name('get.cart.data');
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
+Route::put('update-cart-quantity', [CartController::class, 'updateCart'])->name('update.cart.quantity');
+Route::delete('remove-product-cart', [CartController::class, 'removeProductInCart'])->name('remove.product.cart');
