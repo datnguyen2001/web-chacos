@@ -83,8 +83,8 @@
                 <img src="{{asset('assets/image/chevron.svg')}}" style="width: 12px;">
             </div>
             <div class="select-wrapper filter-mobile-right">
-                <label for="sort-select" class="select-label">SORT BY</label>
-                <select id="sort-select" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                <label for="sort-select-mobile" class="select-label">SORT BY</label>
+                <select id="sort-select-mobile" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                         style="font-weight: bold; color: #1d4b58;">
                     <option value="1">Newest</option>
                     <option value="2">Low Price</option>
@@ -127,20 +127,20 @@
                                     <p class="title-filter-item">Size</p>
                                     <div class="box-item-filter-small">
                                         @foreach($sizes as $k => $item_sizes)
-                                        <button class="btn-size-item size-item" onclick="toggleActive(this)">{{$item_sizes->name}}</button>
+                                        <button class="btn-size-item size-item" onclick="toggleActive(this)" data-value="{{$item_sizes->name}}">{{$item_sizes->name}}</button>
                                         @endforeach
                                     </div>
 
                                     <p class="title-filter-item">Width</p>
                                     <div class="d-flex flex-column">
                                         <div class="mb-1">
-                                            <input id="input-filter" class="input-filter" type="checkbox" value="1">
+                                            <input id="input-filter " class="input-filter type_width" type="checkbox" value="1">
                                             <label for="input-filter" class="title-input-filter">Medium
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter-1" class="input-filter" type="checkbox" value="2">
-                                            <label for="input-filter-1" class="title-input-filter">Wide
+                                            <input id="input-filter " class="input-filter type_width" type="checkbox" value="2">
+                                            <label for="input-filter" class="title-input-filter">Wide
                                             </label>
                                         </div>
                                     </div>
@@ -161,8 +161,8 @@
                                     <div class="d-flex flex-column">
                                         @foreach($styles as $k => $item_style )
                                         <div class="mb-1">
-                                            <input id="input-filter-{{$k}}" class="input-filter" type="checkbox" value="{{$item_style->id}}">
-                                            <label for="input-filter-{{$k}}" class="title-input-filter">{{$item_style->style}}
+                                            <input id="input-filter-1" class="input-filter style_id" type="checkbox" value="{{$item_style->style}}">
+                                            <label for="input-filter-1" class="title-input-filter">{{$item_style->style}}
                                             </label>
                                         </div>
                                         @endforeach
@@ -184,8 +184,8 @@
                                     <div class="d-flex flex-column">
                                         @foreach($colors as $k => $item_color)
                                         <div class="mb-1">
-                                            <input id="input-filters-{{$k}}" class="input-filter" type="checkbox" value="{{$item_color->id}}">
-                                            <label for="input-filters-{{$k}}" class="title-input-filter">{{$item_color->name}}
+                                            <input id="input-filter-2 " class="input-filter color_id" type="checkbox" value="{{$item_color->id}}">
+                                            <label for="input-filter-2" class="title-input-filter">{{$item_color->name}}
                                             </label>
                                         </div>
                                         @endforeach
@@ -206,23 +206,23 @@
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
                                         <div class="mb-1">
-                                            <input id="input-filter--1" class="input-filter" type="checkbox" value="1">
-                                            <label for="input-filter-1" class="title-input-filter">0đ - 300.000đ
+                                            <input id="input-filter-3" class="input-filter price_id" type="checkbox" value="1">
+                                            <label for="input-filter-3" class="title-input-filter">0đ - 300.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter--2" class="input-filter" type="checkbox" value="2">
-                                            <label for="input-filter--2" class="title-input-filter">300.000đ - 600.000đ
+                                            <input id="input-filter-3" class="input-filter price_id" type="checkbox" value="2">
+                                            <label for="input-filter-3" class="title-input-filter">300.000đ - 600.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter--3" class="input-filter" type="checkbox" value="3">
-                                            <label for="input-filter--3" class="title-input-filter">600.000đ - 1000.000đ
+                                            <input id="input-filter-3 " class="input-filter price_id" type="checkbox" value="3">
+                                            <label for="input-filter-3" class="title-input-filter">600.000đ - 1000.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter--4" class="input-filter" type="checkbox" value="4">
-                                            <label for="input-filter--4" class="title-input-filter">1000.000đ - 3000.000đ
+                                            <input id="input-filter-3 " class="input-filter price_id" type="checkbox" value="4">
+                                            <label for="input-filter-3" class="title-input-filter">1000.000đ - 3000.000đ
                                             </label>
                                         </div>
                                     </div>
@@ -319,7 +319,6 @@
 @stop
 
 @section('script_page')
-    <script src="{{asset('assets/js/category.js')}}"></script>
     <script>
         function toggleActive(item) {
             document.querySelectorAll('.size-item').forEach(function (el) {
@@ -329,4 +328,5 @@
 
         }
     </script>
+    <script src="{{asset('assets/js/category.js')}}"></script>
 @stop
