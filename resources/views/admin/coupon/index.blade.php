@@ -94,24 +94,24 @@
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Coupon list</h1>
+            <h1 class="h3 mb-4 text-gray-800">Danh sách "Mã giảm giá"</h1>
             <hr>
 
             <div class="d-flex justify-content-start">
                 <a type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCoupon"><i
-                        class="bi bi-plus-circle-dotted me-2"></i><span>Add more coupon</span></a>
+                        class="bi bi-plus-circle-dotted me-2"></i><span>Thêm mã giảm giá</span></a>
             </div>
 
             <table class="table" id="tableListCoupons">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">No.</th>
-                        <th scope="col" class="text-center">Code</th>
-                        <th scope="col" class="text-center">Discount</th>
-                        <th scope="col" class="text-center">Type</th>
-                        <th scope="col" class="text-center">Start date</th>
-                        <th scope="col" class="text-center">End date</th>
-                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col" class="text-center">STT.</th>
+                        <th scope="col" class="text-center">Mã</th>
+                        <th scope="col" class="text-center">Giảm giá</th>
+                        <th scope="col" class="text-center">Loại giảm giá</th>
+                        <th scope="col" class="text-center">Ngày bắt đầu</th>
+                        <th scope="col" class="text-center">Ngày kết thúc</th>
+                        <th scope="col" class="text-center">Trạng thái</th>
                         <th scope="col" class="text-center"></th>
                     </tr>
                 </thead>
@@ -121,7 +121,13 @@
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">{{ $cou->code }}</td>
                             <td class="text-center">{{ $cou->discount }}</td>
-                            <td class="text-center">{{ $cou->discount_type }}</td>
+                            @if ($cou->discount_type == 'amount')
+                                <td class="text-center">Giảm giá thẳng</td>
+                            @elseif ($cou->discount_type == 'percent')
+                                <td class="text-center">Giảm giá theo %</td>
+                            @else
+                                <td class="text-center">...</td>
+                            @endif
                             <td class="text-center">
                                 {{ date('d/m/Y', strtotime($cou->start_date)) }}
                             </td>
@@ -159,30 +165,30 @@
                     <form method="POST" action="{{ route('admin.coupon.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addCouponLabel">Add coupon</h5>
+                            <h5 class="modal-title" id="addCouponLabel">Thêm mã giảm giá</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="code" class="form-label">Code</label>
+                                <label for="code" class="form-label">Mã</label>
                                 <input type="text" class="form-control" id="code" name="code"
                                     value="{{ old('code') }}">
                             </div>
                             <div class="mb-3">
-                                <label for="discount" class="form-label">Discount</label>
+                                <label for="discount" class="form-label">Giảm giá</label>
                                 <input type="number" class="form-control" id="discount" name="discount"
                                     value="{{ old('discount', 0) }}">
                             </div>
                             <div class="mb-3">
-                                <label for="discountType" class="form-label">Discount type: </label>
+                                <label for="discountType" class="form-label">Loại giảm giá: </label>
                                 <select class="form-select" id="discountType" name="discount_type">
-                                    <option value="amount" selected>Amount</option>
+                                    <option value="amount" selected>Giảm giá thẳng</option>
                                     <option value="percent" {{ old('discount_type') == 'percent' ? 'selected' : '' }}>
-                                        Percent</option>
+                                        Giảm giá theo %</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="date" class="form-label">Discount time: </label>
+                                <label for="date" class="form-label">Thời gian áp dụng: </label>
                                 <div class="input-group">
                                     <input id="date" type="text" name="date"
                                         class="form-control dateRangeInput" value="{{ old('date') }}">
@@ -190,19 +196,21 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="details" class="form-label">Details</label>
+                                <label for="details" class="form-label">Chi tiết</label>
                                 <textarea id="details" class="form-control" name="details">{{ old('details') }}</textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="product_ids" class="form-label">Product applied:</label>
+                                <label for="product_ids" class="form-label">Sản phẩm áp dụng (Để trống nếu áp dụng cho cả
+                                    hệ thống):</label>
                                 <select class="form-select couponParentSelector" id="product_ids" name="product_ids[]"
                                     multiple>
-                                    <option value="1">Product 1</option>
-                                    <option value="2">Product 2</option>
+                                    @foreach ($products as $pro)
+                                        <option value="{{ $pro->id }}">{{ $pro->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="status" class="form-label me-3">Is active?</label>
+                                <label for="status" class="form-label me-3">Công khai?</label>
                                 <label class="switch">
                                     <input type="checkbox" id="status" name="status">
                                     <div class="slider"></div>
@@ -214,8 +222,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                     </form>
                 </div>

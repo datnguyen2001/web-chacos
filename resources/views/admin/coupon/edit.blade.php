@@ -93,7 +93,7 @@
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Edit coupon - <strong>{{ $coupon->code }}</strong></h1>
+            <h1 class="h3 mb-4 text-gray-800">Chỉnh sửa mã giảm giá - <strong>{{ $coupon->code }}</strong></h1>
             <hr>
             <div class="container">
                 <form method="POST" action="{{ route('admin.coupon.update', ['id' => $coupon->id]) }}"
@@ -101,17 +101,17 @@
                     @method('PUT')
                     @csrf
                     <div class="mb-3">
-                        <label for="code" class="form-label">Code</label>
+                        <label for="code" class="form-label">Mã</label>
                         <input type="text" class="form-control" id="code" name="code"
                             value="{{ old('code', $coupon->code) }}">
                     </div>
                     <div class="mb-3">
-                        <label for="discount" class="form-label">Discount</label>
+                        <label for="discount" class="form-label">Giảm giá</label>
                         <input type="number" class="form-control" id="discount" name="discount"
                             value="{{ old('discount', $coupon->discount) }}">
                     </div>
                     <div class="mb-3">
-                        <label for="discountType" class="form-label">Discount type: </label>
+                        <label for="discountType" class="form-label">Loại giảm giá: </label>
                         <select class="form-select" id="discountType" name="discount_type">
                             <option value="amount"
                                 {{ old('discount_type', $coupon->discount_type) == 'amount' ? 'selected' : '' }}>Amount
@@ -122,7 +122,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="date" class="form-label">Discount time: </label>
+                        <label for="date" class="form-label">Thời gian áp dụng: </label>
                         <div class="input-group">
                             <input id="date" type="text" name="date" class="form-control dateRangeInput"
                                 value="{{ old('date', date('d/m/Y', strtotime($coupon->start_date)) . ' - ' . date('d/m/Y', strtotime($coupon->end_date))) }}">
@@ -130,22 +130,22 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="details" class="form-label">Details</label>
+                        <label for="details" class="form-label">Chi tiết</label>
                         <textarea id="details" class="form-control" name="details">{{ old('details', $coupon->details) }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="product_ids" class="form-label">Product applied:</label>
+                        <label for="product_ids" class="form-label">Sản phẩm áp dụng (Để trống nếu áp dụng cho cả hệ
+                            thống):</label>
                         <select class="form-select couponParentSelector" id="product_ids" name="product_ids[]" multiple>
-                            <option value="1" {{ in_array('1', explode(',', $coupon->product_ids)) ? 'selected' : '' }}>
-                                Product
-                                1</option>
-                            <option value="2" {{ in_array('2', explode(',', $coupon->product_ids)) ? 'selected' : '' }}>
-                                Product
-                                2</option>
+                            @foreach ($products as $pro)
+                                <option value="{{ $pro->id }}"
+                                    {{ in_array($pro->id, explode(',', $coupon->product_ids)) ? 'selected' : '' }}>
+                                    {{ $pro->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="status" class="form-label me-3">Is active?</label>
+                        <label for="status" class="form-label me-3">Công khai?</label>
                         <label class="switch">
                             <input type="checkbox" id="status" name="status"
                                 {{ $coupon->status == \App\Enums\CouponStatus::ACTIVE ? 'checked' : '' }}>
@@ -157,7 +157,7 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
                 </form>
             </div>
         </div>

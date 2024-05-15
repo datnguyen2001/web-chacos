@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Enums\CouponStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\ProductSizeModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
@@ -71,7 +74,7 @@ class CartController extends Controller
             $serializedCartData = json_encode(array_values($cartItems));
 
             // Set the cart data in the cookie with an expiration time
-            $cookie = Cookie::make('cart_data', $serializedCartData, 60 * 24 * 7); //7 days
+            $cookie = Cookie::make('cart_data', $serializedCartData, time() + (7 * 24 * 60 * 60)); //7 days
 
             return response()->json(['error' => 0, 'message' => "Thêm vào giỏ hàng thành công"])->withCookie($cookie);
         } catch (\Exception $e) {
@@ -121,9 +124,56 @@ class CartController extends Controller
             $serializedCartData = json_encode(array_values($cartItems));
 
             // Set the cart data in the cookie with an expiration time
-            $cookie = Cookie::make('cart_data', $serializedCartData, 60 * 24 * 7); //7 days
+            $cookie = Cookie::make('cart_data', $serializedCartData, time() + (7 * 24 * 60 * 60)); //7 days
 
             return response()->json(['error' => 0, 'message' => "Cập nhật số lượng thành công"])->withCookie($cookie);
+        } catch (\Exception $e) {
+            return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
+        }
+    }
+
+    //UPDATE CART COUPON
+    public function updateCartCoupon(Request $request)
+    {
+        try {
+            $validated = Validator::make($request->all(), [
+                'coupon' => 'required|string',
+            ]);
+
+            if ($validated->fails()) {
+                return response()->json(['error' => -1, 'message' => $validated->errors()->first()], 400);
+            }
+
+            $validatedData  = $validated->validated();
+
+            $coupon         = $validatedData['coupon'];
+
+            //CHECK COUPON VALID
+            $coupon = Coupon::where('code', $coupon)->where('status', CouponStatus::ACTIVE)
+                ->where('end_date', '>', Carbon::now())->first();
+
+            if (!$coupon) {
+                return response()->json(['error' => -1, 'message' => 'Mã giảm giá không tồn tại hoặc đã hết hạn'], 400);
+            }
+
+            // Retrieve the existing coupon data from the cookie
+            $couponData   = $request->cookie('coupon_data');
+
+            $couponItems  = $couponData ? json_decode($couponData, true) : [];
+
+            $couponItems['code']      = $coupon->code;
+            $couponItems['discount']  = $coupon->discount;
+            $couponItems['type']      = $coupon->discount_type;
+
+            $serializedCouponData = json_encode($couponItems);
+
+            // Calculate the timestamp for the end of the current day
+            $endOfDayTimestamp = strtotime('today 23:59:59');
+
+            // Set the cart data in the cookie with an expiration time
+            $cookie = Cookie::make('coupon_data', $serializedCouponData, $endOfDayTimestamp); //end of day
+
+            return response()->json(['error' => 0, 'message' => "Cập nhật mã giảm giá thành công"])->withCookie($cookie);
         } catch (\Exception $e) {
             return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
         }
@@ -177,8 +227,16 @@ class CartController extends Controller
         try {
             // Retrieve the 'cart_data' cookie value
             $cartData = $request->cookie('cart_data');
+            // Retrieve the 'coupon_data' cookie value
+            $couponData = $request->cookie('coupon_data');
 
             $cartItems = json_decode($cartData);
+
+            $couponItems  = $couponData ? json_decode($couponData, true) : [];
+            //Coupon
+            $couponCode     = isset($couponItems['code']) ? $couponItems['code'] : null;
+            $couponDiscount = isset($couponItems['discount']) ? $couponItems['discount'] : null;
+            $couponType     = isset($couponItems['type']) ? $couponItems['type'] : null;
 
             $cartRawData = [];
 
@@ -210,7 +268,20 @@ class CartController extends Controller
                 ];
             }
 
-            return response()->json(['error' => 0, 'carts' => $cartRawData, 'total' => $total]);
+            //No have product_ids -> Giảm thẳng giá cuối
+            if ($couponDiscount && $couponDiscount > 0) {
+                if ($couponType) {
+                    if ($couponType == 'amount') {
+                        $total = $total - $couponDiscount;
+                    } elseif ($couponType == 'percent' && $couponDiscount <= 100) {
+                        $total = $total - ($total * $couponDiscount / 100);
+                    }
+                }
+            }
+
+            //Have product_ids
+
+            return response()->json(['error' => 0, 'carts' => $cartRawData, 'total' => $total, 'coupon' => $couponCode]);
         } catch (\Exception $e) {
             return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
         }
