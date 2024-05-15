@@ -21,4 +21,5 @@ class ProductColorModel extends Model
     {
         return $this->hasOne(ProductModel::class, 'id', 'product_id');
     }
+
 }

@@ -20,4 +20,10 @@ class ProductModel extends Model
         'display',
         'is_hot'
     ];
+
+    public function productColors()
+    {
+        return $this->hasMany(ProductColorModel::class, 'product_id');
+    }
+
 }
