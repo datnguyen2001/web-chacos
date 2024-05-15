@@ -50,6 +50,7 @@ Route::get('product-features', [HomeController::class, 'productFeatures'])->name
 Route::get('strap-adjuster', [HomeController::class, 'strapAdjuster'])->name('strap-adjuster');
 
 Route::get('danh-muc/{slug?}', [CategoryController::class, 'category'])->name('category');
+Route::post('bo-loc', [CategoryController::class,'filter'])->name('filter');
 Route::get('chi-tiet-san-pham/{slug?}', [ProductController::class, 'index'])->name('detail-product');
 Route::post('select-color', [ProductController::class,'selectColor'])->name('select-color');
 Route::post('save-wish', [ProductController::class,'saveWish'])->name('save-wish');

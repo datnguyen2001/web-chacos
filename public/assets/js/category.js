@@ -146,3 +146,195 @@ document.querySelectorAll(".swiper-slide").forEach(function (swiperSlide) {
       });
     });
 });
+
+$(document).ready(function() {
+    $('.input-filter').change(function() {
+        $('.input-filter').not(this).prop('checked', false);
+    });
+    $('.input-filter-1').change(function() {
+        $('.input-filter-1').not(this).prop('checked', false);
+    });
+    $('.input-filter-2').change(function() {
+        $('.input-filter-2').not(this).prop('checked', false);
+    });
+    $('.input-filter-3').change(function() {
+        $('.input-filter-3').not(this).prop('checked', false);
+    });
+    let data = {};
+    let url = window.location.origin + '/bo-loc';
+
+    $('.sort-select-mobile').change(function () {
+        data['sort'] = $(this).val();
+        data['size_name'] = $('.active-filter').data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    $('.sort-select').change(function () {
+        data['sort'] = $(this).val();
+        data['size_name'] = $('.active-filter').data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    $('.size-item').click(function() {
+        var data = {};
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
+        data['size_name'] = $(this).data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    $('.type_width').change(function() {
+        var data = {};
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
+        data['size_name'] = $('.active-filter').data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    $('.style_id').change(function() {
+        var data = {};
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
+        data['size_name'] = $('.active-filter').data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    $('.color_id').change(function() {
+        var data = {};
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
+        data['size_name'] = $('.active-filter').data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    $('.price_id').change(function() {
+        var data = {};
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
+        data['size_name'] = $('.active-filter').data('value');
+        $('.type_width:checked').each(function() {
+            data['type_width'] = $(this).val();
+        });
+        $('.style_id:checked').each(function() {
+            data['style_name'] = $(this).val();
+        });
+        $('.color_id:checked').each(function() {
+            data['color_id'] = $(this).val();
+        });
+        $('.price_id:checked').each(function() {
+            data['price_id'] = $(this).val();
+        });
+        filter(data, url);
+    });
+
+    function filter(data, url) {
+        $.ajax({
+            url: url,
+            data: data,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    $(".box_sp_filter").html(data.prop);
+                }
+            }
+        })
+    }
+});
