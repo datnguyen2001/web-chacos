@@ -163,141 +163,164 @@ $(document).ready(function() {
     let data = {};
     let url = window.location.origin + '/bo-loc';
 
-    $('#sort-select-mobile').change(function () {
+    $('.sort-select-mobile').change(function () {
         data['sort'] = $(this).val();
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
-            data['type_width'] = $(this).data('value');
+            data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
-    $('#sort-select').change(function () {
+    $('.sort-select').change(function () {
         data['sort'] = $(this).val();
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
-            data['type_width'] = $(this).data('value');
+            data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
     $('.size-item').click(function() {
         var data = {};
-        data['sort'] = $('#sort-select').val();
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
         data['size_name'] = $(this).data('value');
         $('.type_width:checked').each(function() {
-            data['type_width'] = $(this).data('value');
+            data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
     $('.type_width').change(function() {
         var data = {};
-        data['sort'] = $('#sort-select').val();
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
             data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
     $('.style_id').change(function() {
         var data = {};
-        data['sort'] = $('#sort-select').val();
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
             data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
     $('.color_id').change(function() {
         var data = {};
-        data['sort'] = $('#sort-select').val();
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
             data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
     $('.price_id').change(function() {
         var data = {};
-        data['sort'] = $('#sort-select').val();
+        let number = 1;
+        if ($('.sort-select').val()){
+            number = $('.sort-select').val();
+        }else {
+            number = $('.sort-select-mobile').val()
+        }
+        data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
             data['type_width'] = $(this).val();
         });
         $('.style_id:checked').each(function() {
-            data['style_name'] = $(this).data('value');
+            data['style_name'] = $(this).val();
         });
         $('.color_id:checked').each(function() {
-            data['color_id'] = $(this).data('value');
+            data['color_id'] = $(this).val();
         });
         $('.price_id:checked').each(function() {
-            data['price_id'] = $(this).data('value');
+            data['price_id'] = $(this).val();
         });
-        data['page'] = null;
         filter(data, url);
     });
 
@@ -309,7 +332,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
                 if (data.status) {
-                    $(".box-sp").html(data.prop);
+                    $(".box_sp_filter").html(data.prop);
                 }
             }
         })

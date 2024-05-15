@@ -59,8 +59,12 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::post('shop-by-style-reorder', [HomepageSettingsController::class, 'shopByStyleListReorder'])->name('settings.shop.by.style.list.reorder');
         Route::put('shop-by-style/{key}', [HomepageSettingsController::class, 'shopByStyleListUpdate'])->name('settings.shop.by.style.update.list');
         Route::delete('shop-by-style/{key}', [HomepageSettingsController::class, 'shopByStyleDestroy'])->name('settings.shop.by.style.destroy');
+        //FAVORITES
         Route::get('favorites', [HomepageSettingsController::class, 'favorites'])->name('settings.favorites');
-        Route::get('adventurous', [HomepageSettingsController::class, 'adventurous'])->name('settings.adventurous');
+        Route::post('favorites', [HomepageSettingsController::class, 'favoritesUpdate'])->name('settings.favorites.update');
+        //BOX AROUND
+        Route::get('box-around', [HomepageSettingsController::class, 'boxAround'])->name('settings.box.around');
+        Route::post('box-around', [HomepageSettingsController::class, 'boxAroundUpdate'])->name('settings.box.around.update');
     });
 });
 
