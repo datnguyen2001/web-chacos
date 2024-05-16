@@ -8,12 +8,12 @@
 @section('content')
 
     <div class="box-content-search">
-        <h1 class="search-results-header-no-hits">Kết quả tìm kiếm cho: sadasdas</h1>
+        <h1 class="search-results-header-no-hits">Kết quả tìm kiếm cho: {{request()->get('key_search')}}</h1>
         <div id="primary" class="primary-content no-hits horizontally">
             <div class="no-hits-help left">
                 <div id="noresults-help">
                     <div class="help-search">
-                        <p>Rất tiếc, không tìm thấy sản phẩm nào cho tìm kiếm của bạn: <strong>sadasdas</strong>
+                        <p>Rất tiếc, không tìm thấy sản phẩm nào cho tìm kiếm của bạn: <strong>{{request()->get('key_search')}}</strong>
                         </p>
                         <p>Hãy thử tìm kiếm lại bằng cách sử dụng các mẹo sau:</p>
                         <ul>
@@ -26,9 +26,9 @@
                                 tổng quát hơn sẽ dẫn bạn đến những sản phẩm tương tự.
                             </li>
                         </ul>
-                        <form role="search" action="" method="get" class="simple-search-form"
+                        <form role="search" action="{{route('search')}}" method="get" class="simple-search-form"
                               novalidate="novalidate">
-                            <input type="text" class="simplesearch simple-search-input" name="" value=""
+                            <input type="text" class="simplesearch simple-search-input" name="key_search" value=""
                                    placeholder="Search for products"
                                    autocomplete="off">
                             <button type="submit" class="submit-btn-search">

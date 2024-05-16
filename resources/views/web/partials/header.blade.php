@@ -152,25 +152,36 @@
 <!-- search -->
 <div id="overlay-search" class="overlay"></div>
 <div class="box-active-search-header" id="search-box-focus">
+    <form  method="get" action="{{route('search')}}">
     <div class="box-search-header position-relative" style="background-color: #004c59;border: 1px solid #004c59;">
-        <input type="text" class="input-search-header" id="searchInputActive" placeholder="Search">
-        <svg class="search-icon" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"
-            width="26px" height="22px" style="margin-left: 3px;">
-            <path
-                d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
-            </path>
-        </svg>
+        <input type="text" class="input-search-header" name="key_search" id="searchInputActive" placeholder="Search">
+        <button type="submit" style="background: transparent;width: 26px;border: none;padding: 0" id="searchButton">
+            <svg class="search-icon" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"
+                 width="26px" height="22px" style="margin-left: 3px">
+                <path
+                    d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                </path>
+            </svg>
+        </button>
     </div>
+    </form>
     <div class="box-content-search-header">
         <div class="box-content-search-header-left">
 
         </div>
         <div class="box-content-search-header-right">
+            <p class="title-suggest-search">Recent Searches</p>
+            <div class="d-flex flex-column mb-3" id="searchSuggestions">
+
+            </div>
+            @if(count($key_search)>0)
             <p class="title-suggest-search">Popular Searches</p>
             <div class="d-flex flex-column mb-3">
-                <a href="" class="item-search-suggest">bohdi</a>
-                <a href="" class="item-search-suggest">crocs</a>
+                @foreach($key_search as $key)
+                <a href="{{$key->url}}" class="item-search-suggest">{{$key->name}}</a>
+                @endforeach
             </div>
+                @endif
         </div>
     </div>
 </div>
@@ -343,17 +354,27 @@
     aria-labelledby="offcanvasSearchRightLabel">
     <div class="offcanvas-header p-0 d-flex justify-content-between align-items-center">
         <div class="position-relative w-100">
-            <input type="text" class="input-search-menu-mobile" placeholder="Search for products">
-            <img src="{{ asset('assets/image/search.svg') }}" class="icon-search-menu-mobile">
+            <input type="text" class="input-search-menu-mobile" id="searchInputActiveMobile" placeholder="Search for products">
+            <img src="{{ asset('assets/image/search.svg') }}" class="icon-search-menu-mobile" id="searchButtonMobile">
         </div>
         <img src="{{ asset('assets/image/xmark.svg') }}" data-bs-dismiss="offcanvas" aria-label="Close"
             style="width: 23px;margin-left: 13px;margin-right: 13px;">
     </div>
     <div class="offcanvas-body" style="padding: 24px;">
+        <p class="title-suggest-search">Recent Searches</p>
+        <div class="d-flex flex-column mb-3" id="searchSuggestionsMobile">
+
+        </div>
+        @if(count($key_search)>0)
         <p style="font-weight: 600;color: black;margin-bottom: 10px;">Popular Searches</p>
         <div class="d-flex flex-column">
-            <a href="" class="item-search-hot">bohdi</a>
-            <a href="" class="item-search-hot">crocs</a>
+            @foreach($key_search as $key)
+                <a href="{{$key->url}}" class="item-search-hot">{{$key->name}}</a>
+            @endforeach
+        </div>
+            @endif
+        <div class="box-content-search-header-mobile">
+
         </div>
     </div>
 </div>

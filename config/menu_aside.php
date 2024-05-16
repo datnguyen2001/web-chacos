@@ -46,6 +46,12 @@ return [
                     'icon' => 'bi bi-palette',
                     'route' => 'admin.settings.box.around'
                 ],
+                [
+                    'name' => 'key-search',
+                    'title' => 'Key search',
+                    'icon' => 'bi bi-palette',
+                    'route' => 'admin.settings.key-search'
+                ],
             ],
             'number' => 2
         ],
