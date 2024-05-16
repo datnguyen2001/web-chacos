@@ -65,6 +65,11 @@ Route::middleware('check-admin-auth')->group(function () {
         //BOX AROUND
         Route::get('box-around', [HomepageSettingsController::class, 'boxAround'])->name('settings.box.around');
         Route::post('box-around', [HomepageSettingsController::class, 'boxAroundUpdate'])->name('settings.box.around.update');
+        //Key search
+        Route::get('key-search', [HomepageSettingsController::class, 'indexSearch'])->name('settings.key-search');
+        Route::post('store-key-search', [HomepageSettingsController::class, 'storeSearch'])->name('settings.store.key-search');
+        Route::put('update-key-search/{id}', [HomepageSettingsController::class, 'updateSearch'])->name('settings.update.key-search');
+        Route::get('destroy-key-search/{id}', [HomepageSettingsController::class, 'destroySearch'])->name('settings.destroy.key-search');
     });
 });
 

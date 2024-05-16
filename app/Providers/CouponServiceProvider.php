@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Enums\CouponStatus;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\KeySearchModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -32,9 +33,12 @@ class CouponServiceProvider extends ServiceProvider
             //Category
             $categories = Category::with('children')->get();
 
+            $key_search = KeySearchModel::all();
+
             // Configure the data for the view
             $view->with('coupons', $coupons);
             $view->with('categories', $categories);
+            $view->with('key_search', $key_search);
         });
     }
 }

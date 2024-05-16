@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\HomepageSettings;
+use App\Models\KeySearchModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -721,6 +722,67 @@ class HomepageSettingsController extends Controller
         } catch (\Exception $e) {
             toastr()->error($e->getMessage());
             return back()->withInput();
+        }
+    }
+
+    public function indexSearch()
+    {
+        $page_menu = 'homepage';
+        $page_sub = 'key-search';
+        $search = KeySearchModel::all();
+
+        return view('admin.settings.key-search')->with(compact('page_menu', 'page_sub', 'search'));
+    }
+
+    public function storeSearch(Request $request)
+    {
+        try {
+            $key = KeySearchModel::where('name',$request->get('name'))->first();
+            if ($key) {
+                return back()->with(['error' => 'Từ khóa đã tồn tại']);
+            }
+           $key_search = new KeySearchModel([
+              'name'=>$request->name,
+              'url'=>$request->url,
+           ]);
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.key-search')->with(['success' => 'Thêm từ khóa thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function updateSearch(Request $request,$id)
+    {
+        try {
+            $key = KeySearchModel::where('name',$request->get('name'))->where('id','!=',$id)->first();
+            if ($key) {
+                return back()->with(['error' => 'Từ khóa đã tồn tại']);
+            }
+            $key_search = KeySearchModel::find($id);
+            $key_search->name = $request->name;
+            $key_search->url = $request->url;
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.key-search')->with(['success' => 'Cập nhật từ khóa thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function destroySearch($id)
+    {
+        try {
+            $key = KeySearchModel::find($id);
+            if (empty($key)) {
+                return back()->with(['error' => 'Từ khóa không tồn tại']);
+            }
+            $key->delete();
+
+            return back()->with(['success' => 'Xóa từ khóa thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
         }
     }
 }

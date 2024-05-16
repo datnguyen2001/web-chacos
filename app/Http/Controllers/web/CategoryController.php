@@ -47,9 +47,23 @@ class CategoryController extends Controller
             'colors','styles','sizes'));
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        return view('web.category.search');
+        $data = ProductModel::where('name','like','%' . $request->get('key_search').'%')->get();
+        if (count($data)>0){
+            return view('web.category.search');
+        }else{
+            return view('web.category.search');
+        }
+    }
+
+    public function keySearch(Request $request)
+    {
+        $data = ProductModel::where('name','like','%' . $request->get('key').'%')->take(5)->get();
+        foreach ($data as $item){
+            $item->money = ProductColorModel::where('product_id',$item->id)->first();
+        }
+        return \response()->json(['data' => $data,'status'=>true]);
     }
 
     public function filter(Request $request)
