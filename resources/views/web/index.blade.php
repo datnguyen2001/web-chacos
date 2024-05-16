@@ -79,6 +79,8 @@
             let carts = data.carts
             let total = formatMoney(data.total)
 
+            let couponCode = data.coupon
+
             var cartHeader = $('#cartHeader')
             cartHeader.empty()
 
@@ -198,14 +200,14 @@
                         <button class="accordion-button collapsed accordion-button-discount" type="button"
                             data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                            Add a Promotion or Discount
+                            Thêm khuyến mãi hoặc giảm giá
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse"
                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body accordion-body-discount">
-                            <input type="text" class="input-discount" placeholder="Promo Code">
-                            <button class="btn-up-code">Áp dụng</button>
+                            <input id="coupon-value" type="text" class="input-discount" placeholder="Nhập mã giảm giá" value="${couponCode}">
+                            <button class="btn-up-code" onclick="handleCoupon()">Áp dụng</button>
                         </div>
                     </div>
                 </div>
@@ -265,6 +267,36 @@
     </script>
 
     <script>
+        function handleCoupon() {
+            var couponInput = $('#coupon-value').val();
+
+            // Check if the new quantity is a positive value
+            if (typeof couponInput === 'string' && couponInput !== '') {
+                // Make an AJAX request to update the cart item quantity
+                $.ajax({
+                    url: '{{ route('update.cart.coupon') }}',
+                    method: 'PUT',
+                    dataType: 'json',
+                    data: {
+                        coupon: couponInput
+                    },
+                    success: function(response) {
+                        if (response.error == 0) {
+                            toastr.success(response.message)
+                            fetchDataCart();
+                        }
+                    },
+                    error: function(error) {
+                        if (error.responseJSON.error == -1) {
+                            toastr.error(error.responseJSON.message)
+                        }
+                    }
+                });
+            } else {
+                toastr.error("Mã giảm giá không hợp lệ")
+            }
+        }
+
         function updateQuantity(productInfo, quantityChange) {
             var quantityInput = $('#mini-cart-quantity-value-' + productInfo);
             var currentQuantity = parseInt(quantityInput.val());
