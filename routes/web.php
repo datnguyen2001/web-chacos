@@ -61,7 +61,9 @@ Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
 Route::post('save-review', [ProductController::class, 'saveReview'])->name('save-review');
 Route::get('get-review', [ProductController::class, 'getReview'])->name('get-review');
 
+//CART HANDLE
 Route::get('cart', [CartController::class, 'getCartData'])->name('get.cart.data');
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::put('update-cart-quantity', [CartController::class, 'updateCart'])->name('update.cart.quantity');
+Route::put('update-cart-coupon', [CartController::class, 'updateCartCoupon'])->name('update.cart.coupon');
 Route::delete('remove-product-cart', [CartController::class, 'removeProductInCart'])->name('remove.product.cart');

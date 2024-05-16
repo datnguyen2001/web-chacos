@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Enums\CouponStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use App\Models\ProductModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +21,9 @@ class CouponController extends Controller
 
         $coupons = Coupon::orderBy('status', 'desc')->orderBy('id', 'desc')->get();
 
-        return view('admin.coupon.index')->with(compact('page_menu', 'coupons'));
+        $products = ProductModel::all();
+
+        return view('admin.coupon.index')->with(compact('page_menu', 'coupons', 'products'));
     }
 
     /**
@@ -90,7 +93,7 @@ class CouponController extends Controller
 
             Coupon::create($validatedData);
 
-            toastr()->success("Add coupon successfully");
+            toastr()->success("Thêm mã giảm giá thành công");
             return back();
         } catch (\Exception $e) {
             toastr()->error($e->getMessage());
@@ -112,9 +115,12 @@ class CouponController extends Controller
     public function edit($id)
     {
         $page_menu = 'coupon';
+
         $coupon = Coupon::findOrFail($id);
 
-        return view('admin.coupon.edit')->with(compact('page_menu', 'coupon'));
+        $products = ProductModel::all();
+
+        return view('admin.coupon.edit')->with(compact('page_menu', 'coupon', 'products'));
     }
 
     /**
