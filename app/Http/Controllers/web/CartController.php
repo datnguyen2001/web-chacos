@@ -157,13 +157,24 @@ class CartController extends Controller
             }
 
             // Retrieve the existing coupon data from the cookie
+            $cartData     = $request->cookie('cart_data');
+            // Retrieve the 'coupon_data' cookie value
             $couponData   = $request->cookie('coupon_data');
+
+            $cartItems    = $cartData ? json_decode($cartData, true) : [];
 
             $couponItems  = $couponData ? json_decode($couponData, true) : [];
 
-            $couponItems['code']      = $coupon->code;
-            $couponItems['discount']  = $coupon->discount;
-            $couponItems['type']      = $coupon->discount_type;
+            $couponItems['code']        = $coupon->code;
+            $couponItems['discount']    = $coupon->discount;
+            $couponItems['type']        = $coupon->discount_type;
+            $couponItems['product_ids'] = $coupon->product_ids ?? null;
+
+            $isCouponValid = $this->checkCouponAvailable($couponItems['product_ids'], $cartItems);
+
+            if (!$isCouponValid) {
+                return response()->json(['error' => -1, 'message' => 'Mã giảm giá không áp dụng cho các sản phẩm hiện tại'], 400);
+            }
 
             $serializedCouponData = json_encode($couponItems);
 
@@ -234,9 +245,10 @@ class CartController extends Controller
 
             $couponItems  = $couponData ? json_decode($couponData, true) : [];
             //Coupon
-            $couponCode     = isset($couponItems['code']) ? $couponItems['code'] : null;
-            $couponDiscount = isset($couponItems['discount']) ? $couponItems['discount'] : null;
-            $couponType     = isset($couponItems['type']) ? $couponItems['type'] : null;
+            $couponCode         = isset($couponItems['code'])        ? $couponItems['code']         : '';
+            $couponDiscount     = isset($couponItems['discount'])    ? $couponItems['discount']     : null;
+            $couponType         = isset($couponItems['type'])        ? $couponItems['type']         : null;
+            $couponProductIds   = isset($couponItems['product_ids']) ? $couponItems['product_ids']  : null;
 
             $cartRawData = [];
 
@@ -244,6 +256,8 @@ class CartController extends Controller
             $total = 0;
 
             foreach ($cartItems as $key => $item) {
+                $isDiscountByProduct = false;
+
                 $productInfo = ProductSizeModel::with('color.product')->find($item->product_id);
                 $quantity    = $item->quantity ?? 0;
 
@@ -251,6 +265,28 @@ class CartController extends Controller
                 $unitPrice = $productInfo->color->price;
                 $subTotal  = $unitPrice * $quantity;
 
+                //Check coupon for each product_ids
+                $product_id = $productInfo->color->product->id;
+                if ($couponProductIds != null || $couponProductIds != '') {
+                    // Decoding the comma-separated product IDs into an array
+                    $couponProductIdList = explode(',', $couponProductIds);
+
+                    // Checking if any of the product IDs in $cartItems exist in $couponProductIds
+                    if (in_array($product_id, $couponProductIdList)) {
+                        $isDiscountByProduct = true;
+                    }
+
+                    //Get discount
+                    if ($couponDiscount && $couponDiscount > 0 && $couponProductIds && $isDiscountByProduct) {
+                        if ($couponType) {
+                            if ($couponType == 'amount') {
+                                $subTotal = $subTotal - $couponDiscount;
+                            } elseif ($couponType == 'percent' && $couponDiscount <= 100) {
+                                $subTotal = $subTotal - ($subTotal * $couponDiscount / 100);
+                            }
+                        }
+                    }
+                }
                 //Total calc
                 $total += $subTotal;
 
@@ -269,7 +305,7 @@ class CartController extends Controller
             }
 
             //No have product_ids -> Giảm thẳng giá cuối
-            if ($couponDiscount && $couponDiscount > 0) {
+            if ($couponDiscount && $couponDiscount > 0 && !$couponProductIds && !$isDiscountByProduct) {
                 if ($couponType) {
                     if ($couponType == 'amount') {
                         $total = $total - $couponDiscount;
@@ -296,5 +332,25 @@ class CartController extends Controller
         if ($currentQuantity > $availableQuantity) {
             throw new \Exception("Kho chỉ còn lại {$availableQuantity} sản phẩm");
         }
+    }
+
+    private function checkCouponAvailable($couponProductIds, $cartItems)
+    {
+        if ($couponProductIds === null || $couponProductIds == '') {
+            return true;
+        }
+
+        // Decoding the comma-separated product IDs into an array
+        $couponProductIdList = explode(',', $couponProductIds);
+
+        // Checking if any of the product IDs in $cartItems exist in $couponProductIds
+        foreach ($cartItems as $item) {
+            if (in_array($item['product_id'], $couponProductIdList)) {
+                return true;
+            }
+        }
+
+        // None of the product IDs in $cartItems exist in $couponProductIds
+        return false;
     }
 }
