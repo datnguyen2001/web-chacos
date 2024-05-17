@@ -164,6 +164,7 @@ $(document).ready(function() {
     let url = window.location.origin + '/bo-loc';
 
     $('.sort-select-mobile').change(function () {
+        data['key_search'] = $('.key_search').val();
         data['sort'] = $(this).val();
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
@@ -182,6 +183,7 @@ $(document).ready(function() {
     });
 
     $('.sort-select').change(function () {
+        data['key_search'] = $('.key_search').val();
         data['sort'] = $(this).val();
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
@@ -207,6 +209,7 @@ $(document).ready(function() {
         }else {
             number = $('.sort-select-mobile').val()
         }
+        data['key_search'] = $('.key_search').val();
         data['sort'] = number;
         data['size_name'] = $(this).data('value');
         $('.type_width:checked').each(function() {
@@ -232,6 +235,7 @@ $(document).ready(function() {
         }else {
             number = $('.sort-select-mobile').val()
         }
+        data['key_search'] = $('.key_search').val();
         data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
@@ -257,6 +261,7 @@ $(document).ready(function() {
         }else {
             number = $('.sort-select-mobile').val()
         }
+        data['key_search'] = $('.key_search').val();
         data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
@@ -282,6 +287,7 @@ $(document).ready(function() {
         }else {
             number = $('.sort-select-mobile').val()
         }
+        data['key_search'] = $('.key_search').val();
         data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {
@@ -307,6 +313,7 @@ $(document).ready(function() {
         }else {
             number = $('.sort-select-mobile').val()
         }
+        data['key_search'] = $('.key_search').val();
         data['sort'] = number;
         data['size_name'] = $('.active-filter').data('value');
         $('.type_width:checked').each(function() {

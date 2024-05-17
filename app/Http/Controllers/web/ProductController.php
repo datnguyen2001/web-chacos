@@ -25,7 +25,7 @@ class ProductController extends Controller
         $product_wish = WishListsModel::where('user_id',Auth::id())->where('product_id',$product->id)->first();
         $product_more = ProductModel::where('slug',$slug)->where('id','!=',$product->id)->inRandomOrder()->take(8)->get();
         foreach ($product_more as $more){
-            $more->color = ProductColorModel::where('product_id')->first();
+            $more->color = ProductColorModel::where('product_id',$more->id)->first();
         }
         $star = $this->starReview($product);
         $star_five = ReviewModel::where('product_id', $product->id)->where('star', 5)->count();
