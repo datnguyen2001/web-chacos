@@ -3,80 +3,31 @@
 
 @section('style_page')
     <link rel="stylesheet" href="{{ asset('assets/css/category.css') }}">
+    <style>
+        .box-content-sp {
+            padding-top: 35px ;
+        }
+        .title-search-line{
+            font-size: 15px;
+            color: #303030;
+            font-weight: 500;
+        }
+    </style>
 @stop
 {{-- content of page --}}
 @section('content')
     <div class="line-header-menu-page">
         <a href="{{ route('home') }}" class="title-header-menu-page">Trang chủ</a>
         <span style="margin: 0 5px;">/</span>
-        <a class="title-header-menu-page">{{ $category->menu_belong }}</a>
+        <a class="title-header-menu-page">Tìm kiếm sản phẩm</a>
         <span style="margin: 0 5px;">/</span>
-        <a class="title-header-menu-page">{{ $category->name }}</a>
+        <a class="title-header-menu-page">{{ $key_search }}</a>
     </div>
-    <input type="text" class="key_search" value="" hidden>
-    @if (isset($product_hot) && count($product_hot) > 0)
-        <div class="box-slide-category">
-            <p class="title-category-slide text-uppercase">FEATURED {{ $category->menu_belong }} {{ $category->name }}</p>
-            <div class="swiper categorySwiper">
-                <div class="swiper-wrapper">
-                    @foreach ($product_hot as $item)
-                        <div class="swiper-slide slide-col-item-category">
-                            <div class="line-add-cart-slide ">
-                                <img src="{{ asset('assets/image/add-to-cart.png') }}">
-                                <span class="title-quick">Quick Add</span>
-                            </div>
-                            <div class="position-relative">
-                                {{--                        <span class="tag-hot">NEW ARRIVAL</span> --}}
-                                <img src="{{ asset($item->image) }}" class="w-100 img-big-slide-sp">
-                                <div class="box-wishlist">
-                                    <div class="item-wishlist">
-                                        Wishlist
-                                    </div>
-                                </div>
-                                <img
-                                    src="@if($item->wish) {{asset('assets/image/heart-solid.svg')}} @else {{asset('assets/image/heart.svg')}} @endif"
-                                    class="icon-heart" data-value="{{$item->id}}" onclick="toggleHeart(this)"
-                                    onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
-
-                            </div>
-                            <div>
-                                <a class="link-color">{{ count($item->color) }} colors</a>
-                                <div class="box-option-color-style p-0">
-                                    <div class="swiper swiperOptionColor">
-                                        <div class="swiper-wrapper">
-                                            @foreach ($item->color as $color)
-                                                <div class="swiper-slide slide-item-option-style"><img
-                                                        src="{{ asset($color->image) }}" class="img-option-color">
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next btn-option-color-next"></div>
-                                    <div class="swiper-button-prev btn-option-color-prev"></div>
-                                </div>
-                                <a href="{{ route('detail-product', $item->slug) }}"
-                                    class="title-sp">{{ $item->name }}</a>
-                                <div class="d-flex align-items-center">
-                                    <p class="title-price-sp" style="margin-right: 10px;text-decoration: line-through">
-                                        {{ number_format($item->color[0]->price) }}
-                                        đ</p>
-                                    <p class="title-price-sp" style="color: red">
-                                        {{ number_format($item->color[0]->price) }} đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="swiper-button-next next-category"></div>
-            <div class="swiper-button-prev prev-category"></div>
-            <div class="swiper-pagination swiper-pagination-category"></div>
-        </div>
-    @endif
-
+    <input type="text" class="key_search" value="{{$key_search}}" hidden>
     <div class="box-content-sp">
-        <p class="title-big-cate-sp text-uppercase">{{ $category->menu_belong }} {{ $category->name }} <span
-                class="count-cate-sp">{{ $count_product }} sản phẩm</span></p>
+        <span class="title-search-line">SEARCH RESULTS FOR:</span>
+        <p class="title-big-cate-sp text-uppercase">{{ $key_search }} <span
+                class="count-cate-sp">( {{ count($data) }} sản phẩm )</span></p>
         <div class="box-line-filter-mobie">
             <div class="filter-mobile-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilterMobile"
                 aria-controls="offcanvasFilterMobile">
@@ -109,7 +60,7 @@
                         Find the right product for you. Choose your size, color and more.
                     </div>
                     <div class="name-filter">
-                        FILTER <span class="count-filter-sp">({{ $count_product }} sản phẩm)</span>
+                        FILTER <span class="count-filter-sp">({{ count($data) }} sản phẩm)</span>
                     </div>
 
                     <div class="accordion accordion-flush" id="accordionFilter">
@@ -236,8 +187,8 @@
             </div>
             <div class="box_sp_filter box-sp d-inline-block">
                 <div class="box-sp w-100 mt-0">
-                    @if (isset($product) && count($product) > 0)
-                        @foreach ($product as $pro)
+                    @if (isset($data) && count($data) > 0)
+                        @foreach ($data as $pro)
                             <div class="item-sp-filter">
                                 <div class="line-add-cart">
                                     <img src="{{ asset('assets/image/add-to-cart.png') }}" alt="">
@@ -299,23 +250,13 @@
                         @endforeach
                     @endif
                 </div>
-                @if(count($product)==20)
-                    {{--            <div class="w-100 d-flex justify-content-end">--}}
-                    {{--                <div class="line-load-more">--}}
-                    {{--                    <button class="btn-load-more">LOAD MORE</button>--}}
-                    {{--                </div>--}}
-                    {{--            </div>--}}
+                @if(count($data)==20)
                     <div class="d-flex justify-content-center mt-3">
-                        {{ $product->appends(request()->all())->links('web.partials.pagination') }}
+                        {{ $data->appends(request()->all())->links('web.partials.pagination') }}
                     </div>
                 @endif
             </div>
         </div>
-    </div>
-
-    <div class="box-introduce">
-        <p class="title-introduce">{{ @$category->title }}</p>
-        <p class="content-introduce">{{ @$category->describe }}</p>
     </div>
 @stop
 

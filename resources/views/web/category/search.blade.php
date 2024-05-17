@@ -91,35 +91,21 @@
             <h1>Sản phẩm tương tự</h1>
             <div class="swiper recommendedSwiper">
                 <div class="swiper-wrapper">
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
-                        <div class="name-product-favo-recomend">WOMEN'S ZX/2® CLASSIC SANDAL</div>
+                    @foreach($product as $item)
+                    <a href="{{route('detail-product',$item->slug)}}" class="swiper-slide">
+                        <img src="{{asset($item->image)}}" alt="" class="w-100">
+                        <div class="name-product-favo-recomend">{{$item->name}}</div>
                         <div class="d-flex align-items-center">
-                            <div class="price-product-favo--recomend">$105.00</div>
-                            <div class="price-product-sale--recomend">$305.00</div>
+                            @if ($item->color->promotional_price != 0 || $item->color->promotional_price != null)
+                            <div class="price-product-favo--recomend">{{ number_format($item->color->promotional_price) }} đ</div>
+                            <div class="price-product-sale--recomend">{{ number_format($item->color->price) }} đ</div>
+                                @else
+                                <div class="price-product-favo--recomend">{{ number_format($item->color->price) }} đ</div>
+                            @endif
                         </div>
 
                     </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
-                        <div class="name-product-favo-recomend">WOMEN'S ZX/2® CLASSIC SANDAL</div>
-                        <div class="price-product-favo--recomend">$105.00</div>
-                    </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
-                        <div class="name-product-favo-recomend">WOMEN'S ZX/2® CLASSIC SANDAL</div>
-                        <div class="price-product-favo--recomend">$105.00</div>
-                    </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
-                        <div class="name-product-favo-recomend">WOMEN'S ZX/2® CLASSIC SANDAL</div>
-                        <div class="price-product-favo--recomend">$105.00</div>
-                    </a>
-                    <a href="{{route('detail-product')}}" class="swiper-slide">
-                        <img src="{{asset('assets/image/sp1.png')}}" alt="" class="w-100">
-                        <div class="name-product-favo-recomend">WOMEN'S ZX/2® CLASSIC SANDAL</div>
-                        <div class="price-product-favo--recomend">$105.00</div>
-                    </a>
+                        @endforeach
                 </div>
             </div>
         </div>

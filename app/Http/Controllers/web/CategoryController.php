@@ -49,11 +49,30 @@ class CategoryController extends Controller
 
     public function search(Request $request)
     {
-        $data = ProductModel::where('name','like','%' . $request->get('key_search').'%')->get();
+        $key_search = $request->get('key_search');
+        $data = ProductModel::where('name','like','%' . $request->get('key_search').'%')->paginate(20);
+        foreach ($data as $items){
+            $items->color = ProductColorModel::where('product_id',$items->id)->get();
+            $items->wish = WishListsModel::where('user_id',Auth::id())->where('product_id',$items->id)->first();
+            $this->starReview($items);
+        }
+        $product = ProductModel::inRandomOrder()->take(8)->get();
+        foreach ($product as $item){
+            $item->color = ProductColorModel::where('product_id',$item->id)->first();
+        }
+        $colors = ProductColorModel::distinct('name')->get();
+        $styles = ProductModel::where('display', 1)->distinct('style')->get();
+        $color_ids = ProductColorModel::pluck('id')->toArray();
+        $sizes = ProductSizeModel::whereIn('color_id', $color_ids)
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('MIN(id)'))
+                    ->from('product_size')
+                    ->groupBy('name');
+            })->get();
         if (count($data)>0){
-            return view('web.category.search');
+            return view('web.category.list-search',compact('data','key_search','colors','styles','sizes'));
         }else{
-            return view('web.category.search');
+            return view('web.category.search',compact('product'));
         }
     }
 
@@ -148,6 +167,11 @@ class CategoryController extends Controller
                         , 'desc');
                 }
             }
+            
+            if ($request->has('key_search')) {
+                $query->where('name','like','%' . $request->get('key_search').'%');
+            }
+
             $product = $query->paginate(20);
             foreach ($product as $pro){
                 $pro->color = ProductColorModel::where('product_id',$pro->id)->get();
