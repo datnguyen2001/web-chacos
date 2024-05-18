@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('dia-chi/{id}', [MyAccountController::class, 'destroyAddress'])->name('address-account-destroy');
     Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
+    Route::get('delete-sp-yeu-thich/{id}', [MyAccountController::class, 'deleteWishlist'])->name('delete-wishlist');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });

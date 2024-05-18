@@ -4,7 +4,11 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\ProductColorModel;
+use App\Models\ProductModel;
+use App\Models\ProductSizeModel;
 use App\Models\User;
+use App\Models\WishListsModel;
 use App\Rules\NoSpaceRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -214,6 +218,20 @@ class MyAccountController extends Controller
 
     public function wishlist()
     {
-        return view('web.wishlist.index');
+        $listData = WishListsModel::where('user_id',Auth::id())->get();
+        foreach ($listData as $item){
+            $item->product = ProductModel::where('id',$item->product_id)->first();
+            $item->color = ProductColorModel::find($item->color_id);
+            $item->size = ProductSizeModel::find($item->size_id);
+        }
+        return view('web.wishlist.index',compact('listData'));
+    }
+
+    public function deleteWishlist($id)
+    {
+        $wish = WishListsModel::find($id);
+        $wish->delete();
+
+        return redirect()->back()->with(['success'=>'xóa sản phẩm yeey thích thành công']);
     }
 }
