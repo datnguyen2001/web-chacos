@@ -353,10 +353,14 @@
 <div class="offcanvas offcanvas-end w-100 border-0" tabindex="-1" id="offcanvasSearchRight"
     aria-labelledby="offcanvasSearchRightLabel">
     <div class="offcanvas-header p-0 d-flex justify-content-between align-items-center">
+        <form method="get" action="{{route('search')}}" class="w-100">
         <div class="position-relative w-100">
-            <input type="text" class="input-search-menu-mobile" id="searchInputActiveMobile" placeholder="Search for products">
-            <img src="{{ asset('assets/image/search.svg') }}" class="icon-search-menu-mobile" id="searchButtonMobile">
+            <input type="text" class="input-search-menu-mobile" id="searchInputActiveMobile" name="key_search" placeholder="Search for products">
+            <button type="submit" style="background: transparent;border: none;position: absolute;right: 0">
+                <img src="{{ asset('assets/image/search.svg') }}" class="icon-search-menu-mobile" id="searchButtonMobile">
+            </button>
         </div>
+        </form>
         <img src="{{ asset('assets/image/xmark.svg') }}" data-bs-dismiss="offcanvas" aria-label="Close"
             style="width: 23px;margin-left: 13px;margin-right: 13px;">
     </div>
