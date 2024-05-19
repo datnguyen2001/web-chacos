@@ -486,10 +486,11 @@ button {
 .box-w-S,
 .item-size-product,
 .btn-add-to-card,
+.btn-add-to-select,
 .btn-infor-more {
   font-size: 15px;
 }
-.btn-add-to-card {
+.btn-add-to-card,.btn-add-to-select {
   width: 100%;
 }
 @media (max-width: 1650px) {
