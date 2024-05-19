@@ -2,7 +2,12 @@
 @section('title','Shipping')
 
 @section('style_page')
-
+    <style>
+        .contact-center-content img{
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 @stop
 {{--content of page--}}
 @section('menu-contact')
@@ -10,23 +15,9 @@
 @stop
 @section('content')
     <div class="content-contact-center">
-        <p class="title-contact-center">Shipping Information</p>
+        <p class="title-contact-center">{{@$data->title}}</p>
         <div class="contact-center-content">
-            CREATE AN ACCOUNT
-            Register today to enjoy fast and easy checkout. A chacos.com account allows you to store payment methods and
-            addresses, check the status of orders, view your order history, select shopping preferences and save items in
-            your shopping bag for up to 30 days.
-
-            MANAGE ACCOUNT
-            Login to change any of your account information including shipping and billing information, your preferred
-            payment method and your preferences regarding receiving chacos.com emails.
-
-            PASSWORD HELP
-            Forgot your Password? No problem. Go to Your Account , there you can view your password hint or have your
-            password emailed to you.
-
-            MANAGE EMAIL PREFERENCES
-            Go to your email preferences to manage your email updates or unsubscribe from chacos.com emails.
+            {!! @$data->content !!}
         </div>
     </div>
 @stop

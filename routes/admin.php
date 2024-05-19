@@ -7,6 +7,7 @@ use \App\Http\Controllers\admin\LoginController;
 use \App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomepageSettingsController;
 use \App\Http\Controllers\admin\ProductController;
+use \App\Http\Controllers\admin\InforShopController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/dologin', [LoginController::class, 'doLogin'])->name('doLogin');
@@ -70,6 +71,11 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::post('store-key-search', [HomepageSettingsController::class, 'storeSearch'])->name('settings.store.key-search');
         Route::put('update-key-search/{id}', [HomepageSettingsController::class, 'updateSearch'])->name('settings.update.key-search');
         Route::get('destroy-key-search/{id}', [HomepageSettingsController::class, 'destroySearch'])->name('settings.destroy.key-search');
+    });
+
+    Route::group(['prefix' => 'infor-shop'], function () {
+        Route::get('index/{type}', [InforShopController::class, 'index'])->name('infor-shop.index');
+        Route::post('update/{type}', [InforShopController::class, 'save'])->name('infor-shop.update');
     });
 });
 

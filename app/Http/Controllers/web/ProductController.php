@@ -63,7 +63,11 @@ class ProductController extends Controller
         try {
             $product_size = ProductSizeModel::where('color_id',$request->color_id)->get();
             $view = view('web.product.items-size', compact('product_size'))->render();
-            return response()->json(['status' => true, 'prop' => $view]);
+            $product_color = ProductColorModel::find($request->color_id);
+            $price =  number_format($product_color->promotional_price != 0 ? $product_color->promotional_price : $product_color->price);
+            $cost =  number_format($product_color->price);
+
+            return response()->json(['status' => true, 'prop' => $view,'price'=>$price,'cost'=>$cost]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

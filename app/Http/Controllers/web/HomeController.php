@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\CollectionModel;
 use App\Models\CollectionProductModel;
 use App\Models\FooterBlog;
+use App\Models\InforShopModel;
 use App\Models\PostsModel;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -36,23 +37,32 @@ class HomeController extends Controller
 
     public function shippingInfo()
     {
-        return view('web.info.shipping');
+        $data = InforShopModel::where('type',0)->first();
+        $type = 0;
+        return view('web.info.shipping',compact('data','type'));
     }
     public function returns()
     {
-        return view('web.info.return');
+        $data = InforShopModel::where('type',1)->first();
+        $type = 1;
+        return view('web.info.return',compact('data','type'));
     }
     public function account()
     {
-        return view('web.info.account');
+        $data = InforShopModel::where('type',2)->first();
+        $type = 2;
+        return view('web.info.account',compact('data','type'));
     }
     public function orderStatus()
     {
-        return view('web.info.order-status');
+        $type = 4;
+        return view('web.info.order-status',compact('type'));
     }
     public function FAQ()
     {
-        return view('web.info.faq');
+        $data = InforShopModel::where('type',3)->first();
+        $type = 3;
+        return view('web.info.faq',compact('data','type'));
     }
     public function productFeatures()
     {

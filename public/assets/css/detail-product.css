@@ -163,7 +163,7 @@
     background-color: #303030;
 }
 
-.btn-add-to-card {
+.btn-add-to-card,.btn-add-to-select {
     width: 80%;
     padding: 15px;
     color: white;
@@ -442,7 +442,7 @@
         font-size: 16px;
     }
 
-    .title-bold, .title-light, .btn-add-to-card, .btn-infor-more, .title-description-sp, .title-slide-technilogy {
+    .title-bold, .title-light, .btn-add-to-card,.btn-add-to-select, .btn-infor-more, .title-description-sp, .title-slide-technilogy {
         font-size: 16px;
     }
 
@@ -478,7 +478,7 @@
         width: 40%;
     }
 
-    .title-attention, .title-sale-product, .title-bold, .title-light, .btn-add-to-card, .btn-infor-more, .title-description-sp, .title-slide-technilogy {
+    .title-attention, .title-sale-product, .title-bold, .title-light, .btn-add-to-card,.btn-add-to-select, .btn-infor-more, .title-description-sp, .title-slide-technilogy {
         font-size: 14px;
     }
 
