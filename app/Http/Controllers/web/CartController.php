@@ -13,9 +13,94 @@ use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('web.cart.index');
+        try {
+        //     // Retrieve the 'cart_data' cookie value
+        //     $cartData = $request->cookie('cart_data');
+        //     // Retrieve the 'coupon_data' cookie value
+        //     $couponData = $request->cookie('coupon_data');
+
+        //     $cartItems = json_decode($cartData);
+
+        //     $couponItems  = $couponData ? json_decode($couponData, true) : [];
+        //     //Coupon
+        //     $couponCode         = isset($couponItems['code'])        ? $couponItems['code']         : '';
+        //     $couponDiscount     = isset($couponItems['discount'])    ? $couponItems['discount']     : null;
+        //     $couponType         = isset($couponItems['type'])        ? $couponItems['type']         : null;
+        //     $couponProductIds   = isset($couponItems['product_ids']) ? $couponItems['product_ids']  : null;
+
+        //     $carts = [];
+
+        //     //Cart total
+        //     $total = 0;
+
+        //     $isDiscountByProduct = false;
+        //     foreach ($cartItems as $key => $item) {
+        //         $isDiscountByProduct = false;
+        //         $productInfo = ProductSizeModel::with('color.product')->find($item->product_id);
+        //         $quantity    = $item->quantity ?? 0;
+
+        //         //Count total each product
+        //         $unitPrice = $productInfo->color->price;
+        //         $subTotal  = $unitPrice * $quantity;
+
+        //         //Check coupon for each product_ids
+        //         $product_id = $productInfo->color->product->id;
+        //         if ($couponProductIds != null || $couponProductIds != '') {
+        //             // Decoding the comma-separated product IDs into an array
+        //             $couponProductIdList = explode(',', $couponProductIds);
+
+        //             // Checking if any of the product IDs in $cartItems exist in $couponProductIds
+        //             if (in_array($product_id, $couponProductIdList)) {
+        //                 $isDiscountByProduct = true;
+        //             }
+
+        //             //Get discount
+        //             if ($couponDiscount && $couponDiscount > 0 && $couponProductIds && $isDiscountByProduct) {
+        //                 if ($couponType) {
+        //                     if ($couponType == 'amount') {
+        //                         $subTotal = $subTotal - $couponDiscount;
+        //                     } elseif ($couponType == 'percent' && $couponDiscount <= 100) {
+        //                         $subTotal = $subTotal - ($subTotal * $couponDiscount / 100);
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         //Total calc
+        //         $total += $subTotal;
+
+        //         $carts[] = [
+        //             'info'        => $item->product_id,
+        //             'id'          => $productInfo->color->product->id,
+        //             'product'     => $productInfo->color->product->name ?? 'Trống',
+        //             'thumbnail'   => $productInfo->color->image ?? '',
+        //             'slug'        => $productInfo->color->product->slug,
+        //             'color'       => $productInfo->color->name ?? 'Trống',
+        //             'size'        => $productInfo->name ?? 'Trống',
+        //             'price'       => $unitPrice,
+        //             'quantity'    => $quantity,
+        //             'sub_total'   => $subTotal
+        //         ];
+        //     }
+
+        //     //No have product_ids -> Giảm thẳng giá cuối
+        //     if ($couponDiscount && $couponDiscount > 0 && !$couponProductIds && !$isDiscountByProduct) {
+        //         if ($couponType) {
+        //             if ($couponType == 'amount') {
+        //                 $total = $total - $couponDiscount;
+        //             } elseif ($couponType == 'percent' && $couponDiscount <= 100) {
+        //                 $total = $total - ($total * $couponDiscount / 100);
+        //             }
+        //         }
+        //     }
+
+            return view('web.cart.index');
+            // ->with(compact('carts', 'total', 'couponCode'));
+        } catch (\Exception $e) {
+            toastr()->error($e->getMessage());
+            return back();
+        }
     }
 
     public function checkout()
@@ -241,7 +326,7 @@ class CartController extends Controller
             // Retrieve the 'coupon_data' cookie value
             $couponData = $request->cookie('coupon_data');
 
-            $cartItems = json_decode($cartData);
+            $cartItems = json_decode($cartData) ?? [];
 
             $couponItems  = $couponData ? json_decode($couponData, true) : [];
             //Coupon
@@ -255,9 +340,9 @@ class CartController extends Controller
             //Cart total
             $total = 0;
 
+            $isDiscountByProduct = false;
             foreach ($cartItems as $key => $item) {
                 $isDiscountByProduct = false;
-
                 $productInfo = ProductSizeModel::with('color.product')->find($item->product_id);
                 $quantity    = $item->quantity ?? 0;
 
@@ -314,8 +399,6 @@ class CartController extends Controller
                     }
                 }
             }
-
-            //Have product_ids
 
             return response()->json(['error' => 0, 'carts' => $cartRawData, 'total' => $total, 'coupon' => $couponCode]);
         } catch (\Exception $e) {
