@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('dia-chi/{id}', [MyAccountController::class, 'destroyAddress'])->name('address-account-destroy');
     Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
+    Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
@@ -55,7 +56,6 @@ Route::get('chi-tiet-san-pham/{slug?}', [ProductController::class, 'index'])->na
 Route::post('select-color', [ProductController::class,'selectColor'])->name('select-color');
 Route::post('save-wish', [ProductController::class,'saveWish'])->name('save-wish');
 Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
-Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
 Route::get('hoan-thanh', [CartController::class, 'complete'])->name('complete');
 Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
 Route::get('key-search', [CategoryController::class, 'keySearch'])->name('key-search');

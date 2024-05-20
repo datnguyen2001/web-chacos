@@ -14,7 +14,7 @@
                         <span class="stepper__title">Giỏ hàng</span>
                     </li>
                     <li class="stepper__item">
-                        <span class="stepper__title">Thanh toán</span>
+                        <span class="stepper__title">Mua hàng</span>
                     </li>
                     <li class="stepper__item">
                         <span class="stepper__title">Hoàn thành</span>
@@ -39,7 +39,7 @@
 
         </div>
         <div id="secondary" class="nav">
-            <a href="#" class="btn-checkout-cart checkout-cart-active">
+            <a href="{{ route('checkout') }}" class="btn-checkout-cart checkout-cart-active">
                 Thanh toán
             </a>
             <div id="cart-total-spinner" class="w-100 text-center my-3">
@@ -54,7 +54,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="#" class="btn-checkout-cart">
+            <a href="{{ route('checkout') }}" class="btn-checkout-cart">
                 Thanh toán
             </a>
 
@@ -335,7 +335,7 @@
 
 
         function fetchCartItems() {
-            fetch('{{ route("get.cart.data") }}') // Replace with the actual route to your controller method
+            fetch('{{ route('get.cart.data') }}') // Replace with the actual route to your controller method
                 .then(response => response.json())
                 .then(data => {
                     // Handle the response data and populate the modal content

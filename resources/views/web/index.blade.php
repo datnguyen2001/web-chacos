@@ -223,7 +223,9 @@
                     </span>
                 </h3>
                 <button class="mini-cart-link-checkout cta-primary">
-                    Thanh toán
+                    <a href="{{ route('checkout') }}" style="color: white">
+                        Thanh toán
+                    </a>
                 </button>
                 <div class="MiniCart__FooterViewCart">
                     <button class="mini-cart-link-checkout cta-primary">
