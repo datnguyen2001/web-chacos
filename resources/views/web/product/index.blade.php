@@ -562,6 +562,8 @@
                         let attr_id = $('.item-size-active').attr('data-value');
                         $('input[name="size_id"]').val(attr_id);
                         $('.text-size').html(attr + ' M')
+                        $('.text-promotional_price').html(data.price != 0?data.price+ ' đ':'');
+                        $('.text-price').html(data.cost != 0?data.cost + ' đ':'');
                     }
                 }
             })

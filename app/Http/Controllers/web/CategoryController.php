@@ -167,7 +167,7 @@ class CategoryController extends Controller
                         , 'desc');
                 }
             }
-            
+
             if ($request->has('key_search')) {
                 $query->where('name','like','%' . $request->get('key_search').'%');
             }

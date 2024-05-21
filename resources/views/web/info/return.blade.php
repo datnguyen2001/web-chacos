@@ -1,8 +1,13 @@
 @extends('web.index')
-@section('title','Trang chủ')
+@section('title','Return')
 
 @section('style_page')
-
+    <style>
+        .contact-center-content img{
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 @stop
 {{--content of page--}}
 @section('menu-contact')
@@ -10,44 +15,9 @@
 @stop
 @section('content')
     <div class="content-contact-center">
-        <p class="title-contact-center">RETURNS & EXCHANGES</p>
+        <p class="title-contact-center">{{@$data->title}}</p>
         <div class="contact-center-content">
-            We are sorry you are experiencing an issue with your product! A defective product is an imperfection from a
-            manufacturing or design defect. If you believe you have received a defective product, please fill out the
-            form
-            below. A case number will be sent to your email following your form submission; a customer service member
-            will
-            be in touch with you shortly.
-            We are sorry you are experiencing an issue with your product! A defective product is an imperfection from a
-            manufacturing or design defect. If you believe you have received a defective product, please fill out the
-            form
-            below. A case number will be sent to your email following your form submission; a customer service member
-            will
-            be in touch with you shortly.
-            We are sorry you are experiencing an issue with your product! A defective product is an imperfection from a
-            manufacturing or design defect. If you believe you have received a defective product, please fill out the
-            form
-            below. A case number will be sent to your email following your form submission; a customer service member
-            will
-            be in touch with you shortly.
-            We are sorry you are experiencing an issue with your product! A defective product is an imperfection from a
-            manufacturing or design defect. If you believe you have received a defective product, please fill out the
-            form
-            below. A case number will be sent to your email following your form submission; a customer service member
-            will
-            be in touch with you shortly.
-            We are sorry you are experiencing an issue with your product! A defective product is an imperfection from a
-            manufacturing or design defect. If you believe you have received a defective product, please fill out the
-            form
-            below. A case number will be sent to your email following your form submission; a customer service member
-            will
-            be in touch with you shortly.
-            We are sorry you are experiencing an issue with your product! A defective product is an imperfection from a
-            manufacturing or design defect. If you believe you have received a defective product, please fill out the
-            form
-            below. A case number will be sent to your email following your form submission; a customer service member
-            will
-            be in touch with you shortly.
+            {!! @$data->content !!}
         </div>
     </div>
 @stop

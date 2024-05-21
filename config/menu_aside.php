@@ -79,5 +79,38 @@ return [
             'submenu' => [],
             'number' => 5
         ],
+        [
+            'name' => 'information',
+            'title' => 'Information Shop',
+            'icon' => 'bi bi-grid',
+            'route' => null,
+            'submenu' => [
+                [
+                    'name' => 'shipping',
+                    'title' => 'Shipping Information',
+                    'route' => 'admin.infor-shop.index',
+                    'parameters' => ['type' => 0],
+                ],
+                [
+                    'name' => 'return',
+                    'title' => 'Returns Exchanges',
+                    'route' => 'admin.infor-shop.index',
+                    'parameters' => ['type' => 1],
+                ],
+                [
+                    'name' => 'account',
+                    'title' => 'Account',
+                    'route' => 'admin.infor-shop.index',
+                    'parameters' => ['type' => 2],
+                ],
+                [
+                    'name' => 'faq',
+                    'title' => 'FAQ',
+                    'route' => 'admin.infor-shop.index',
+                    'parameters' => ['type' => 3],
+                ],
+            ],
+            'number' => 6
+        ],
     ],
 ];
