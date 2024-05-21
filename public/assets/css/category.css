@@ -756,4 +756,11 @@
     .simple-search-form{
         max-width: 100%;
     }
+    .accordion-button-filter{
+        color: #000000;
+    }
+    .title-search-line{
+        margin-left: 15px;
+        font-weight: bold!important;
+    }
 }
