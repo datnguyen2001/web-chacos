@@ -144,10 +144,7 @@
                             </div>
                             <div class="item-sku-number">Item #${productId} </div>
                             <div class="mini-cart-action">
-                                <span class="item-edit-details-checkout"></span>
-                                <a class="spc-edit-product" href="#">Edit</a>
-                                <span class="action-divider">|</span>
-                                <a href="#" class="mini-cart-product-remove" title="Remove" aria-label="Search-Show">Remove</a>
+                                <a onclick="removeProductCart('${productInfo}')" type="button" class="mini-cart-product-remove" title="Remove" aria-label="Search-Show">Xóa</a>
                             </div>
                             <div class="mini-cart-messaging"></div>
                         </div>
@@ -155,7 +152,7 @@
                     <div class="mini-cart-pricing">
                         <div class="mini-cart-price-each">
                             <div class="label" aria-label="Each" aria-labelledby="mini-cartprice-value-label-${index}">
-                                Each
+                                Mỗi SP
                             </div>
                             <span id="mini-cart-price-value-label-${index}" class="mini-cart-price bfx-price" data-price="${price}">
                                 ${price}
@@ -163,7 +160,7 @@
                         </div>
                         <div class="quantity-main-wrapper">
                             <div class="label" aria-labelledby="mini-cartprice-value-label-${index}">
-                                Quantity
+                                Số lượng
                             </div>
                             <div class="quantity-wrapper">
                                 <span>
@@ -182,7 +179,7 @@
                             </div>
                         </div>
                         <div class="mini-cart-price-subtotal">
-                            <div class="label">Subtotal</div>
+                            <div class="label">Tạm tính</div>
                             <div class="mini-cart-price-each">
                                 <span class="mini-cart-price">${subTotal}</span>
                             </div>
@@ -219,25 +216,32 @@
             <div class="MiniCart__Padding24">
                 <h3 class="MiniCart__FooterTotal">
                     <span class="MiniCart__FooterTotalTitle">
-                        Total
+                        Tổng cộng
                     </span>
                     <span class="MiniCart__FooterTotalPrice">
                         ${total}
                     </span>
                 </h3>
                 <button class="mini-cart-link-checkout cta-primary">
-                    Checkout
+                    <a href="{{ route('checkout') }}" style="color: white">
+                        Thanh toán
+                    </a>
                 </button>
                 <div class="MiniCart__FooterViewCart">
                     <button class="mini-cart-link-checkout cta-primary">
                         <a href="{{ route('cart') }}" style="color: white">
-                            View Cart
+                            Xem giỏ hàng
                         </a>
                     </button>
                 </div>
             </div>`
 
             cartContent.append(cartAction)
+
+            var currentUrl = window.location.href;
+            if (currentUrl.includes('/gio-hang')) {
+                populateCartContent(data)
+            }
         }
 
         function formatMoney(amount) {
@@ -298,9 +302,9 @@
         }
 
         function updateQuantity(productInfo, quantityChange) {
-            var quantityInput = $('#mini-cart-quantity-value-' + productInfo);
-            var currentQuantity = parseInt(quantityInput.val());
-            var newQuantity = currentQuantity + quantityChange;
+            var quantityInput = $('#mini-cart-quantity-value-' + productInfo)
+            var currentQuantity = parseInt(quantityInput.val())
+            var newQuantity = currentQuantity + quantityChange
 
             // Check if the new quantity is a positive value
             if (newQuantity > 0) {
@@ -328,31 +332,34 @@
                 });
             } else if (newQuantity == 0) {
                 //Remove cart
-                if (confirm('Bạn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
-                    $.ajax({
-                        url: '{{ route('remove.product.cart') }}',
-                        method: 'DELETE',
-                        dataType: 'json',
-                        data: {
-                            product_info: productInfo,
-                        },
-                        success: function(response) {
-                            if (response.error == 0) {
-                                toastr.success(response.message)
-                                $('#cart-item-' + productInfo).remove()
-                                fetchDataCart();
-                            }
-                        },
-                        error: function(error) {
-                            if (error.responseJSON.error == -1) {
-                                toastr.error(error.responseJSON.message)
-                            }
-                        }
-                    });
-                }
-
+                removeProductCart(productInfo)
             } else {
-                toastr.error("Some thing went wrong");
+                toastr.error("Some thing went wrong")
+            }
+        }
+
+        function removeProductCart(productInfo) {
+            if (confirm('Bạn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                $.ajax({
+                    url: '{{ route('remove.product.cart') }}',
+                    method: 'DELETE',
+                    dataType: 'json',
+                    data: {
+                        product_info: productInfo,
+                    },
+                    success: function(response) {
+                        if (response.error == 0) {
+                            toastr.success(response.message)
+                            $('#cart-item-' + productInfo).remove()
+                            fetchDataCart();
+                        }
+                    },
+                    error: function(error) {
+                        if (error.responseJSON.error == -1) {
+                            toastr.error(error.responseJSON.message)
+                        }
+                    }
+                });
             }
         }
     </script>
