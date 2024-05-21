@@ -6,12 +6,16 @@ use App\Enums\CouponStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Coupon;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\ProductSizeModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -32,6 +36,8 @@ class CartController extends Controller
                 ->orderBy('isDefault', 'desc')
                 ->orderBy('id', 'desc')
                 ->get();
+
+            $defaultAddress = Address::where('isDefault', 1)->where('user_id', Auth::user()->id)->first();
 
             // Retrieve the 'cart_data' cookie value
             $cartData = $request->cookie('cart_data');
@@ -117,16 +123,91 @@ class CartController extends Controller
                 }
             }
 
-            return view('web.cart.checkout')->with(compact('addresses', 'carts', 'total', 'couponCode'));
+            return view('web.cart.checkout')->with(compact('addresses', 'carts', 'total', 'couponCode', 'defaultAddress'));
         } catch (\Exception $e) {
             toastr()->error($e->getMessage());
             return back();
         }
     }
 
+    public function checkoutHandle(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            
+            $validated = Validator::make($request->all(), [
+                'first_name' => 'required|string|max:30',
+                'last_name' => 'required|string|max:30',
+                'address' => 'required|string|max:100',
+                'address_2' => 'nullable|string|max:100',
+                'city' => 'required|string|max:30',
+                'phone' => ['required', 'regex:/^0[1-9][0-9]{8}$/'],
+            ]);
+
+            if ($validated->fails()) {
+                toastr()->error($validated->errors()->first());
+                return back()->withInput();
+            }
+
+            $validatedData = $validated->validated();
+
+            $validatedData['user_id'] = Auth::user()->id;
+
+            $carts = json_decode($this->getCartData($request)->getContent());
+            
+            if ($carts->error != 0 || count($carts->carts) < 1) {
+                toastr()->error("Có lỗi xảy ra vui lòng thử lại");
+                return back();
+            }
+
+            $shipping_address = [
+                'first_name' => $validatedData['first_name'],
+                'last_name' => $validatedData['last_name'],
+                'address'   => $validatedData['address'],
+                'address_2' => isset($validatedData['address_2']) ? $validatedData['address_2'] : '',
+                'city'      => $validatedData['city'],
+                'phone'     => $validatedData['phone'],
+            ];
+
+            $validatedData['shipping_address'] = json_encode($shipping_address);
+
+            $trackingCode = $this->generateUniqueTrackingCode();
+
+            $order = Order::create([
+                'user_id' => $validatedData['user_id'],
+                'coupon_code' => $carts->coupon ?? '',
+                'shipping_address' => $validatedData['shipping_address'],
+                'tracking_code' => $trackingCode,
+                'grand_total' => $carts->total ?? 0,
+                'tax' => 0,
+                'shipping_cost' => 0,
+            ]);
+
+            foreach ($carts->carts as $key => $item) {
+                OrderDetail::create([
+                    'order_id' => $order->id,
+                    'product_info' => $item->info,
+                    'price' => $item->sub_total,
+                    'quantity' => $item->quantity
+                ]);
+            }
+
+            DB::commit();
+
+            //FORGET CART COOKIE
+            Cookie::queue(Cookie::forget('cart_data'));
+            Cookie::queue(Cookie::forget('coupon_data'));
+
+            return view('web.cart.complete')->with(compact('trackingCode'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            toastr()->error($e->getMessage());
+            return back()->withInput();
+        }
+    }
+
     public function complete()
     {
-        return view('web.cart.complete');
     }
 
     // STORE & UPDATE CART
@@ -451,5 +532,15 @@ class CartController extends Controller
 
         // None of the product IDs in $cartItems exist in $couponProductIds
         return false;
+    }
+
+    private function generateUniqueTrackingCode()
+    {
+        while (true) {
+            $trackingCode = Str::random(10);
+            if (!Order::where('tracking_code', $trackingCode)->exists()) {
+                return $trackingCode;
+            }
+        }
     }
 }

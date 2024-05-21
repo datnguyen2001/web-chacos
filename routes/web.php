@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('tai-khoan-cua-toi', [MyAccountController::class, 'index'])->name('my-account');
     Route::get('chinh-sua-tai-khoan', [MyAccountController::class, 'editAccount'])->name('edit-account');
     Route::put('chinh-sua-tai-khoan/{id}', [MyAccountController::class, 'updateAccount'])->name('update-account');
+    Route::get('address-details/{id}', [MyAccountController::class, 'addressDetails'])->name('address-details');
     Route::get('dia-chi', [MyAccountController::class, 'address'])->name('address-account');
     Route::post('dia-chi', [MyAccountController::class, 'storeAddress'])->name('address-account-store');
     Route::put('dia-chi/{id}', [MyAccountController::class, 'updateAddress'])->name('address-account-update');
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
 
     Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('mua-hang', [CartController::class, 'checkoutHandle'])->name('checkout.handle');
     Route::get('xoa-sp-yeu-thich/{id}', [MyAccountController::class, 'deleteWishlist'])->name('delete-wishlist');
     Route::post('update-quantity-wish', [MyAccountController::class, 'updateQuantityWish'])->name('update.quantity.wish');
     Route::post('update-wish-list/{id}', [MyAccountController::class, 'updateWishList'])->name('update.wish.list');
@@ -61,7 +63,6 @@ Route::get('chi-tiet-san-pham/{slug?}', [ProductController::class, 'index'])->na
 Route::post('select-color', [ProductController::class,'selectColor'])->name('select-color');
 Route::post('save-wish', [ProductController::class,'saveWish'])->name('save-wish');
 Route::get('gio-hang', [CartController::class, 'index'])->name('cart');
-Route::get('hoan-thanh', [CartController::class, 'complete'])->name('complete');
 Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
 Route::get('key-search', [CategoryController::class, 'keySearch'])->name('key-search');
 Route::post('save-review', [ProductController::class, 'saveReview'])->name('save-review');

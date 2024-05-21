@@ -9,7 +9,7 @@
 @section('content')
     @php
         $url = parse_url(env('APP_URL'));
-        $domain = $url['host'];
+        $domain = isset($url['host']) ? $url['host'] : '';
     @endphp
     <div class="box-registration">
         <div class="line-header-menu-page">

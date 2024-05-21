@@ -73,6 +73,25 @@ class MyAccountController extends Controller
         }
     }
 
+    public function addressDetails($id)
+    {
+        try {
+            if (!$id) {
+                return response()->json(['error' => -1, 'message' => "Id is không được trống"], 400);
+            }
+
+            $address = Address::find($id);
+
+            if (!$address) {
+                return response()->json(['error' => -1, 'message' => "Không tìm thấy địa chỉ"], 400);
+            }
+
+            return response()->json(['error' => 0, 'data' => $address]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => -1, 'message' => $e->getMessage()], 400);
+        }
+    }
+
     public function address()
     {
         $addresses = Address::where('user_id', Auth::user()->id)->orderBy('isDefault', 'desc')->orderBy('id', 'desc')->get();

@@ -62,57 +62,68 @@
                 </div>
                 <h2 class="spc-section-welcome">Chào mừng trở lại,<span class="spc-customer-name">
                         {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}!</span></h2>
-                <div class="spc-loader-wrapper">
-                    <div class="spc-section-heading row between-xs middle-xs container-fluid">
-                        <h2 class="spc-section-heading-title">
-                            Thông tin giao hàng    
-                        </h2><span class="spc-section-heading-step">Bước 1 / 2</span>
+                <form action="{{ route('checkout.handle') }}" method="POST">
+                    @csrf
+                    <div class="spc-loader-wrapper">
+                        <div class="spc-section-heading row between-xs middle-xs container-fluid">
+                            <h2 class="spc-section-heading-title">
+                                Thông tin giao hàng
+                            </h2><span class="spc-section-heading-step">Bước 1 / 2</span>
+                        </div>
+                        @if ($addresses)
+                            <div class="tt-select">
+                                <select name="selected_address" id="address_selector">
+                                    <option value="0">Chọn địa chỉ giao hàng</option>
+                                    @foreach ($addresses as $key => $add)
+                                        <option {{ $add->isDefault == 1 ? 'selected' : '' }}
+                                            value="{{ $add->id }}">
+                                            {{ $add->address . ' | ' . $add->city }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+                        <div class="box-line-info">
+                            <div class="label-float">
+                                <input name="first_name" value="{{ $defaultAddress->first_name ?? '' }}" type="text"
+                                    placeholder=" " id="first_name" required />
+                                <label>TÊN</label>
+                            </div>
+                            <div class="label-float">
+                                <input name="last_name" value="{{ $defaultAddress->last_name ?? '' }}" type="text"
+                                    placeholder=" " id="last_name" required />
+                                <label>HỌ</label>
+                            </div>
+                        </div>
+                        <div class="box-line-info">
+                            <div class="label-float">
+                                <input name="address" value="{{ $defaultAddress->address ?? '' }}" type="text"
+                                    placeholder=" " id="address" required />
+                                <label>ĐỊA CHỈ</label>
+                            </div>
+                            <div class="label-float">
+                                <input name="address_2" value="{{ $defaultAddress->address_2 ?? '' }}" type="text"
+                                    placeholder=" " id="address_2" />
+                                <label>ĐỊA CHỈ PHỤ</label>
+                            </div>
+                        </div>
+                        <div class="box-line-info">
+                            <div class="label-float">
+                                <input name="city" value="{{ $defaultAddress->city ?? '' }}" type="text"
+                                    placeholder=" " id="city" required />
+                                <label>THÀNH PHỐ</label>
+                            </div>
+                            <div class="label-float">
+                                <input name="phone" value="{{ $defaultAddress->phone ?? '' }}" type="text"
+                                    placeholder=" " id="phone" required />
+                                <label>SỐ ĐIỆN THOẠI</label>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="spc-continue-to-billing spc-button cta-primary shrink spc-button-fill spc-button-primary">
+                            Tiếp tục thanh toán
+                        </button>
                     </div>
-                    @if ($addresses)
-                        <div class="tt-select">
-                            <select>
-                                @foreach ($addresses as $key => $add)
-                                    <option {{ $key == 0 ? 'selected' : '' }} value="{{ $add->id }}">
-                                        {{ $add->address . ' | ' . $add->city }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @endif
-                    <div class="box-line-info">
-                        <div class="label-float">
-                            <input type="text" placeholder=" " required />
-                            <label>TÊN</label>
-                        </div>
-                        <div class="label-float">
-                            <input type="text" placeholder=" " required />
-                            <label>HỌ</label>
-                        </div>
-                    </div>
-                    <div class="box-line-info">
-                        <div class="label-float">
-                            <input type="text" placeholder=" " required />
-                            <label>ĐỊA CHỈ</label>
-                        </div>
-                        <div class="label-float">
-                            <input type="text" placeholder=" " />
-                            <label>ĐỊA CHỈ PHỤ</label>
-                        </div>
-                    </div>
-                    <div class="box-line-info">
-                        <div class="label-float">
-                            <input type="text" placeholder=" " required />
-                            <label>THÀNH PHỐ</label>
-                        </div>
-                        <div class="label-float">
-                            <input type="text" placeholder=" " required />
-                            <label>SỐ ĐIỆN THOẠI</label>
-                        </div>
-                    </div>
-                    <button
-                        class="spc-continue-to-billing spc-button cta-primary shrink spc-button-fill spc-button-primary">
-                        Tiếp tục thanh toán
-                    </button>
-                </div>
+                </form>
                 <div class="spc-loader-wrapper">
                     <section class="spc-section spc-section__billing-empty" id="billing-section">
                         <div class="spc-section-heading row between-xs middle-xs container-fluid">
@@ -242,7 +253,8 @@
                                 @endif
                                 <table class="{{ $couponCode ? 'mt-0' : '' }}">
                                     <tr>
-                                        <td>Tiêu chuẩn<br><span style="font-size: 13px;font-weight: 400">Giao hàng bởi Chaco</span></td>
+                                        <td>Tiêu chuẩn<br><span style="font-size: 13px;font-weight: 400">Giao hàng bởi
+                                                Chaco</span></td>
                                         <td class="free-shipping text-end">Miễn phí</td>
                                     </tr>
                                 </table>
@@ -347,6 +359,51 @@
                         }
                     }
                     h.click();
+
+                    // Trigger the "select" event
+                    var event = new Event('change');
+                    s.dispatchEvent(event);
+
+                    // Make AJAX call with the selected option value
+                    var selectedValue = s.value;
+
+                    if (selectedValue == 0) {
+                        $('#first_name').val('')
+                        $('#last_name').val('')
+                        $('#address').val('')
+                        $('#address_2').val('')
+                        $('#city').val('')
+                        $('#phone').val('')
+                    } else {
+                        // Using Fetch address details to parse to form
+                        var url = "{{ route('address-details', ['id' => ':id']) }}";
+                        url = url.replace(':id', selectedValue);
+                        fetch(url, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Handle the response from the server
+                                if (data.error == 0) {
+                                    $('#first_name').val(data.data.first_name)
+                                    $('#last_name').val(data.data.last_name)
+                                    $('#address').val(data.data.address)
+                                    $('#address_2').val(data.data.address_2)
+                                    $('#city').val(data.data.city)
+                                    $('#phone').val(data.data.phone)
+                                }
+                            })
+                            .catch(response => {
+                                // Handle any errors
+                                if (response.error == -1) {
+                                    console.error(response);
+                                    toastr.error(response.message);
+                                }
+                            });
+                    }
                 });
                 b.appendChild(c);
             }
@@ -376,6 +433,7 @@
                 }
             }
         }
+
         document.addEventListener("click", closeAllSelect);
     </script>
 </body>
