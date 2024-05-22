@@ -26,9 +26,87 @@
                 <div class="line-title-my-account">
                     <p class="title-account">LỊCH SỬ ĐƠN HÀNG</p>
                 </div>
-                <div class="box-child-item-account">
-                    <p class="content-item-account">Không có mục nào trong danh sách này.</p>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        @forelse ($orders as $order)
+                            <div class="mb-8">
+                                <div class="border-bottom mb-3 pb-3 d-lg-flex align-items-center justify-content-between ">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h4 class="mb-0">Đơn hàng</h4>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <a class="fs-5"
+                                            href="{{ route('order-detail', ['tracking_code' => $order->tracking_code]) }}"><strong>#{{ $order->tracking_code }}</strong></a>
+                                    </div>
+                                </div>
+                                @foreach ($order->orderDetails as $detail)
+                                    <div class="row justify-content-between align-items-center">
+                                        <!-- Img -->
+                                        <div class="col-lg-3 col-12 d-grid">
+                                            <img height="120" width="200"
+                                                src="{{ $detail->productInfo->color->image }}" alt=""
+                                                class="img-4by3-xl rounded">
+                                        </div>
+                                        <div class="col-lg-8 col-12">
+                                            <div class="d-md-flex flex-row-reverse">
+                                                <div class="ms-md-4 mt-2 mt-lg-0 text-end">
+                                                    <!-- Tên sp -->
+                                                    <h5 class="mb-1">
+                                                        {{ $detail->productInfo->color->product->name ?? 'N/A' }}
+                                                    </h5>
+                                                    <!-- Màu sắc -->
+                                                    <span>
+                                                        Màu:
+                                                        <span class="text-dark">
+                                                            {{ $detail->productInfo->color->name ?? 'N/A' }}
+                                                        </span>
+                                                    </span>
+                                                    <br />
+                                                    <!-- Kích cỡ -->
+                                                    <span>
+                                                        Kích cỡ:
+                                                        <span class="text-dark">
+                                                            {{ $detail->productInfo->name ?? 'N/A' }}
+                                                        </span>
+                                                    </span>
+                                                    <br />
+                                                    <!-- Số lượng -->
+                                                    <span>
+                                                        Số lượng:
+                                                        <span class="text-dark">
+                                                            {{ $detail->quantity ?? 'N/A' }}
+                                                        </span>
+                                                    </span>
+                                                    <!-- Giá tiền -->
+                                                    <div class="mt-3">
+                                                        <h5>{{ number_format($detail->price, 0, ',', '.') }} đ
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="my-3" style="border-style: dotted">
+                                    </div>
+                                @endforeach
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- Img -->
+                                    <div>
+                                        <h5 class="fw-bold">{{ count($order->orderDetails) }} sản phẩm</h5>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold">Thành tiền:
+                                            {{ number_format($order->grand_total, 0, ',', '.') }} đ
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                        @empty
+                            <p class="content-item-account">Không có mục nào trong danh sách này.</p>
+                        @endforelse
+                    </div>
                 </div>
+                {{-- </div> --}}
             </div>
         </div>
     </div>

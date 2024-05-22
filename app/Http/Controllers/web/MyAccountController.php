@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Order;
 use App\Models\ProductColorModel;
 use App\Models\ProductImageModel;
 use App\Models\ProductModel;
@@ -233,7 +234,23 @@ class MyAccountController extends Controller
 
     public function orderHistory()
     {
-        return view('web.my-account.order-history');
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+
+        //Load relationship
+        $orders->load('orderDetails.productInfo.color.product');
+
+        return view('web.my-account.order-history')->with(compact('orders'));
+    }
+
+    public function orderDetail($tracking_code)
+    {
+        // $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+
+        // //Load relationship
+        // $orders->load('orderDetails.productInfo.color.product');
+
+        return view('web.my-account.order-detail')->with(compact('tracking_code'));
+        // ->with(compact('orders'));
     }
 
     public function wishlist()
@@ -245,12 +262,11 @@ class MyAccountController extends Controller
             $item->size = ProductSizeModel::find($item->size_id);
             $item->product_image = ProductImageModel::where('product_id', $item->product_id)->get();
             $item->product_color = ProductColorModel::where('product_id', $item->product_id)->get();
-            if ($item->color){
+            if ($item->color) {
                 $item->product_size = ProductSizeModel::where('color_id', $item->color_id)->get();
-            }else{
+            } else {
                 $item->product_size = ProductSizeModel::where('color_id', $item->product_color[0]->id)->get();
             }
-
         }
         return view('web.wishlist.index', compact('listData'));
     }

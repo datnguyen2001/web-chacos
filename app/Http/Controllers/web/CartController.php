@@ -134,7 +134,7 @@ class CartController extends Controller
     {
         try {
             DB::beginTransaction();
-            
+
             $validated = Validator::make($request->all(), [
                 'first_name' => 'required|string|max:30',
                 'last_name' => 'required|string|max:30',
@@ -154,7 +154,7 @@ class CartController extends Controller
             $validatedData['user_id'] = Auth::user()->id;
 
             $carts = json_decode($this->getCartData($request)->getContent());
-            
+
             if ($carts->error != 0 || count($carts->carts) < 1) {
                 toastr()->error("Có lỗi xảy ra vui lòng thử lại");
                 return back();
@@ -254,9 +254,10 @@ class CartController extends Controller
             }
 
             $serializedCartData = json_encode(array_values($cartItems));
-
             // Set the cart data in the cookie with an expiration time
-            $cookie = Cookie::make('cart_data', $serializedCartData, time() + (7 * 24 * 60 * 60)); //7 days
+            $expirationTime = Carbon::now('Asia/Ho_Chi_Minh')->addDays(7); //7 days
+            $minutesUntilExpiration = $expirationTime->diffInMinutes(Carbon::now('Asia/Ho_Chi_Minh'));
+            $cookie = Cookie::make('cart_data', $serializedCartData, $minutesUntilExpiration);
 
             return response()->json(['error' => 0, 'message' => "Thêm vào giỏ hàng thành công"])->withCookie($cookie);
         } catch (\Exception $e) {
@@ -361,10 +362,11 @@ class CartController extends Controller
             $serializedCouponData = json_encode($couponItems);
 
             // Calculate the timestamp for the end of the current day
-            $endOfDayTimestamp = strtotime('today 23:59:59');
+            $expirationTime = Carbon::now('Asia/Ho_Chi_Minh')->endOfDay();
+            $minutesUntilExpiration = $expirationTime->diffInMinutes(Carbon::now('Asia/Ho_Chi_Minh'));
 
             // Set the cart data in the cookie with an expiration time
-            $cookie = Cookie::make('coupon_data', $serializedCouponData, $endOfDayTimestamp); //end of day
+            $cookie = Cookie::make('coupon_data', $serializedCouponData, $minutesUntilExpiration); //end of day
 
             return response()->json(['error' => 0, 'message' => "Cập nhật mã giảm giá thành công"])->withCookie($cookie);
         } catch (\Exception $e) {
