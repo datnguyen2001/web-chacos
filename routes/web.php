@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('dia-chi/{id}', [MyAccountController::class, 'destroyAddress'])->name('address-account-destroy');
     Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
     Route::get('chi-tiet-don-hang/{tracking_code}', [MyAccountController::class, 'orderDetail'])->name('order-detail');
+    Route::post('huy-don-hang/{tracking_code}', [MyAccountController::class, 'cancelOrder'])->name('order-cancel');
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
 
     Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');
