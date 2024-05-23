@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Enums\OrderDeliveryStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Order;
@@ -12,6 +13,7 @@ use App\Models\ProductSizeModel;
 use App\Models\User;
 use App\Models\WishListsModel;
 use App\Rules\NoSpaceRule;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -232,10 +234,18 @@ class MyAccountController extends Controller
         }
     }
 
-    public function orderHistory()
+    public function orderHistory(Request $request)
     {
-        $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        $status = $request->query('status');
 
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc');
+
+        if ($status != null && $status != 'all') {
+           $orders = $orders->where('delivery_status', $status);
+        }
+
+        $orders = $orders->get();
+        
         //Load relationship
         $orders->load('orderDetails.productInfo.color.product');
 
@@ -244,13 +254,30 @@ class MyAccountController extends Controller
 
     public function orderDetail($tracking_code)
     {
-        // $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        $order = Order::where('tracking_code', $tracking_code)->first();
 
-        // //Load relationship
-        // $orders->load('orderDetails.productInfo.color.product');
+        //Load relationship
+        $order->load('orderDetails.productInfo.color.product');
 
-        return view('web.my-account.order-detail')->with(compact('tracking_code'));
-        // ->with(compact('orders'));
+        return view('web.my-account.order-detail')->with(compact('tracking_code', 'order'));
+    }
+
+    public function cancelOrder(Request $request, $tracking_code)
+    {
+        $order = Order::where('tracking_code', $tracking_code)->first();
+
+        if (!$order) {
+            toastr()->error("Không tìm thấy đơn hàng");
+            return back();
+        }
+
+        $order->delivery_status  = OrderDeliveryStatus::CANCEL;
+        $order->cancelled_at     = Carbon::now();
+        $order->cancelled_reason = $request->input('reason');
+        $order->save();
+
+        toastr()->success("Hủy đơn hàng thành công");
+        return back();
     }
 
     public function wishlist()
