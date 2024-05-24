@@ -8,6 +8,7 @@ use \App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomepageSettingsController;
 use \App\Http\Controllers\admin\ProductController;
 use \App\Http\Controllers\admin\InforShopController;
+use App\Http\Controllers\admin\OrderController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/dologin', [LoginController::class, 'doLogin'])->name('doLogin');
@@ -23,6 +24,12 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::get('edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
         Route::put('update/{id}', [CouponController::class, 'update'])->name('coupon.update');
         Route::delete('destroy/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+    });
+
+    //ORDER
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/', [OrderController::class, 'index'])->name('order.index');
+        Route::get('edit/{tracking_code}', [OrderController::class, 'edit'])->name('order.detail');
     });
 
     //CATEGORY
