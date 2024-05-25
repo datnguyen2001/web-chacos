@@ -237,7 +237,20 @@
             <div class="box_sp_filter box-sp d-inline-block">
                 <div class="box-sp w-100 mt-0">
                     @if (isset($product) && count($product) > 0)
-                        @foreach ($product as $pro)
+                        @php
+                            $advertising_index = 0;
+                        @endphp
+                        @foreach ($product as $index => $pro)
+                            @if($index == 6 || $index == 20 || $index == 29 || $index == 40 || $index == 50)
+                                @if(isset($product_advertising[$advertising_index]))
+                                <a href="{{$product_advertising[$advertising_index]->url}}" class="w-100">
+                                    <img src="{{asset($product_advertising[$advertising_index]->image)}}" class="w-100 h-100" style="object-fit: cover">
+                                </a>
+                                @php
+                                    $advertising_index = $advertising_index+1;
+                                @endphp
+                                    @endif
+                            @endif
                             <div class="item-sp-filter">
                                 <div class="line-add-cart">
                                     <img src="{{ asset('assets/image/add-to-cart.png') }}" alt="">

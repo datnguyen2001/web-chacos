@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ProductAdvertisingModel;
 use App\Models\ProductColorModel;
 use App\Models\ProductModel;
 use App\Models\ProductSizeModel;
@@ -43,8 +44,9 @@ class CategoryController extends Controller
                     ->from('product_size')
                     ->groupBy('name');
             })->get();
+        $product_advertising = ProductAdvertisingModel::where('category_id',$category->id)->get();
         return view('web.category.index',compact('product','category','count_product','product_hot',
-            'colors','styles','sizes'));
+            'colors','styles','sizes','product_advertising'));
     }
 
     public function search(Request $request)

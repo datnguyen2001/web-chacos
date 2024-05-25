@@ -71,6 +71,11 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::post('store-key-search', [HomepageSettingsController::class, 'storeSearch'])->name('settings.store.key-search');
         Route::put('update-key-search/{id}', [HomepageSettingsController::class, 'updateSearch'])->name('settings.update.key-search');
         Route::get('destroy-key-search/{id}', [HomepageSettingsController::class, 'destroySearch'])->name('settings.destroy.key-search');
+        //Key search
+        Route::get('product-advertising', [HomepageSettingsController::class, 'indexAdvertising'])->name('settings.product-advertising');
+        Route::post('store-product-advertising', [HomepageSettingsController::class, 'storeAdvertising'])->name('settings.store.product-advertising');
+        Route::put('update-product-advertising/{id}', [HomepageSettingsController::class, 'updateAdvertising'])->name('settings.update.product-advertising');
+        Route::get('destroy-product-advertising/{id}', [HomepageSettingsController::class, 'destroyAdvertising'])->name('settings.destroy.product-advertising');
     });
 
     Route::group(['prefix' => 'infor-shop'], function () {
