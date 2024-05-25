@@ -52,6 +52,12 @@ return [
                     'icon' => 'bi bi-palette',
                     'route' => 'admin.settings.key-search'
                 ],
+                [
+                    'name' => 'product-advertising',
+                    'title' => 'Product advertising',
+                    'icon' => 'bi bi-palette',
+                    'route' => 'admin.settings.product-advertising'
+                ],
             ],
             'number' => 2
         ],

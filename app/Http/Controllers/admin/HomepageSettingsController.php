@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\HomepageSettings;
 use App\Models\KeySearchModel;
+use App\Models\ProductAdvertisingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -777,6 +779,77 @@ class HomepageSettingsController extends Controller
             $key = KeySearchModel::find($id);
             if (empty($key)) {
                 return back()->with(['error' => 'Từ khóa không tồn tại']);
+            }
+            $key->delete();
+
+            return back()->with(['success' => 'Xóa từ khóa thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function indexAdvertising()
+    {
+        $page_menu = 'homepage';
+        $page_sub = 'product-advertising';
+        $category = Category::where('parent_id','!=',0)->get();
+        $search = ProductAdvertisingModel::all();
+        foreach ($search as $val){
+            $val->name_category = Category::find($val->category_id)->name;
+        }
+
+        return view('admin.settings.product-advertising')->with(compact('page_menu', 'page_sub', 'search','category'));
+    }
+
+    public function storeAdvertising(Request $request)
+    {
+        try {
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imagePath = Storage::url($file->store('product', 'public'));
+            }
+            $key_search = new ProductAdvertisingModel([
+                'category_id'=>$request->category_id,
+                'image'=>$imagePath,
+                'url'=>$request->url,
+            ]);
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.product-advertising')->with(['success' => 'Thêm dữ liệu thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function updateAdvertising(Request $request,$id)
+    {
+        try {
+            $key_search = ProductAdvertisingModel::find($id);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imagePath = Storage::url($file->store('product', 'public'));
+                $key_search->image=$imagePath;
+            }
+            $key_search->category_id = $request->category_id;
+            $key_search->url = $request->url;
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.product-advertising')->with(['success' => 'Cập nhật từ khóa thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function destroyAdvertising($id)
+    {
+        try {
+            $key = ProductAdvertisingModel::find($id);
+            if (empty($key)) {
+                return back()->with(['error' => 'Từ khóa không tồn tại']);
+            }
+            if (isset($key->image) && Storage::exists(str_replace('/storage', 'public', $key->image))) {
+                Storage::delete(str_replace('/storage', 'public', $key->image));
             }
             $key->delete();
 
