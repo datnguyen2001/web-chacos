@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('lich-su-don-hang', [MyAccountController::class, 'orderHistory'])->name('order-history');
     Route::get('chi-tiet-don-hang/{tracking_code}', [MyAccountController::class, 'orderDetail'])->name('order-detail');
     Route::post('huy-don-hang/{tracking_code}', [MyAccountController::class, 'cancelOrder'])->name('order-cancel');
+    Route::put('thay-doi-trang-thai-don-hang/{tracking_code}', [MyAccountController::class, 'changeOrderStatus'])->name('change-order-status');
     Route::get('danh-sach-yeu-thich', [MyAccountController::class, 'wishlist'])->name('wishlist');
 
     Route::get('mua-hang', [CartController::class, 'checkout'])->name('checkout');

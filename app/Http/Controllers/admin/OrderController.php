@@ -54,9 +54,11 @@ class OrderController extends Controller
         $order = Order::where('tracking_code', $tracking_code)->first();
 
         //Load relationship
-        $order->load('orderDetails.productInfo.color.product');
+        $order->load('orderDetails.productInfo.color.product', 'users');
 
-        return view('admin.order.detail')->with(compact('page_menu', 'order', 'tracking_code'));
+        $shipping_address = json_decode($order->shipping_address);
+
+        return view('admin.order.detail')->with(compact('page_menu', 'order', 'tracking_code', 'shipping_address'));
     }
 
     /**
