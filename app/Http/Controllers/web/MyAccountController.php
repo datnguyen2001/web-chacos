@@ -241,11 +241,11 @@ class MyAccountController extends Controller
         $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc');
 
         if ($status != null && $status != 'all') {
-           $orders = $orders->where('delivery_status', $status);
+            $orders = $orders->where('delivery_status', $status);
         }
 
         $orders = $orders->get();
-        
+
         //Load relationship
         $orders->load('orderDetails.productInfo.color.product');
 
@@ -271,12 +271,39 @@ class MyAccountController extends Controller
             return back();
         }
 
-        $order->delivery_status  = OrderDeliveryStatus::CANCEL;
-        $order->cancelled_at     = Carbon::now();
-        $order->cancelled_reason = $request->input('reason');
+        $order->delivery_status = OrderDeliveryStatus::CANCEL;
+        $order->cancelled_at = Carbon::now();
+        $order->cancelled_reason = $request->input('reason') ?? "Không có lý do";
         $order->save();
 
         toastr()->success("Hủy đơn hàng thành công");
+        return back();
+    }
+
+    public function changeOrderStatus($tracking_code)
+    {
+        $order = Order::where('tracking_code', $tracking_code)->first();
+
+        if (!$order) {
+            toastr()->error("Không tìm thấy đơn hàng");
+            return back();
+        }
+
+        $newOrderStatus = $order->delivery_status + 1;
+
+        if ($newOrderStatus == OrderDeliveryStatus::ACCEPTED) {
+            $order->accepted_at = Carbon::now();
+        } elseif ($newOrderStatus == OrderDeliveryStatus::DELIVERED) {
+            $order->delivered_at = Carbon::now();
+        } elseif ($newOrderStatus == OrderDeliveryStatus::COMPLETE) {
+            $order->completed_at = Carbon::now();
+        }
+
+        $order->delivery_status = $newOrderStatus;
+
+        $order->save();
+
+        toastr()->success("Cập nhật đơn hàng thành công");
         return back();
     }
 

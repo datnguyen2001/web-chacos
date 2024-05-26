@@ -118,5 +118,13 @@ return [
             ],
             'number' => 6
         ],
+        [
+            'name' => 'order',
+            'title' => 'Order',
+            'icon' => 'bi bi-bag-check',
+            'route' => 'admin.order.index',
+            'submenu' => [],
+            'number' => 7
+        ],
     ],
 ];
