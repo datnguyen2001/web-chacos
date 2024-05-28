@@ -88,46 +88,19 @@
             <div class="d-flex align-items-center">
                 <a href="{{ route('home') }}"><img src="{{ asset('assets/image/logo.png') }}" class="img-logo"></a>
 
-                <div class="title-header-center menu-big-1">NEW</div>
-                <div class="box-item-menu-header box-item-small-1">
-                    @php renderMenuSection($categories, 'New', 'New'); @endphp
-                    <div class="item-menu-header-col">
-                        <div class="d-flex flex-column">
-                            <img src="{{ asset('assets/image/nav-header.png') }}" class="w-75">
-                            <a href="" class="item-link-mav-header">Shop Collab</a>
-                        </div>
+                @foreach ($menu as $key => $m)
+                    <div class="title-header-center menu-big-1">{{ $m->name }}</div>
+                    <div class="box-item-menu-header box-item-small-1">
+                        @php renderMenuSection($categories, 'New', $m->id); @endphp
+                        @if ($m->thumbnail)
+                            <div class="item-menu-header-col">
+                                <div class="d-flex flex-column">
+                                    <img src="{{ $m->thumbnail }}" class="w-75">
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                </div>
-
-                <div class="title-header-center menu-big-2">WOMEN</div>
-                <div class="box-item-menu-header box-item-small-2">
-                    @php renderMenuSection($categories, 'Woman', 'Woman'); @endphp
-                </div>
-
-                <div class="title-header-center menu-big-3">MEN</div>
-                <div class="box-item-menu-header box-item-small-3">
-                    @php renderMenuSection($categories, 'Men', 'Men'); @endphp
-                </div>
-
-                <div class="title-header-center menu-big-4">KIDS</div>
-                <div class="box-item-menu-header box-item-small-4">
-                    @php renderMenuSection($categories, 'Kids', 'Kids'); @endphp
-                </div>
-
-                <div class="title-header-center menu-big-5">GEAR</div>
-                <div class="box-item-menu-header box-item-small-5">
-                    @php renderMenuSection($categories, 'Gear', 'Gear'); @endphp
-                </div>
-
-                <div class="title-header-center menu-big-6">SALE</div>
-                <div class="box-item-menu-header box-item-small-6">
-                    @php renderMenuSection($categories, 'Sale', 'Sale'); @endphp
-                </div>
-
-                <div class="title-header-center menu-big-7">INSIDE CHACO</div>
-                <div class="box-item-menu-header box-item-small-7">
-                    @php renderMenuSection($categories, 'Inside Chaco', 'Inside Chaco'); @endphp
-                </div>
+                @endforeach
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div class="position-relative box-search-header">
@@ -152,18 +125,20 @@
 <!-- search -->
 <div id="overlay-search" class="overlay"></div>
 <div class="box-active-search-header" id="search-box-focus">
-    <form  method="get" action="{{route('search')}}">
-    <div class="box-search-header position-relative" style="background-color: #004c59;border: 1px solid #004c59;">
-        <input type="text" class="input-search-header" name="key_search" id="searchInputActive" placeholder="Search">
-        <button type="submit" style="background: transparent;width: 26px;border: none;padding: 0" id="searchButton">
-            <svg class="search-icon" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"
-                 width="26px" height="22px" style="margin-left: 3px">
-                <path
-                    d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
-                </path>
-            </svg>
-        </button>
-    </div>
+    <form method="get" action="{{ route('search') }}">
+        <div class="box-search-header position-relative" style="background-color: #004c59;border: 1px solid #004c59;">
+            <input type="text" class="input-search-header" name="key_search" id="searchInputActive"
+                placeholder="Search">
+            <button type="submit" style="background: transparent;width: 26px;border: none;padding: 0"
+                id="searchButton">
+                <svg class="search-icon" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"
+                    width="26px" height="22px" style="margin-left: 3px">
+                    <path
+                        d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                    </path>
+                </svg>
+            </button>
+        </div>
     </form>
     <div class="box-content-search-header">
         <div class="box-content-search-header-left">
@@ -174,14 +149,14 @@
             <div class="d-flex flex-column mb-3" id="searchSuggestions">
 
             </div>
-            @if(count($key_search)>0)
-            <p class="title-suggest-search">Popular Searches</p>
-            <div class="d-flex flex-column mb-3">
-                @foreach($key_search as $key)
-                <a href="{{$key->url}}" class="item-search-suggest">{{$key->name}}</a>
-                @endforeach
-            </div>
-                @endif
+            @if (count($key_search) > 0)
+                <p class="title-suggest-search">Popular Searches</p>
+                <div class="d-flex flex-column mb-3">
+                    @foreach ($key_search as $key)
+                        <a href="{{ $key->url }}" class="item-search-suggest">{{ $key->name }}</a>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 </div>
@@ -353,13 +328,15 @@
 <div class="offcanvas offcanvas-end w-100 border-0" tabindex="-1" id="offcanvasSearchRight"
     aria-labelledby="offcanvasSearchRightLabel">
     <div class="offcanvas-header p-0 d-flex justify-content-between align-items-center">
-        <form method="get" action="{{route('search')}}" class="w-100">
-        <div class="position-relative w-100">
-            <input type="text" class="input-search-menu-mobile" id="searchInputActiveMobile" name="key_search" placeholder="Search for products">
-            <button type="submit" style="background: transparent;border: none;position: absolute;right: 0">
-                <img src="{{ asset('assets/image/search.svg') }}" class="icon-search-menu-mobile" id="searchButtonMobile">
-            </button>
-        </div>
+        <form method="get" action="{{ route('search') }}" class="w-100">
+            <div class="position-relative w-100">
+                <input type="text" class="input-search-menu-mobile" id="searchInputActiveMobile"
+                    name="key_search" placeholder="Search for products">
+                <button type="submit" style="background: transparent;border: none;position: absolute;right: 0">
+                    <img src="{{ asset('assets/image/search.svg') }}" class="icon-search-menu-mobile"
+                        id="searchButtonMobile">
+                </button>
+            </div>
         </form>
         <img src="{{ asset('assets/image/xmark.svg') }}" data-bs-dismiss="offcanvas" aria-label="Close"
             style="width: 23px;margin-left: 13px;margin-right: 13px;">
@@ -369,14 +346,14 @@
         <div class="d-flex flex-column mb-3" id="searchSuggestionsMobile">
 
         </div>
-        @if(count($key_search)>0)
-        <p style="font-weight: 600;color: black;margin-bottom: 10px;">Popular Searches</p>
-        <div class="d-flex flex-column">
-            @foreach($key_search as $key)
-                <a href="{{$key->url}}" class="item-search-hot">{{$key->name}}</a>
-            @endforeach
-        </div>
-            @endif
+        @if (count($key_search) > 0)
+            <p style="font-weight: 600;color: black;margin-bottom: 10px;">Popular Searches</p>
+            <div class="d-flex flex-column">
+                @foreach ($key_search as $key)
+                    <a href="{{ $key->url }}" class="item-search-hot">{{ $key->name }}</a>
+                @endforeach
+            </div>
+        @endif
         <div class="box-content-search-header-mobile">
 
         </div>
