@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $key => $cate)
+                    @foreach ($categoriesWithMenuName as $key => $cate)
                         <tr id="category-{{ $cate->id }}">
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">
@@ -50,7 +50,7 @@
                                 {{ $cate->parent_id == 0 ? 'Không có cha' : \App\Models\Category::find($cate->parent_id)->name }}
                             </td>
                             <td class="text-center">
-                                {{ $cate->menu_belong ?? 'Trống' }}
+                                {{ $cate->menuName ?? 'Trống' }}
                             </td>
                             <td class="text-center">
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#editCategory{{ $cate->id }}"
@@ -90,7 +90,7 @@
                                 <label for="addCategoryParentSelector" class="form-label">Danh mục cha: </label>
                                 <select class="form-select select2Selector" id="addCategoryParentSelector" name="parent_id">
                                     <option value="0" {{ !old('parent_id') ? 'selected' : '' }}>Không có cha</option>
-                                    @foreach ($categories as $cate)
+                                    @foreach ($categoriesWithMenuName as $cate)
                                         @if (!$cate->parent_id)
                                             <option value="{{ $cate->id }}"
                                                 {{ old('parent_id') == $cate->id ? 'selected' : '' }}>
@@ -104,34 +104,18 @@
                                 <label for="addCategoryMenuSelector" class="form-label">Nằm trong menu: </label>
                                 <select class="form-select select2Selector" id="addCategoryMenuSelector"
                                     name="menu_belong[]" multiple>
-                                    <option value="New" {{ in_array('New', old('menu_belong', [])) ? 'selected' : '' }}>
-                                        New</option>
-                                    <option value="Woman"
-                                        {{ in_array('Woman', old('menu_belong', [])) ? 'selected' : '' }}>
-                                        Woman
-                                    </option>
-                                    <option value="Men" {{ in_array('Men', old('menu_belong', [])) ? 'selected' : '' }}>
-                                        Men</option>
-                                    <option value="Kids"
-                                        {{ in_array('Kids', old('menu_belong', [])) ? 'selected' : '' }}>
-                                        Kids
-                                    </option>
-                                    <option value="Gear"
-                                        {{ in_array('Gear', old('menu_belong', [])) ? 'selected' : '' }}>
-                                        Gear
-                                    </option>
-                                    <option value="Sale"
-                                        {{ in_array('Sale', old('menu_belong', [])) ? 'selected' : '' }}>Sale
-                                    </option>
-                                    <option value="Inside Chaco"
-                                        {{ in_array('Inside Chaco', old('menu_belong', [])) ? 'selected' : '' }}>Inside
-                                        Chaco</option>
+                                    @foreach ($menu as $me)
+                                        <option value="{{ $me->id }}"
+                                            {{ in_array($me->id, explode(',', old('menu_belong'))) ? 'selected' : '' }}>
+                                            {{ $me->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="add-category-title" class="form-label">Tiêu đề </label>
                                 <input type="text" class="form-control" id="add-category-title" name="title"
-                                       value="{{ old('title') }}">
+                                    value="{{ old('title') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="add-category-describe" class="form-label">Mô tả </label>
@@ -147,7 +131,7 @@
             </div>
         </div>
 
-        @foreach ($categories as $key => $cate)
+        @foreach ($categoriesWithMenuName as $key => $cate)
             <!-- Edit category modal -->
             <div class="modal fade editCategory" id="editCategory{{ $cate->id }}" data-bs-backdrop="static"
                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="editCategoryLabel{{ $cate->id }}"
@@ -188,7 +172,7 @@
                                         <option value="0"
                                             {{ !old('parent_id') || $cate->parent_id == 0 ? 'selected' : '' }}>Không có cha
                                         </option>
-                                        @foreach ($categories as $c)
+                                        @foreach ($categoriesWithMenuName as $c)
                                             @if ($c->parent_id != 0)
                                                 <option value="{{ $c->id }}"
                                                     {{ old('parent_id', $cate->parent_id) == $c->id ? 'selected' : '' }}>
@@ -203,40 +187,18 @@
                                         menu: </label>
                                     <select class="form-select select2EditSelector"
                                         id="editCategoryMenuSelector{{ $cate->id }}" name="menu_belong[]" multiple>
-                                        <option value="New"
-                                            {{ in_array('New', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            New
-                                        </option>
-                                        <option value="Woman"
-                                            {{ in_array('Woman', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            Woman
-                                        </option>
-                                        <option value="Men"
-                                            {{ in_array('Men', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            Men
-                                        </option>
-                                        <option value="Kids"
-                                            {{ in_array('Kids', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            Kids
-                                        </option>
-                                        <option value="Gear"
-                                            {{ in_array('Gear', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            Gear
-                                        </option>
-                                        <option value="Sale"
-                                            {{ in_array('Sale', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            Sale
-                                        </option>
-                                        <option value="Inside Chaco"
-                                            {{ in_array('Inside Chaco', explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
-                                            Inside
-                                            Chaco</option>
+                                        @foreach ($menu as $me)
+                                            <option value="{{ $me->id }}"
+                                                {{ in_array($me->id, explode(',', old('menu_belong', $cate->menu_belong))) ? 'selected' : '' }}>
+                                                {{ $me->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="add-category-title" class="form-label">Tiêu đề </label>
                                     <input type="text" class="form-control" id="add-category-title" name="title"
-                                           value="{{ @$cate->title }}">
+                                        value="{{ @$cate->title }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="add-category-describe" class="form-label">Mô tả </label>
@@ -244,8 +206,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </form>
                     </div>
