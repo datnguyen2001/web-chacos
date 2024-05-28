@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,20 @@ class CategoryController extends Controller
         $page_menu = 'category';
         $categories = Category::orderBy('id', 'desc')->get();
 
-        return view('admin.category.index')->with(compact('categories', 'page_menu'));
+        $categoriesWithMenuName = $categories->map(function ($category) {
+            if ($category->menu_belong) {
+                $menuIds = explode(',', $category->menu_belong);
+                $menuNames = Menu::whereIn('id', $menuIds)->pluck('name')->toArray();
+                $category->menuName = implode(',', $menuNames);
+            } else {
+                $category->menuName = 'Trống';
+            }
+            return $category;
+        });
+
+        $menu = Menu::orderBy('order', 'desc')->get();
+
+        return view('admin.category.index')->with(compact('categoriesWithMenuName', 'page_menu', 'menu'));
     }
 
     /**
@@ -36,12 +50,12 @@ class CategoryController extends Controller
     {
         try {
             $validated = Validator::make($request->all(), [
-                'name'          => 'required|string|max:30',
-                'slug'          => 'required|unique:categories,slug',
-                'parent_id'     => 'required|integer',
-                'menu_belong'   => 'nullable',
-                'title'   => 'nullable',
-                'describe'   => 'nullable',
+                'name' => 'required|string|max:30',
+                'slug' => 'required|unique:categories,slug',
+                'parent_id' => 'required|integer',
+                'menu_belong' => 'nullable',
+                'title' => 'nullable',
+                'describe' => 'nullable',
             ]);
 
             if ($validated->fails()) {
@@ -103,12 +117,12 @@ class CategoryController extends Controller
     {
         try {
             $validated = Validator::make($request->all(), [
-                'name'          => 'required|string|max:30',
-                'slug'          => 'required|unique:categories,slug,' . $id,
-                'parent_id'     => 'required|integer',
-                'menu_belong'   => 'nullable',
-                'title'   => 'nullable',
-                'describe'   => 'nullable',
+                'name' => 'required|string|max:30',
+                'slug' => 'required|unique:categories,slug,' . $id,
+                'parent_id' => 'required|integer',
+                'menu_belong' => 'nullable',
+                'title' => 'nullable',
+                'describe' => 'nullable',
             ]);
 
             if ($validated->fails()) {
@@ -138,10 +152,10 @@ class CategoryController extends Controller
             $category = Category::findOrFail($id);
 
             $category->update([
-                'name'          => $validatedData['name'],
-                'slug'          => $validatedData['slug'],
-                'parent_id'     => $validatedData['parent_id'],
-                'menu_belong'   => $validatedData['menu_belong'],
+                'name' => $validatedData['name'],
+                'slug' => $validatedData['slug'],
+                'parent_id' => $validatedData['parent_id'],
+                'menu_belong' => $validatedData['menu_belong'],
             ]);
 
             toastr()->success("Chỉnh sửa danh mục thành công");
@@ -186,16 +200,16 @@ class CategoryController extends Controller
         }
     }
 
-    public function getChildrenC2 (Request $request)
+    public function getChildrenC2(Request $request)
     {
-        try{
-            $listCategory = Category::where('parent_id',$request->cate_id)->get();
+        try {
+            $listCategory = Category::where('parent_id', $request->cate_id)->get();
             $html = null;
-            if (count($listCategory)){
-                foreach ($listCategory as $value){
+            if (count($listCategory)) {
+                foreach ($listCategory as $value) {
                     $option = '<div class="d-flex align-items-center category list_category_children p-1">
-                                                <div class="d-flex align-items-center" style="margin-right: 10px"><input type="radio" id="'.$value->id.'" style="width: 20px; height: 20px" value="'.$value->id.'" name="'.$request->get('name').'"></div>
-                                                <label for="'.$value->id.'" class="m-0">'.$value->name.'</label>
+                                                <div class="d-flex align-items-center" style="margin-right: 10px"><input type="radio" id="' . $value->id . '" style="width: 20px; height: 20px" value="' . $value->id . '" name="' . $request->get('name') . '"></div>
+                                                <label for="' . $value->id . '" class="m-0">' . $value->name . '</label>
                                             </div>';
                     $html .= $option;
                 }
@@ -204,7 +218,7 @@ class CategoryController extends Controller
             $data['status'] = true;
             $data['name'] = $request->get('name');
             return $data;
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
     }
