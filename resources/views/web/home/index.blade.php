@@ -122,216 +122,56 @@
             </div>
 
             {{-- PRODUCT --}}
-            <div class="swiper productSwiper">
-                <div class="swiper-wrapper">
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
+            @if (count($productsFavorites) > 0)
+                <div class="swiper productSwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($productsFavorites as $proFav)
+                            <a href="{{ route('detail-product', ['slug' => $proFav->slug]) }}"
+                                class="swiper-slide box-item-product">
+                                <img src="{{ $proFav->image }}" class="img-product-style">
+                                <div class="title-product-bottom">
+                                    <div>
+                                        <p class="title-sp-favo">{{ $proFav->name }}</p>
+                                        <div class="reviews">
+                                            <div class="stars">
+                                                <img class="product-star"
+                                                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                                    alt="Full star">
+                                                <img class="product-star"
+                                                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                                    alt="Full star">
+                                                <img class="product-star"
+                                                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                                    alt="Full star">
+                                                <img class="product-star"
+                                                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                                    alt="Full star">
+                                                <img class="product-star"
+                                                    src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
+                                                    alt="Full star">
+                                            </div>
+                                            <p class="review-number">(0)</p>
+                                        </div>
                                     </div>
-                                    <p class="review-number">(304)</p>
+                                    @if ($productFavoritesPrices)
+                                        <p class="price-favo">
+                                            {{ $productFavoritesPrices[$proFav->id]['minPrice'] == $productFavoritesPrices[$proFav->id]['maxPrice']
+                                                ? number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') . 'đ'
+                                                : number_format($productFavoritesPrices[$proFav->id]['minPrice'], 0, ',', '.') .
+                                                    ' đ - ' .
+                                                    number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') .
+                                                    ' đ' }}
+                                        </p>
+                                    @endif
                                 </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
-                                    </div>
-                                    <p class="review-number">(304)</p>
-                                </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
-                                    </div>
-                                    <p class="review-number">(304)</p>
-                                </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
-                                    </div>
-                                    <p class="review-number">(304)</p>
-                                </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
-                                    </div>
-                                    <p class="review-number">(304)</p>
-                                </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
-                                    </div>
-                                    <p class="review-number">(304)</p>
-                                </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('detail-product') }}" class="swiper-slide box-item-product">
-                        <img src="{{ asset('assets/image/z-sandals.png') }}" class="img-product-style">
-                        <div class="title-product-bottom">
-                            <div>
-                                <p class="title-sp-favo">CUSTOMIZABLE Z</p>
-                                <div class="reviews">
-                                    <div class="stars">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw9a1046c8/content/seasonal-content/homepage/2024/03/27/product-star.svg"
-                                            alt="Full star">
-                                        <img class="product-star"
-                                            src="https://www.chacos.com/on/demandware.static/-/Sites-chacos_us-Library/default/dw3178a4e0/content/seasonal-content/homepage/2024/03/27/product-star-half.svg"
-                                            alt="Half filled star">
-                                    </div>
-                                    <p class="review-number">(304)</p>
-                                </div>
-                            </div>
-                            <p class="price-favo">$130.00</p>
-                        </div>
-                    </a>
+                            </a>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination swiper-pagination-product"></div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination swiper-pagination-product"></div>
-            </div>
+            @endif
             {{-- PRODUCT --}}
 
             <div class="box-more-style-shop-mobile">
@@ -354,38 +194,31 @@
                 <img src="{{ $favorites->right_image_mobile }}" class="img-pick-mobile">
 
                 {{-- FAV PRODUCT --}}
-                <div class="swiper favoritesSwiper">
-                    <div class="swiper-wrapper">
-                        <a href="{{ route('detail-product') }}" class="swiper-slide">
-                            <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
-                            <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL</div>
-                            <div class="price-product-favo">$105.00</div>
-                        </a>
-                        <a href="{{ route('detail-product') }}" class="swiper-slide">
-                            <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
-                            <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
-                                WOMEN'S ZX/2® CLASSIC SANDAL
-                            </div>
-                            <div class="price-product-favo">$105.00</div>
-                        </a>
-                        <a href="{{ route('detail-product') }}" class="swiper-slide">
-                            <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
-                            <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
-                                WOMEN'S ZX/2® CLASSIC SANDAL
-                            </div>
-                            <div class="price-product-favo">$105.00</div>
-                        </a>
-                        <a href="{{ route('detail-product') }}" class="swiper-slide">
-                            <img src="{{ asset('assets/image/sp1.png') }}" alt="" class="w-100">
-                            <div class="name-product-favo">WOMEN'S ZX/2® CLASSIC SANDAL
-                                WOMEN'S ZX/2® CLASSIC SANDAL
-                            </div>
-                            <div class="price-product-favo">$105.00</div>
-                        </a>
+                @if ($productsPicked)
+                    <div class="swiper favoritesSwiper">
+                        <div class="swiper-wrapper">
+                            @foreach ($productsPicked as $proPicked)
+                                <a href="{{ route('detail-product', ['slug' => $proPicked->slug]) }}" class="swiper-slide">
+                                    <img src="{{ $proPicked->image }}" alt="" class="w-100">
+                                    <div class="name-product-favo">{{ $proPicked->name }}</div>
+
+                                    @if ($productPickedPrices)
+                                        <div class="price-product-favo">
+                                            {{ $productPickedPrices[$proPicked->id]['minPrice'] == $productPickedPrices[$proPicked->id]['maxPrice']
+                                                ? number_format($productPickedPrices[$proPicked->id]['maxPrice'], 0, ',', '.') . 'đ'
+                                                : number_format($productPickedPrices[$proPicked->id]['minPrice'], 0, ',', '.') .
+                                                    ' đ - ' .
+                                                    number_format($productPickedPrices[$proPicked->id]['maxPrice'], 0, ',', '.') .
+                                                    ' đ' }}
+                                        </div>
+                                    @endif
+                                </a>
+                            @endforeach
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
                     </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
+                @endif
                 {{-- FAV PRODUCT --}}
             </div>
 

@@ -230,11 +230,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-2">
                             <label class="col-sm-3 col-form-label">SP nổi bật: </label>
                             <div class="col-sm-8">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" name="is_hot" type="checkbox" @if($product->is_hot == 1) checked @endif
+                                           id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Hiện </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="col-sm-3 col-form-label">Hiển thị tại "Favorites": </label>
+                            <div class="col-sm-8">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" name="isFavoritesSwiper" type="checkbox" @if($product->isFavoritesSwiper == 1) checked @endif
+                                           id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Hiện </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="col-sm-3 col-form-label">Hiển thị tại "Picked": </label>
+                            <div class="col-sm-8">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" name="isPickedSwiper" type="checkbox" @if($product->isPickedSwiper == 1) checked @endif
                                            id="flexSwitchCheckChecked">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Hiện </label>
                                 </div>

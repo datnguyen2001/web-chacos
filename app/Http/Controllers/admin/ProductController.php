@@ -158,6 +158,14 @@ class ProductController extends Controller
             if ($request->get('is_hot') == 'on') {
                 $is_hot = 1;
             }
+            $is_favorites_swiper = 0;
+            if ($request->get('isFavoritesSwiper') == 'on') {
+                $is_favorites_swiper = 1;
+            }
+            $is_picked_swiper = 0;
+            if ($request->get('isPickedSwiper') == 'on') {
+                $is_picked_swiper = 1;
+            }
             if (isset($request->file_product)) {
                 if (isset($product->image) && Storage::exists(str_replace('/storage', 'public', $product->image))) {
                     Storage::delete(str_replace('/storage', 'public', $product->image));
@@ -173,6 +181,8 @@ class ProductController extends Controller
             $product->type = $request->get('type');
             $product->display = $display;
             $product->is_hot = $is_hot;
+            $product->isFavoritesSwiper = $is_favorites_swiper;
+            $product->isPickedSwiper = $is_picked_swiper;
             $product->save();
 
             $this->add_img_product($request, $product->id);
