@@ -87,6 +87,7 @@
             </div>
 
         </div>
+        @if(isset($product) && count($product)>0)
         <div class="recommended-products">
             <h1>Sản phẩm tương tự</h1>
             <div class="swiper recommendedSwiper">
@@ -109,6 +110,7 @@
                 </div>
             </div>
         </div>
+            @endif
     </div>
 
 @stop
