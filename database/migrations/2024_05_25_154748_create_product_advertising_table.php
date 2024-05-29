@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_advertising', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
-            $table->string('category_id')->nullable();
+            $table->string('image')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
         });
