@@ -18,7 +18,9 @@ class ProductModel extends Model
         'style',
         'type',
         'display',
-        'is_hot'
+        'is_hot',
+        'isFavoritesSwiper',
+        'isPickedSwiper'
     ];
 
     public function productColors()
