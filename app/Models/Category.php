@@ -22,6 +22,13 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+    
+    public function getMenuNamesAttribute()
+    {
+        $menuIds = explode(',', $this->menu_belong);
+        $menuNames = Menu::whereIn('id', $menuIds)->pluck('name')->toArray();
+        return implode(',', $menuNames);
+    }
 
     // public function products()
     // {

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\KeySearchModel;
 use App\Models\TodayOfferModel;
+use App\Models\Menu;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +35,8 @@ class CouponServiceProvider extends ServiceProvider
             //Category
             $categories = Category::with('children')->get();
 
+            $menu = Menu::orderBy('order', 'asc')->get();
+
             $key_search = KeySearchModel::all();
 
             $today_offer = TodayOfferModel::all();
@@ -43,6 +46,7 @@ class CouponServiceProvider extends ServiceProvider
             $view->with('categories', $categories);
             $view->with('key_search', $key_search);
             $view->with('today_offer', $today_offer);
+            $view->with('menu', $menu);
         });
     }
 }

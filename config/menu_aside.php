@@ -74,12 +74,20 @@ return [
             'number' => 2
         ],
         [
-            'name' => 'category',
-            'title' => 'Category',
-            'icon' => 'bi bi-view-list',
-            'route' => 'admin.category.index',
+            'name' => 'menu',
+            'title' => 'Menu',
+            'icon' => 'bi bi-menu-app',
+            'route' => 'admin.menu.index',
             'submenu' => [],
             'number' => 3
+        ],
+        [
+            'name' => 'category',
+            'title' => 'Category',
+            'icon' => 'bi bi-diagram-3',
+            'route' => 'admin.category.index',
+            'submenu' => [],
+            'number' => 4
         ],
         [
             'name' => 'product',
@@ -87,7 +95,7 @@ return [
             'icon' => 'bi bi-view-list',
             'route' => 'admin.products.index',
             'submenu' => [],
-            'number' => 4
+            'number' => 5
         ],
         [
             'name' => 'coupon',
@@ -95,7 +103,7 @@ return [
             'icon' => 'bi bi-graph-down-arrow',
             'route' => 'admin.coupon.index',
             'submenu' => [],
-            'number' => 5
+            'number' => 6
         ],
         [
             'name' => 'information',
@@ -128,7 +136,7 @@ return [
                     'parameters' => ['type' => 3],
                 ],
             ],
-            'number' => 6
+            'number' => 7
         ],
         [
             'name' => 'order',
@@ -136,7 +144,7 @@ return [
             'icon' => 'bi bi-bag-check',
             'route' => 'admin.order.index',
             'submenu' => [],
-            'number' => 7
+            'number' => 8
         ],
     ],
 ];

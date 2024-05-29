@@ -8,6 +8,7 @@ use \App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomepageSettingsController;
 use \App\Http\Controllers\admin\ProductController;
 use \App\Http\Controllers\admin\InforShopController;
+use App\Http\Controllers\admin\MenuController;
 use App\Http\Controllers\admin\OrderController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -38,6 +39,14 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::post('store', [CategoryController::class, 'store'])->name('category.store');
         Route::put('update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    });
+
+    //MENU
+    Route::group(['prefix' => 'menu'], function () {
+        Route::get('/', [MenuController::class, 'index'])->name('menu.index');
+        Route::post('store', [MenuController::class, 'store'])->name('menu.store');
+        Route::put('update/{id}', [MenuController::class, 'update'])->name('menu.update');
+        Route::delete('destroy/{id}', [MenuController::class, 'destroy'])->name('menu.destroy');
     });
 
     //PRODUCT
