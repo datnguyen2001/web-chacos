@@ -47,10 +47,28 @@ return [
                     'route' => 'admin.settings.box.around'
                 ],
                 [
+                    'name' => 'today_offer',
+                    'title' => 'Today offer',
+                    'icon' => 'bi bi-palette',
+                    'route' => 'admin.settings.today_offer'
+                ],
+                [
                     'name' => 'key-search',
                     'title' => 'Key search',
                     'icon' => 'bi bi-palette',
                     'route' => 'admin.settings.key-search'
+                ],
+                [
+                    'name' => 'product-advertising',
+                    'title' => 'Product advertising',
+                    'icon' => 'bi bi-palette',
+                    'route' => 'admin.settings.product-advertising'
+                ],
+                [
+                    'name' => 'advertisement',
+                    'title' => 'Advertisement',
+                    'icon' => 'bi bi-palette',
+                    'route' => 'admin.settings.advertisement'
                 ],
             ],
             'number' => 2
