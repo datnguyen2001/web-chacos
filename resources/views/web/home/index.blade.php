@@ -477,7 +477,30 @@
             come in a variety of styles, colors, and fits, so you can find the perfect footwear for any occasion. Power
             your next adventure with sandals, flip flops, and shoes built to perform in style.</p>
     </div>
+
+    {{-- BOX QC --}}
+    @if(isset($advertisement))
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content position-relative">
+                <i class="fa-solid fa-xmark position-absolute" style="padding: 10px;right: 8px;top: 8px;font-size: 25px;cursor: pointer" data-bs-dismiss="modal" aria-label="Close"></i>
+                <a href="{{@$advertisement->url}}">
+                    <img src="{{asset($advertisement->image)}}" class="w-100" style="object-fit: cover">
+                </a>
+
+            </div>
+        </div>
+    </div>
+    @endif
+
 @stop
 @section('script_page')
     <script src="{{ asset('assets/js/home.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#imageModal').modal('show');
+            }, 1000);
+        });
+    </script>
 @stop

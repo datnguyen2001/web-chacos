@@ -213,31 +213,16 @@
             <div style="color: black;text-align: center;font-size: 14px;margin-bottom: 14px;">Click offer codes below
                 to
                 apply in checkout.</div>
-            <div class="item-sale-style">
-                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
+            @if(count($today_offer)>0)
+            @foreach($today_offer as $today)
+            <a href="{{$today->url}}" class="item-sale-style">
+                <img src="{{ asset($today->image) }}" class="w-100">
                 <div class="line-sale-style">
-                    No Code Necessary
+                   {{$today->title}}
                 </div>
-            </div>
-            <div class="item-sale-style">
-                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
-                <div class="line-sale-style">
-                    No Code Necessary
-                </div>
-            </div>
-            <div class="item-sale-style">
-                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
-                <div class="line-sale-style">
-                    No Code Necessary
-                </div>
-            </div>
-            <div class="item-sale-style">
-                <img src="{{ asset('assets/image/extole_updates_promotab_03.jpg') }}" class="w-100">
-                <div class="line-sale-style">
-                    No Code Necessary
-                </div>
-            </div>
-
+            </a>
+            @endforeach
+                @endif
         </div>
     </div>
 </div>

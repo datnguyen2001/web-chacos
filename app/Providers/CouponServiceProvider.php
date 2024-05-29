@@ -6,6 +6,7 @@ use App\Enums\CouponStatus;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\KeySearchModel;
+use App\Models\TodayOfferModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -35,10 +36,13 @@ class CouponServiceProvider extends ServiceProvider
 
             $key_search = KeySearchModel::all();
 
+            $today_offer = TodayOfferModel::all();
+
             // Configure the data for the view
             $view->with('coupons', $coupons);
             $view->with('categories', $categories);
             $view->with('key_search', $key_search);
+            $view->with('today_offer', $today_offer);
         });
     }
 }

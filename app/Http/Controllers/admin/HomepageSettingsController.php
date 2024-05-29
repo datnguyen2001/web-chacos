@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdvertisementModel;
 use App\Models\Category;
 use App\Models\HomepageSettings;
 use App\Models\KeySearchModel;
 use App\Models\ProductAdvertisingModel;
+use App\Models\TodayOfferModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -854,6 +856,138 @@ class HomepageSettingsController extends Controller
             $key->delete();
 
             return back()->with(['success' => 'Xóa từ khóa thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function indexTodayOffer()
+    {
+        $page_menu = 'homepage';
+        $page_sub = 'today_offer';
+        $search = TodayOfferModel::all();
+
+        return view('admin.settings.today-offer')->with(compact('page_menu', 'page_sub', 'search'));
+    }
+
+    public function storeTodayOffer(Request $request)
+    {
+        try {
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imagePath = Storage::url($file->store('product', 'public'));
+            }
+            $key_search = new TodayOfferModel([
+                'title'=>$request->title,
+                'image'=>$imagePath,
+                'url'=>$request->url,
+            ]);
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.today_offer')->with(['success' => 'Thêm dữ liệu thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function updateTodayOffer(Request $request,$id)
+    {
+        try {
+            $key_search = TodayOfferModel::find($id);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imagePath = Storage::url($file->store('product', 'public'));
+                $key_search->image=$imagePath;
+            }
+            $key_search->title = $request->title;
+            $key_search->url = $request->url;
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.today_offer')->with(['success' => 'Cập nhật dữ liệu thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function destroyTodayOffer($id)
+    {
+        try {
+            $key = TodayOfferModel::find($id);
+            if (empty($key)) {
+                return back()->with(['error' => 'Dữ liệu không tồn tại']);
+            }
+            if (isset($key->image) && Storage::exists(str_replace('/storage', 'public', $key->image))) {
+                Storage::delete(str_replace('/storage', 'public', $key->image));
+            }
+            $key->delete();
+
+            return back()->with(['success' => 'Xóa dữ liệu thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function indexAdvertisement()
+    {
+        $page_menu = 'homepage';
+        $page_sub = 'advertisement';
+        $search = AdvertisementModel::all();
+
+        return view('admin.settings.advertisement')->with(compact('page_menu', 'page_sub', 'search'));
+    }
+
+    public function storeAdvertisement(Request $request)
+    {
+        try {
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imagePath = Storage::url($file->store('product', 'public'));
+            }
+            $key_search = new AdvertisementModel([
+                'image'=>$imagePath,
+                'url'=>$request->url,
+            ]);
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.advertisement')->with(['success' => 'Thêm dữ liệu thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function updateAdvertisement(Request $request,$id)
+    {
+        try {
+            $key_search = AdvertisementModel::find($id);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imagePath = Storage::url($file->store('product', 'public'));
+                $key_search->image=$imagePath;
+            }
+            $key_search->url = $request->url;
+            $key_search->save();
+
+            return \redirect()->route('admin.settings.advertisement')->with(['success' => 'Cập nhật dữ liệu thành công']);
+        } catch (\Exception $exception) {
+            return back()->with(['error' => $exception->getMessage()]);
+        }
+    }
+
+    public function destroyAdvertisement($id)
+    {
+        try {
+            $key = AdvertisementModel::find($id);
+            if (empty($key)) {
+                return back()->with(['error' => 'Dữ liệu không tồn tại']);
+            }
+            if (isset($key->image) && Storage::exists(str_replace('/storage', 'public', $key->image))) {
+                Storage::delete(str_replace('/storage', 'public', $key->image));
+            }
+            $key->delete();
+
+            return back()->with(['success' => 'Xóa dữ liệu thành công']);
         } catch (\Exception $exception) {
             return back()->with(['error' => $exception->getMessage()]);
         }
