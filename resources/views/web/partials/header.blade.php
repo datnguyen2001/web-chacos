@@ -177,7 +177,7 @@
 </div>
 
 <!-- model sale -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasSale" aria-labelledby="offcanvasSaleLabel">
+<div class="offcanvas offcanvas-end offcanvasSale" tabindex="-1" id="offcanvasSale" aria-labelledby="offcanvasSaleLabel">
     <div class="offcanvas-body">
         <button type="button" class="btn-close" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSale"
             aria-controls="offcanvasSale" aria-label="Close"></button>

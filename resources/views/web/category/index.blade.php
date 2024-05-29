@@ -306,7 +306,7 @@
                                         </div>
                                         <div class="ts-star">{{$pro->star}} ({{$pro->count_star??0}})</div>
                                     </div>
-                                    <img src="{{ asset('assets/image/customize.png') }}" class="w-100">
+{{--                                    <img src="{{ asset('assets/image/customize.png') }}" class="w-100">--}}
                                 </div>
                             </div>
                         @endforeach

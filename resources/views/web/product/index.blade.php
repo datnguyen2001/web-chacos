@@ -468,10 +468,10 @@
                     </div>
                 </div>
             </div>
-            <div class="btn-customize">
-                <img src="{{ asset('assets/image/color.png') }}" style="width: 20px;"><span
-                    style="font-size: 18px;color: #303030;font-weight: 600; margin-left: 6px;">CUSTOMIZE</span>
-            </div>
+{{--            <div class="btn-customize">--}}
+{{--                <img src="{{ asset('assets/image/color.png') }}" style="width: 20px;"><span--}}
+{{--                    style="font-size: 18px;color: #303030;font-weight: 600; margin-left: 6px;">CUSTOMIZE</span>--}}
+{{--            </div>--}}
         </div>
     </div>
 
