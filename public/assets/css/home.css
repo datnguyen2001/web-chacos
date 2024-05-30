@@ -310,7 +310,7 @@
 }
 .title-product-bottom {
   position: absolute;
-  bottom: 95px;
+  bottom: 70px;
   width: 100%;
   color: #1d4b58;
   font-weight: 700;
@@ -320,6 +320,11 @@
 .title-sp-favo{
     font-size: 12px;
     margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 .review-number{
     font-size: 12px;
@@ -1067,7 +1072,7 @@
         left: 30%!important;
     }
     .title-product-bottom{
-        bottom: 50px;
+        bottom: 40px;
     }
     .img-pick{
         width: 100px;
