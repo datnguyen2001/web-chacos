@@ -268,7 +268,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($box_around->row1 as $item)
                             <div class="swiper-slide"><img
-                                    src="https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg"
+                                    src="{{asset($item)}}"
                                     class="w-100"></div>
                         @endforeach
                     </div>
@@ -280,7 +280,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($box_around->row2 as $item)
                             <div class="swiper-slide"><img
-                                    src="https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg"
+                                    src="{{asset($item)}}"
                                     class="w-100"></div>
                         @endforeach
                     </div>
@@ -292,7 +292,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($box_around->row3 as $item)
                             <div class="swiper-slide"><img
-                                    src="https://kenh14cdn.com/thumb_w/620/203336854389633024/2024/3/22/photo-1-17110846772691715316409.jpg"
+                                    src="{{asset($item)}}"
                                     class="w-100"></div>
                         @endforeach
                     </div>
