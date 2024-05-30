@@ -132,6 +132,16 @@
                                 <div class="title-product-bottom">
                                     <div>
                                         <p class="title-sp-favo">{{ $proFav->name }}</p>
+                                        @if ($productFavoritesPrices)
+                                            <p class="price-favo">
+                                                {{ $productFavoritesPrices[$proFav->id]['minPrice'] == $productFavoritesPrices[$proFav->id]['maxPrice']
+                                                    ? number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') . 'đ'
+                                                    : number_format($productFavoritesPrices[$proFav->id]['minPrice'], 0, ',', '.') .
+                                                        ' đ - ' .
+                                                        number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') .
+                                                        ' đ' }}
+                                            </p>
+                                        @endif
                                         <div class="reviews">
                                             <div class="stars">
                                                 <img class="product-star"
@@ -153,16 +163,6 @@
                                             <p class="review-number">(0)</p>
                                         </div>
                                     </div>
-                                    @if ($productFavoritesPrices)
-                                        <p class="price-favo">
-                                            {{ $productFavoritesPrices[$proFav->id]['minPrice'] == $productFavoritesPrices[$proFav->id]['maxPrice']
-                                                ? number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') . 'đ'
-                                                : number_format($productFavoritesPrices[$proFav->id]['minPrice'], 0, ',', '.') .
-                                                    ' đ - ' .
-                                                    number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') .
-                                                    ' đ' }}
-                                        </p>
-                                    @endif
                                 </div>
                             </a>
                         @endforeach
