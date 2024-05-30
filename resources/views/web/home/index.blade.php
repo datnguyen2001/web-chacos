@@ -3,6 +3,11 @@
 
 @section('style_page')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <style>
+        .swiper-slide-around{
+            height: auto;
+        }
+    </style>
 @stop
 {{-- content of page --}}
 @section('content')
@@ -133,7 +138,7 @@
                                     <div>
                                         <p class="title-sp-favo">{{ $proFav->name }}</p>
                                         @if ($productFavoritesPrices)
-                                            <p class="price-favo">
+                                            <p class="price-favo mb-0">
                                                 {{ $productFavoritesPrices[$proFav->id]['minPrice'] == $productFavoritesPrices[$proFav->id]['maxPrice']
                                                     ? number_format($productFavoritesPrices[$proFav->id]['maxPrice'], 0, ',', '.') . 'đ'
                                                     : number_format($productFavoritesPrices[$proFav->id]['minPrice'], 0, ',', '.') .
@@ -267,9 +272,9 @@
                 <div class="swiper photo-library1 mb-2">
                     <div class="swiper-wrapper">
                         @foreach ($box_around->row1 as $item)
-                            <div class="swiper-slide"><img
+                            <div class="swiper-slide swiper-slide-around"><img
                                     src="{{asset($item)}}"
-                                    class="w-100"></div>
+                                    class="w-100" style="object-fit: cover"></div>
                         @endforeach
                     </div>
                 </div>
@@ -279,9 +284,9 @@
                 <div class="swiper photo-library2 mb-2">
                     <div class="swiper-wrapper">
                         @foreach ($box_around->row2 as $item)
-                            <div class="swiper-slide"><img
+                            <div class="swiper-slide swiper-slide-around"><img
                                     src="{{asset($item)}}"
-                                    class="w-100"></div>
+                                    class="w-100" style="object-fit: cover"></div>
                         @endforeach
                     </div>
                 </div>
@@ -291,9 +296,9 @@
                 <div class="swiper photo-library3 mb-2">
                     <div class="swiper-wrapper">
                         @foreach ($box_around->row3 as $item)
-                            <div class="swiper-slide"><img
+                            <div class="swiper-slide swiper-slide-around"><img
                                     src="{{asset($item)}}"
-                                    class="w-100"></div>
+                                    class="w-100" style="object-fit: cover"></div>
                         @endforeach
                     </div>
                 </div>
