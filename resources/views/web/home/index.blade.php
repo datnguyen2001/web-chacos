@@ -274,7 +274,7 @@
                         @foreach ($box_around->row1 as $item)
                             <div class="swiper-slide swiper-slide-around"><img
                                     src="{{asset($item)}}"
-                                    class="w-100" style="object-fit: cover"></div>
+                                    class="w-100 h-100" style="object-fit: cover"></div>
                         @endforeach
                     </div>
                 </div>
@@ -286,7 +286,7 @@
                         @foreach ($box_around->row2 as $item)
                             <div class="swiper-slide swiper-slide-around"><img
                                     src="{{asset($item)}}"
-                                    class="w-100" style="object-fit: cover"></div>
+                                    class="w-100 h-100" style="object-fit: cover"></div>
                         @endforeach
                     </div>
                 </div>
@@ -298,7 +298,7 @@
                         @foreach ($box_around->row3 as $item)
                             <div class="swiper-slide swiper-slide-around"><img
                                     src="{{asset($item)}}"
-                                    class="w-100" style="object-fit: cover"></div>
+                                    class="w-100 h-100" style="object-fit: cover"></div>
                         @endforeach
                     </div>
                 </div>
