@@ -336,9 +336,12 @@
     <script src="{{ asset('assets/js/home.js') }}"></script>
     <script>
         $(document).ready(function() {
-            setTimeout(function() {
-                $('#imageModal').modal('show');
-            }, 1000);
+            if (!sessionStorage.getItem('advertisementShown')) {
+                setTimeout(function() {
+                    $('#imageModal').modal('show');
+                    sessionStorage.setItem('advertisementShown', 'true');
+                }, 1000);
+            }
         });
     </script>
 @stop

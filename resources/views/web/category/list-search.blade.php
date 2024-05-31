@@ -61,41 +61,38 @@
                         Tìm sản phẩm phù hợp với bạn. Chọn kích thước, màu sắc của bạn và nhiều hơn nữa.
                     </div>
                     <div class="name-filter">
-                        LỌC <span class="count-filter-sp">({{ count($data) }} sản phẩm)</span>
+                        FILTER <span class="count-filter-sp">({{ $count_product }} sản phẩm)</span>
                     </div>
 
                     <div class="accordion accordion-flush" id="accordionFilter">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-filterOne">
                                 <button class="accordion-button collapsed accordion-button-filter" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-filter1" aria-expanded="false"
-                                    aria-controls="flush-filter1">
-                                    KÍCH CỠ / RỘNG
+                                        data-bs-toggle="collapse" data-bs-target="#flush-filter1" aria-expanded="false"
+                                        aria-controls="flush-filter1">
+                                    SIZE/WIDTH
                                 </button>
                             </h2>
                             <div id="flush-filter1" class="accordion-collapse collapse" aria-labelledby="flush-filter1"
-                                data-bs-parent="#accordionFilter">
+                                 data-bs-parent="#accordionFilter">
                                 <div class="accordion-body body-item-filter">
                                     <p class="title-filter-item">Kích cỡ</p>
                                     <div class="box-item-filter-small">
-                                        @foreach ($sizes as $k => $item_sizes)
-                                            <button class="btn-size-item size-item" onclick="toggleActive(this)"
-                                                data-value="{{ $item_sizes->name }}">{{ $item_sizes->name }}</button>
+                                        @foreach($sizes as $k => $item_sizes)
+                                            <button class="btn-size-item size-item" onclick="toggleActive(this)" data-value="{{$item_sizes->name}}">{{$item_sizes->name}}</button>
                                         @endforeach
                                     </div>
 
                                     <p class="title-filter-item">Chiều rộng</p>
                                     <div class="d-flex flex-column">
                                         <div class="mb-1">
-                                            <input id="input-filter" class="input-filter type_width" type="checkbox"
-                                                value="1">
-                                            <label for="input-filter" class="title-input-filter">Vừa
+                                            <input id="input-filter" class="input-filter input-filter-0 type_width" type="checkbox" value="1">
+                                            <label for="input-filter" class="title-input-filter">Medium
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter-w" class="input-filter type_width" type="checkbox"
-                                                value="2">
-                                            <label for="input-filter-w" class="title-input-filter">Rộng
+                                            <input id="input-filter-w" class="input-filter input-filter-0 type_width" type="checkbox" value="2">
+                                            <label for="input-filter-w" class="title-input-filter">Wide
                                             </label>
                                         </div>
                                     </div>
@@ -105,21 +102,19 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-filter-2">
                                 <button class="accordion-button collapsed accordion-button-filter" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-filter2" aria-expanded="false"
-                                    aria-controls="flush-filter2">
-                                    KÍCH CỠ
+                                        data-bs-toggle="collapse" data-bs-target="#flush-filter2" aria-expanded="false"
+                                        aria-controls="flush-filter2">
+                                    STYLE
                                 </button>
                             </h2>
                             <div id="flush-filter2" class="accordion-collapse collapse" aria-labelledby="flush-filter2"
-                                data-bs-parent="#accordionFilter">
+                                 data-bs-parent="#accordionFilter">
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
-                                        @foreach ($styles as $k => $item_style)
+                                        @foreach($styles as $k => $item_style )
                                             <div class="mb-1">
-                                                <input id="input-filter-1" class="input-filter style_id" type="checkbox"
-                                                    value="{{ $item_style->style }}">
-                                                <label for="input-filter-1"
-                                                    class="title-input-filter">{{ $item_style->style }}
+                                                <input id="input-filter-1" class="input-filter input-filter-1 style_id" type="checkbox" value="{{$item_style->style}}">
+                                                <label for="input-filter-1" class="title-input-filter">{{$item_style->style}}
                                                 </label>
                                             </div>
                                         @endforeach
@@ -130,21 +125,19 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-filter-4">
                                 <button class="accordion-button collapsed accordion-button-filter" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-filter4" aria-expanded="false"
-                                    aria-controls="flush-filter4">
-                                    MÀU SẮC
+                                        data-bs-toggle="collapse" data-bs-target="#flush-filter4" aria-expanded="false"
+                                        aria-controls="flush-filter4">
+                                    COLOR
                                 </button>
                             </h2>
                             <div id="flush-filter4" class="accordion-collapse collapse" aria-labelledby="flush-filter4"
-                                data-bs-parent="#accordionFilter">
+                                 data-bs-parent="#accordionFilter">
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
-                                        @foreach ($colors as $k => $item_color)
+                                        @foreach($colors as $k => $item_color)
                                             <div class="mb-1">
-                                                <input id="input-filter-2 " class="input-filter color_id" type="checkbox"
-                                                    value="{{ $item_color->name }}">
-                                                <label for="input-filter-2"
-                                                    class="title-input-filter">{{ $item_color->name }}
+                                                <input id="input-filter-2 " class="input-filter input-filter-2 color_id" type="checkbox" value="{{$item_color->name}}">
+                                                <label for="input-filter-2" class="title-input-filter">{{$item_color->name}}
                                                 </label>
                                             </div>
                                         @endforeach
@@ -155,36 +148,32 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-filter-5">
                                 <button class="accordion-button collapsed accordion-button-filter" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-filter5" aria-expanded="false"
-                                    aria-controls="flush-filter5">
-                                    GIÁ TIỀN
+                                        data-bs-toggle="collapse" data-bs-target="#flush-filter5" aria-expanded="false"
+                                        aria-controls="flush-filter5">
+                                    PRICE
                                 </button>
                             </h2>
                             <div id="flush-filter5" class="accordion-collapse collapse" aria-labelledby="flush-filter5"
-                                data-bs-parent="#accordionFilter">
+                                 data-bs-parent="#accordionFilter">
                                 <div class="accordion-body body-item-filter">
                                     <div class="d-flex flex-column">
                                         <div class="mb-1">
-                                            <input id="input-filter-3" class="input-filter price_id" type="checkbox"
-                                                value="1">
+                                            <input id="input-filter-3" class="input-filter input-filter-3 price_id" type="checkbox" value="1">
                                             <label for="input-filter-3" class="title-input-filter">0đ - 300.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter-4" class="input-filter price_id" type="checkbox"
-                                                value="2">
+                                            <input id="input-filter-4" class="input-filter input-filter-3 price_id" type="checkbox" value="2">
                                             <label for="input-filter-4" class="title-input-filter">300.000đ - 600.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter-5" class="input-filter price_id" type="checkbox"
-                                                value="3">
+                                            <input id="input-filter-5" class="input-filter input-filter-3 price_id" type="checkbox" value="3">
                                             <label for="input-filter-5" class="title-input-filter">600.000đ - 1.000.000đ
                                             </label>
                                         </div>
                                         <div class="mb-1">
-                                            <input id="input-filter-6" class="input-filter price_id" type="checkbox"
-                                                value="4">
+                                            <input id="input-filter-6" class="input-filter input-filter-3 price_id" type="checkbox" value="4">
                                             <label for="input-filter-6" class="title-input-filter">1.000.000đ - 3.000.000đ
                                             </label>
                                         </div>
@@ -303,15 +292,13 @@
                             <p class="title-filter-item">Chiều rộng</p>
                             <div class="d-flex flex-column">
                                 <div class="mb-1">
-                                    <input id="input-filter" class="input-filter type_width" type="checkbox"
-                                        value="1">
-                                    <label for="input-filter" class="title-input-filter">Vừa
+                                    <input id="input-filter" class="input-filter input-filter-mobile-0 type_width" type="checkbox" value="1">
+                                    <label for="input-filter" class="title-input-filter">Medium
                                     </label>
                                 </div>
                                 <div class="mb-1">
-                                    <input id="input-filter-w" class="input-filter type_width" type="checkbox"
-                                        value="2">
-                                    <label for="input-filter-w" class="title-input-filter">Rộng
+                                    <input id="input-filter-w" class="input-filter input-filter-mobile-0 type_width" type="checkbox" value="2">
+                                    <label for="input-filter-w" class="title-input-filter">Wide
                                     </label>
                                 </div>
                             </div>
@@ -332,9 +319,8 @@
                             <div class="d-flex flex-column">
                                 @foreach ($styles as $k => $item_style)
                                     <div class="mb-1">
-                                        <input id="input-filter-1" class="input-filter style_id" type="checkbox"
-                                            value="{{ $item_style->style }}">
-                                        <label for="input-filter-1" class="title-input-filter">{{ $item_style->style }}
+                                        <input id="input-filter-1" class="input-filter input-filter-mobile-1 style_id" type="checkbox" value="{{$item_style->style}}">
+                                        <label for="input-filter-1" class="title-input-filter">{{$item_style->style}}
                                         </label>
                                     </div>
                                 @endforeach
@@ -356,9 +342,8 @@
                             <div class="d-flex flex-column">
                                 @foreach ($colors as $k => $item_color)
                                     <div class="mb-1">
-                                        <input id="input-filter-2 " class="input-filter color_id" type="checkbox"
-                                            value="{{ $item_color->name }}">
-                                        <label for="input-filter-2" class="title-input-filter">{{ $item_color->name }}
+                                        <input id="input-filter-2 " class="input-filter input-filter-mobile-2 color_id" type="checkbox" value="{{$item_color->name}}">
+                                        <label for="input-filter-2" class="title-input-filter">{{$item_color->name}}
                                         </label>
                                     </div>
                                 @endforeach
@@ -379,26 +364,22 @@
                         <div class="accordion-body body-item-filter">
                             <div class="d-flex flex-column">
                                 <div class="mb-1">
-                                    <input id="input-filter-3" class="input-filter price_id" type="checkbox"
-                                        value="1">
+                                    <input id="input-filter-3" class="input-filter input-filter-mobile-3 price_id" type="checkbox" value="1">
                                     <label for="input-filter-3" class="title-input-filter">0đ - 300.000đ
                                     </label>
                                 </div>
                                 <div class="mb-1">
-                                    <input id="input-filter-4" class="input-filter price_id" type="checkbox"
-                                        value="2">
+                                    <input id="input-filter-4" class="input-filter input-filter-mobile-3 price_id" type="checkbox" value="2">
                                     <label for="input-filter-4" class="title-input-filter">300.000đ - 600.000đ
                                     </label>
                                 </div>
                                 <div class="mb-1">
-                                    <input id="input-filter-5" class="input-filter price_id" type="checkbox"
-                                        value="3">
+                                    <input id="input-filter-5" class="input-filter input-filter-mobile-3 price_id" type="checkbox" value="3">
                                     <label for="input-filter-5" class="title-input-filter">600.000đ - 1.000.000đ
                                     </label>
                                 </div>
                                 <div class="mb-1">
-                                    <input id="input-filter-6" class="input-filter price_id" type="checkbox"
-                                        value="4">
+                                    <input id="input-filter-6" class="input-filter input-filter-mobile-3 price_id" type="checkbox" value="4">
                                     <label for="input-filter-6" class="title-input-filter">1.000.000đ - 3.000.000đ
                                     </label>
                                 </div>
