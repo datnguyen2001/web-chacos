@@ -14,7 +14,7 @@
                         <span class="stepper__title">Giỏ hàng</span>
                     </li>
                     <li class="stepper__item">
-                        <span class="stepper__title">Mua hàng</span>
+                        <span class="stepper__title">Thủ tục thanh toán</span>
                     </li>
                     <li class="stepper__item">
                         <span class="stepper__title">Hoàn thành</span>
@@ -30,7 +30,7 @@
             <div class="cart-empty">
                 <div id="cart-items-spinner" class="text-center mt-3">
                     <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                        <span class="visually-hidden">Đang tải...</span>
                     </div>
                 </div>
                 <div class="cart-content">
@@ -44,7 +44,7 @@
             </a>
             <div id="cart-total-spinner" class="w-100 text-center my-3">
                 <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                    <span class="visually-hidden">Đang tải...</span>
                 </div>
             </div>
             <div class="cart-orders-total-box cart-content">

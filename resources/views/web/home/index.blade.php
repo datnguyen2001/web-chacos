@@ -4,7 +4,7 @@
 @section('style_page')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
     <style>
-        .swiper-slide-around{
+        .swiper-slide-around {
             height: auto;
         }
     </style>
@@ -308,12 +308,12 @@
     {{-- BOX AROUND --}}
 
     <div class="box-describe" style="{{ !$box_around ? 'margin-top: 6rem' : '' }}">
-        <p class="title-describe-footer">Chaco Outdoor Sandals & Flips</p>
-        <p class="content-describe-footer">Get ready for water, trail, and everything in between with Chaco sandals and
-            flips. Our hiking sandals provide function and support for all your outdoor adventures. Plus, our sport
-            sandals
-            come in a variety of styles, colors, and fits, so you can find the perfect footwear for any occasion. Power
-            your next adventure with sandals, flip flops, and shoes built to perform in style.</p>
+        <p class="title-describe-footer">Dép & dép xỏ ngón ngoài trời Chaco</p>
+        <p class="content-describe-footer">Hãy sẵn sàng dưới nước, đường mòn và mọi thứ với dép Chaco và
+            lật. Dép đi bộ đường dài của chúng tôi cung cấp chức năng và hỗ trợ cho mọi chuyến phiêu lưu ngoài trời của bạn. Ngoài ra, môn thể thao của chúng tôi
+            Dép xăng đan
+            có nhiều kiểu dáng, màu sắc và độ vừa vặn để bạn có thể tìm thấy đôi giày hoàn hảo cho bất kỳ dịp nào. Quyền lực
+            cuộc phiêu lưu tiếp theo của bạn với dép xăng đan, dép xỏ ngón và giày được thiết kế để thể hiện phong cách.</p>
     </div>
 
     {{-- BOX QC --}}

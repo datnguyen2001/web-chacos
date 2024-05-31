@@ -37,10 +37,10 @@
                         </div>
                         <div class="content-info-reg">
                             <div class="col-left-info">
-                                <label class="title-lable-info" for="first_name">* First Name</label>
+                                <label class="title-lable-info" for="first_name">* Tên</label>
                                 <input type="text" class="input-value-reg" id="first_name" name="first_name"
                                     value="{{ old('first_name', Auth::user()->first_name) }}">
-                                <label class="title-lable-info" for="last_name">* Last Name</label>
+                                <label class="title-lable-info" for="last_name">* Họ</label>
                                 <input type="text" class="input-value-reg" id="last_name" name="last_name"
                                     value="{{ old('last_name', Auth::user()->last_name) }}">
                             </div>

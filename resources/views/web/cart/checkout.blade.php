@@ -38,7 +38,7 @@
                     </a>
                     <div class="spc-header-right">
                         <div class="spc-secure-checkout"><i class="fa-solid fa-lock"></i><span class="spc-badge-text"
-                                tabindex="0">Secure Checkout</span></div>
+                                tabindex="0">Thanh toán an toàn</span></div>
                     </div>
                 </header>
                 <div class="wrapper option-1 option-1-1 " id="checkout-bs-nav">
@@ -282,25 +282,24 @@
 
                             <div class="cart-banner-box">
                                 <h2>Cần giúp đỡ?</h2>
-                                <p><span class="visually-hidden">Call,</span> 1-888-211-1908</p>
+                                <p><span class="visually-hidden">Gọi,</span> 1-888-211-1908</p>
                                 <p>
-                                    <span aria-hidden="true">Mon-Fri 8am-9pm ET, Sat–Sun 9am-6pm ET</span>
-                                    <span class="visually-hidden">Monday through Friday from 8am to 9pm eastern time,
-                                        and Saturday through Sunday from 9am to 6pm</span>
+                                    <span aria-hidden="true">Thứ Hai-Thứ Sáu 8 giờ sáng-9 giờ tối theo giờ ET, Thứ
+                                        Bảy–Chủ Nhật 9 giờ sáng-6 giờ chiều theo giờ ET</span>
+                                    <span class="visually-hidden">Thứ Hai đến Thứ Sáu, từ 8 giờ sáng đến 9 giờ tối theo
+                                        giờ miền Đông,
+                                        và Thứ Bảy đến Chủ Nhật từ 9 giờ sáng đến 6 giờ chiều</span>
                                 </p>
                                 <div class="action-hold">
                                     <ul>
                                         <li>
-                                            <a data-pipe="|" href="" target="_blank">Shipping
-                                                Information</a>
+                                            <a data-pipe="|" href="" target="_blank">Thông tin vận chuyển</a>
                                         </li>
                                         <li>
-                                            <a data-pipe="|" href="" target="_blank"> Free
-                                                Returns</a>
+                                            <a data-pipe="|" href="" target="_blank"> Trả lại miễn phí</a>
                                         </li>
                                         <li>
-                                            <a href="" target="_blank">Privacy
-                                                Policy</a>
+                                            <a href="" target="_blank">Chính sách bảo mật</a>
                                         </li>
                                     </ul>
                                 </div>

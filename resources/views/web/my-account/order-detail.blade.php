@@ -167,7 +167,11 @@
                                         <!-- text -->
                                         <h4 class="mb-3 mb-md-0">Trạng thái đơn hàng</h4>
                                     </div>
-                                    @if ($order->delivery_status != OrderDeliveryStatus::CANCEL && !$order->cancelled_at && !$order->cancelled_reason && $order->delivery_status < OrderDeliveryStatus::DELIVERED)
+                                    @if (
+                                        $order->delivery_status != OrderDeliveryStatus::CANCEL &&
+                                            !$order->cancelled_at &&
+                                            !$order->cancelled_reason &&
+                                            $order->delivery_status < OrderDeliveryStatus::DELIVERED)
                                         <div>
                                             <!-- button -->
                                             <a type="button" data-bs-toggle="modal" data-bs-target="#cancelOrderModal"

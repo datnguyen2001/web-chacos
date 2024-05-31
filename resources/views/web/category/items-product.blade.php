@@ -4,14 +4,14 @@
             <div class="item-sp-filter">
                 <div class="line-add-cart">
                     <img src="{{ asset('assets/image/add-to-cart.png') }}" alt="">
-                    <span class="title-quick">Quick Add</span>
+                    <span class="title-quick">Thêm nhanh</span>
                 </div>
                 <div class="position-relative img-big-sp">
                     {{--                        <span class="tag-hot">NEW ARRIVAL</span> --}}
                     <img src="{{ asset($pro->image) }}" class="w-100 img-big-option">
                     <div class="box-wishlist">
                         <div class="item-wishlist">
-                            Wishlist
+                            Danh sách yêu thích
                         </div>
                     </div>
                     <img
@@ -20,7 +20,7 @@
                         onmouseover="toggleWishlist(this)" onmouseout="hideWishlist(this)">
                 </div>
                 <div>
-                    <a class="link-color">{{ count($pro->color) }} colors</a>
+                    <a class="link-color">{{ count($pro->color) }} màu sắc</a>
                     <div class="box-option-color-style">
                         <div class="swiper swiperOptionColor">
                             <div class="swiper-wrapper">
