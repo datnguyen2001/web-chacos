@@ -322,6 +322,11 @@
 .content-slide-technilogy {
     font-size: 14px;
     color: #303030;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .title-slide-like {

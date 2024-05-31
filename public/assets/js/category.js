@@ -148,8 +148,8 @@ document.querySelectorAll(".swiper-slide").forEach(function (swiperSlide) {
 });
 
 $(document).ready(function() {
-    $('.input-filter').change(function() {
-        $('.input-filter').not(this).prop('checked', false);
+    $('.input-filter-0').change(function() {
+        $('.input-filter-0').not(this).prop('checked', false);
     });
     $('.input-filter-1').change(function() {
         $('.input-filter-1').not(this).prop('checked', false);
@@ -160,6 +160,20 @@ $(document).ready(function() {
     $('.input-filter-3').change(function() {
         $('.input-filter-3').not(this).prop('checked', false);
     });
+
+    $('.input-filter-mobile-0').change(function() {
+        $('.input-filter-mobile-0').not(this).prop('checked', false);
+    });
+    $('.input-filter-mobile-1').change(function() {
+        $('.input-filter-mobile-1').not(this).prop('checked', false);
+    });
+    $('.input-filter-mobile-2').change(function() {
+        $('.input-filter-mobile-2').not(this).prop('checked', false);
+    });
+    $('.input-filter-mobile-3').change(function() {
+        $('.input-filter-mobile-3').not(this).prop('checked', false);
+    });
+
     let data = {};
     let url = window.location.origin + '/bo-loc';
 
@@ -340,6 +354,8 @@ $(document).ready(function() {
             success: function (data) {
                 if (data.status) {
                     $(".box_sp_filter").html(data.prop);
+                    $('.count-cate-sp').html(data.count_data+" SẢN PHẨM");
+                    $('.count-filter-sp').html("( "+data.count_data+" sản phẩm )");
                 }
             }
         })

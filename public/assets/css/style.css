@@ -157,7 +157,7 @@ a{
 }
 .box-active-search-header {
   display: none;
-  position: sticky;
+  position: absolute;
   top: 50px;
   left: 58%;
   background-color: white;

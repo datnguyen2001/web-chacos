@@ -70,6 +70,7 @@ Route::get('tim-kiem', [CategoryController::class, 'search'])->name('search');
 Route::get('key-search', [CategoryController::class, 'keySearch'])->name('key-search');
 Route::post('save-review', [ProductController::class, 'saveReview'])->name('save-review');
 Route::get('get-review', [ProductController::class, 'getReview'])->name('get-review');
+Route::get('technology/{slug?}', [CategoryController::class, 'technology'])->name('technology');
 
 //CART HANDLE
 Route::get('cart', [CartController::class, 'getCartData'])->name('get.cart.data');

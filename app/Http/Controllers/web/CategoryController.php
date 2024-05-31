@@ -9,6 +9,7 @@ use App\Models\ProductColorModel;
 use App\Models\ProductModel;
 use App\Models\ProductSizeModel;
 use App\Models\ReviewModel;
+use App\Models\TechnologyModel;
 use App\Models\WishListsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,14 @@ class CategoryController extends Controller
             $hot->wish = WishListsModel::where('user_id',Auth::id())->where('product_id',$hot->id)->first();
         }
         $productIds = ProductModel::where('category_id', $category->id)->where('display', 1)->pluck('id')->toArray();
-        $colors = ProductColorModel::whereIn('product_id',$productIds)->distinct('name')->get();
-        $styles = ProductModel::where('category_id', $category->id)->where('display', 1)->distinct('style')->get();
+        $colors = ProductColorModel::whereIn('product_id', $productIds)
+            ->select('name')
+            ->distinct()
+            ->get();
+        $styles = ProductModel::where('category_id', $category->id)
+            ->where('display', 1)
+            ->distinct()
+            ->get('style');
         $color_ids = ProductColorModel::whereIn('product_id',$productIds)->pluck('id')->toArray();
         $sizes = ProductSizeModel::whereIn('color_id', $color_ids)
             ->whereIn('id', function ($query) {
@@ -52,7 +59,7 @@ class CategoryController extends Controller
     public function search(Request $request)
     {
         $key_search = $request->get('key_search');
-        $data = ProductModel::where('name','like','%' . $request->get('key_search').'%')->paginate(20);
+        $data = ProductModel::where('name','like','%' . $request->get('key_search').'%')->where('display', 1)->paginate(20);
         foreach ($data as $items){
             $items->color = ProductColorModel::where('product_id',$items->id)->get();
             $items->wish = WishListsModel::where('user_id',Auth::id())->where('product_id',$items->id)->first();
@@ -62,8 +69,15 @@ class CategoryController extends Controller
         foreach ($product as $item){
             $item->color = ProductColorModel::where('product_id',$item->id)->first();
         }
-        $colors = ProductColorModel::distinct('name')->get();
-        $styles = ProductModel::where('display', 1)->distinct('style')->get();
+        $productIds = ProductModel::where('name','like','%' . $request->get('key_search').'%')->where('display', 1)->pluck('id')->toArray();
+        $colors = ProductColorModel::whereIn('product_id', $productIds)
+            ->select('name')
+            ->distinct()
+            ->get();
+        $styles = ProductModel::where('name','like','%' . $request->get('key_search').'%')
+            ->where('display', 1)
+            ->distinct()
+            ->get('style');
         $color_ids = ProductColorModel::pluck('id')->toArray();
         $sizes = ProductSizeModel::whereIn('color_id', $color_ids)
             ->whereIn('id', function ($query) {
@@ -112,43 +126,28 @@ class CategoryController extends Controller
             }
 
             if ($request->has('price_id')) {
-                if ($request->price_id == 1) {
-                    $query->whereHas('productColors', function($q) {
-                        $q->whereIn('product_id', function($subquery) {
-                            $subquery->selectRaw('MIN(id) as id')
-                                ->from('product_color')
-                                ->groupBy('product_id')
-                                ->whereBetween('price', [0, 300000]);
-                        });
-                    });
-                }elseif ($request->price_id == 2) {
-                    $query->whereHas('productColors', function($q) {
-                        $q->whereIn('product_id', function($subquery) {
-                            $subquery->selectRaw('MIN(id) as id')
-                                ->from('product_color')
-                                ->groupBy('product_id')
-                                ->whereBetween('price', [300000, 600000]);
-                        });
-                    });
-                }elseif ($request->price_id == 3) {
-                    $query->whereHas('productColors', function($q) {
-                        $q->whereIn('product_id', function($subquery) {
-                            $subquery->selectRaw('MIN(id) as id')
-                                ->from('product_color')
-                                ->groupBy('product_id')
-                                ->whereBetween('price', [600000, 1000000]);
-                        });
-                    });
-                }else{
-                    $query->whereHas('productColors', function($q) {
-                        $q->whereIn('product_id', function($subquery) {
-                            $subquery->selectRaw('MIN(id) as id')
-                                ->from('product_color')
-                                ->groupBy('product_id')
-                                ->whereBetween('price', [1000000, 3000000]);
+                $priceRanges = [
+                    1 => [0, 300000],
+                    2 => [300000, 600000],
+                    3 => [600000, 1000000],
+                    4 => [1000000, 3000000]
+                ];
+
+                $selectedRange = $priceRanges[$request->price_id] ?? null;
+                if ($selectedRange) {
+                    $query->whereHas('productColors', function ($q) use ($selectedRange) {
+                        $q->where(function ($query) use ($selectedRange) {
+                            $query->where(function ($query) use ($selectedRange) {
+                                $query->where('promotional_price', '>', 0)
+                                    ->whereBetween('promotional_price', $selectedRange);
+                            })->orWhere(function ($query) use ($selectedRange) {
+                                $query->where('promotional_price', 0)
+                                    ->whereBetween('price', $selectedRange);
+                            });
                         });
                     });
                 }
+
             }
             if ($request->has('sort')) {
                 if ($request->sort == 1) {
@@ -182,7 +181,7 @@ class CategoryController extends Controller
             }
 
             $view = view('web.category.items-product', compact('product'))->render();
-            return response()->json(['status' => true, 'prop' => $view]);
+            return response()->json(['status' => true, 'prop' => $view,'count_data'=>count($product)]);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -199,5 +198,11 @@ class CategoryController extends Controller
             $product->count_star = count($star);
         }
         return $star;
+    }
+
+    public function technology($slug)
+    {
+        $technology = TechnologyModel::where('slug', $slug)->first();
+        return view('web.technology.index',compact('technology'));
     }
 }

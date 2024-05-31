@@ -74,7 +74,7 @@
                     {{--                            <p class="content-description-sp">3.0 MM lug performance outsole for no slip traction.</p> --}}
                     {{--                        </div> --}}
                     {{--                    </div> --}}
-                    <div id="productDescription" class="accordion-collapse collapse"
+                    <div id="productDescription" class="accordion-collapse collapse show"
                         data-bs-parent="#accordionExampleProduct">
                         <div class="accordion-body mb-3 mt-3 body-product-description">
                             <div class="description-content">
@@ -94,40 +94,21 @@
                     <div id="collapsetechnology" class="accordion-collapse collapse"
                         data-bs-parent="#accordionExampleProduct">
                         <div class="accordion-body mb-3">
+                            @if(isset($technology) && count($technology)>0)
                             <div class="swiper swiperTechnilogy">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <img src="{{ asset('assets/image/adjustment.jpg') }}" class="w-100">
-                                        <p class="title-slide-technilogy">GET THE PERFECT FIT </p>
-                                        <p class="content-slide-technilogy">Upgraded rubber compound, Upgraded rubber
-                                            compound,
-                                            Upgraded rubber compound</p>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="{{ asset('assets/image/adjustment.jpg') }}" class="w-100">
-                                        <p class="title-slide-technilogy">GET THE PERFECT FIT </p>
-                                        <p class="content-slide-technilogy">Upgraded rubber compound, Upgraded rubber
-                                            compound,
-                                            Upgraded rubber compound</p>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="{{ asset('assets/image/adjustment.jpg') }}" class="w-100">
-                                        <p class="title-slide-technilogy">GET THE PERFECT FIT </p>
-                                        <p class="content-slide-technilogy">Upgraded rubber compound, Upgraded rubber
-                                            compound,
-                                            Upgraded rubber compound</p>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="{{ asset('assets/image/adjustment.jpg') }}" class="w-100">
-                                        <p class="title-slide-technilogy">GET THE PERFECT FIT </p>
-                                        <p class="content-slide-technilogy">Upgraded rubber compound, Upgraded rubber
-                                            compound,
-                                            Upgraded rubber compound</p>
-                                    </div>
+                                    @foreach($technology as $tech)
+                                    <a href="{{route('technology',$tech->slug)}}" class="swiper-slide mt-2">
+                                        <img src="{{ asset($tech->image) }}" class="w-100">
+                                        <p class="title-slide-technilogy">{{$tech->title}}</p>
+                                        <p class="content-slide-technilogy">{{$tech->describe}}</p>
+                                    </a>
+                                 @endforeach
                                 </div>
                                 <div class="swiper-button-next"></div>
                                 <div class="swiper-button-prev"></div>
                             </div>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -144,7 +125,7 @@
                             <div class="swiper swiperLike">
                                 <div class="swiper-wrapper">
                                     @foreach ($product_more as $more)
-                                        <div class="swiper-slide">
+                                        <div class="swiper-slide mt-2">
                                             <img src="{{ asset($more->image) }}" class="w-100">
                                             <p class="title-slide-like">{{ $more->name }}</p>
                                             <div class="d-flex mt-1">
