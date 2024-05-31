@@ -10,6 +10,7 @@ use \App\Http\Controllers\admin\ProductController;
 use \App\Http\Controllers\admin\InforShopController;
 use App\Http\Controllers\admin\MenuController;
 use App\Http\Controllers\admin\OrderController;
+use \App\Http\Controllers\admin\TechnologyController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/dologin', [LoginController::class, 'doLogin'])->name('doLogin');
@@ -108,6 +109,16 @@ Route::middleware('check-admin-auth')->group(function () {
         Route::get('index/{type}', [InforShopController::class, 'index'])->name('infor-shop.index');
         Route::post('update/{type}', [InforShopController::class, 'save'])->name('infor-shop.update');
     });
+
+    Route::prefix('technology')->name('technology.')->group(function () {
+        Route::get('', [TechnologyController::class, 'index'])->name('index');
+        Route::get('create', [TechnologyController::class, 'create'])->name('create');
+        Route::post('store', [TechnologyController::class, 'store'])->name('store');
+        Route::get('delete/{id}', [TechnologyController::class, 'delete']);
+        Route::get('edit/{id}', [TechnologyController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TechnologyController::class, 'update'])->name('update');
+    });
+
 });
 
 Route::post('ckeditor/upload', [DashboardController::class, 'upload'])->name('ckeditor.image-upload');

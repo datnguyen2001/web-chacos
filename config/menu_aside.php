@@ -98,6 +98,14 @@ return [
             'number' => 5
         ],
         [
+            'name' => 'technology',
+            'title' => 'Technology',
+            'icon' => 'bi bi-view-list',
+            'route' => 'admin.technology.index',
+            'submenu' => [],
+            'number' => 6
+        ],
+        [
             'name' => 'coupon',
             'title' => 'Coupon',
             'icon' => 'bi bi-graph-down-arrow',

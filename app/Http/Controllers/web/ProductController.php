@@ -9,6 +9,7 @@ use App\Models\ProductModel;
 use App\Models\ProductSizeModel;
 use App\Models\ReviewImageModel;
 use App\Models\ReviewModel;
+use App\Models\TechnologyModel;
 use App\Models\WishListsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class ProductController extends Controller
         $product_color = ProductColorModel::where('product_id',$product->id)->get();
         $product_size = ProductSizeModel::where('color_id',$product_color[0]->id)->get();
         $product_wish = WishListsModel::where('user_id',Auth::id())->where('product_id',$product->id)->first();
-        $product_more = ProductModel::where('slug',$slug)->where('id','!=',$product->id)->inRandomOrder()->take(8)->get();
+        $product_more = ProductModel::where('category_id',$product->category_id)->where('id','!=',$product->id)->inRandomOrder()->take(8)->get();
         foreach ($product_more as $more){
             $more->color = ProductColorModel::where('product_id',$more->id)->first();
         }
@@ -53,9 +54,10 @@ class ProductController extends Controller
         if ($star_one > 0){
             $percent_1 = round(($star_one / count($star)) * 100,0);
         }
+        $technology = TechnologyModel::where('category_id',$product->category_id)->get();
         return view('web.product.index',compact('product','product_image','product_color','product_size',
         'product_wish','product_more','star_five','star_four','star_three','star_two','star_one','percent_5','percent_4',
-            'percent_3','percent_2','percent_1','star'));
+            'percent_3','percent_2','percent_1','star','technology'));
     }
 
     public function selectColor(Request $request)

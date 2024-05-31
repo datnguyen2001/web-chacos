@@ -47,7 +47,7 @@
                 <div class="position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSale"
                     aria-controls="offcanvasRight">
                     <img src="{{ asset('assets/image/Icon.png') }}" class="icon-header">
-                    <div class="circle">1</div>
+                    <div class="circle">{{count(@$today_offer)}}</div>
                 </div>
             </div>
         </div>
@@ -166,11 +166,13 @@
         data-bs-target="#offcanvasMenu" aria-controls="offcanvasExample">
     <img src="{{ asset('assets/image/search-sm.png') }}" class="icon-search-header-mobile"
         data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearchRight" aria-controls="offcanvasSearchRight">
-    <img src="{{ asset('assets/image/logo.png') }}" class="img-logo">
+    <a href="{{route('home')}}">
+        <img src="{{ asset('assets/image/logo.png') }}" class="img-logo">
+    </a>
     <div class="position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSale"
         aria-controls="offcanvasRight">
         <img src="{{ asset('assets/image/flag.svg') }}" class="icon-header">
-        <div class="circle-mobile">1</div>
+        <div class="circle-mobile">{{count(@$today_offer)}}</div>
     </div>
     <img src="{{ asset('assets/image/shopping-cart.png') }}" class="icon-cart" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRightCart" aria-controls="offcanvasRightCart">
