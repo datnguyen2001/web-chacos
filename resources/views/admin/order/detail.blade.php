@@ -2,7 +2,7 @@
     use App\Enums\OrderDeliveryStatus;
 @endphp
 @extends('admin.layout.index')
-@section('title', 'Order ' . $tracking_code)
+@section('title', 'Đơn hàng ' . $tracking_code)
 
 @section('style')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />

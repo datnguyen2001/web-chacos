@@ -61,12 +61,12 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="add-category-name" class="form-label">Name</label>
+                                <label for="add-category-name" class="form-label">Tên</label>
                                 <input type="text" class="form-control" id="add-category-name" name="name" required
                                     value="{{ old('name') }}">
                             </div>
                             <div class="mb-3">
-                                <label for="add-category-slug" class="form-label">Url</label>
+                                <label for="add-category-slug" class="form-label">Đường dẫn</label>
                                 <input type="text" class="form-control" id="add-category-slug" name="url"
                                     value="{{ old('url') }}">
                             </div>
@@ -97,13 +97,13 @@
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="edit-category-name-{{ $cate->id }}" class="form-label">Name</label>
+                                    <label for="edit-category-name-{{ $cate->id }}" class="form-label">Tên</label>
                                     <input type="text" class="form-control edit-category-name"
                                         id="edit-category-name-{{ $cate->id }}" name="name" required
                                         value="{{ old('name', $cate->name) }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edit-category-slug-{{ $cate->id }}" class="form-label">Url</label>
+                                    <label for="edit-category-slug-{{ $cate->id }}" class="form-label">Đường dẫn</label>
                                     <input type="text" class="form-control edit-category-slug"
                                         id="edit-category-slug-{{ $cate->id }}" name="url"
                                         value="{{ old('url', $cate->url) }}">

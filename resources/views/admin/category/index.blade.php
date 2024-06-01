@@ -1,5 +1,5 @@
 @extends('admin.layout.index')
-@section('title', 'Quản lý Category')
+@section('title', 'Quản lý Danh mục')
 
 @section('style')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
@@ -123,8 +123,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                     </form>
                 </div>
@@ -309,7 +309,7 @@
     <script>
         function deleteCategory(id) {
             var categoryTr = $('#category-' + id);
-            if (confirm("Are you sure you want to delete this category?")) {
+            if (confirm("Bạn có muốn xoá danh mục này không?")) {
                 $.ajax({
                     url: '{{ route('admin.category.destroy', ':id') }}'.replace(':id', id),
                     type: 'DELETE',

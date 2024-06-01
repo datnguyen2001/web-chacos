@@ -1,5 +1,5 @@
 @extends('admin.layout.index')
-@section('title', 'Edit coupon - ' . $coupon->code)
+@section('title', 'Chỉnh sửa mã giảm giá - ' . $coupon->code)
 
 @section('style')
     <link rel="stylesheet"

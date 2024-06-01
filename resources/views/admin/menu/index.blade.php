@@ -210,7 +210,7 @@
     <script>
         function deleteMenu(id) {
             var menuTr = $('#menu-' + id);
-            if (confirm("Are you sure you want to delete this menu?")) {
+            if (confirm("Bạn có muốn xoá menu này không")) {
                 $.ajax({
                     url: '{{ route('admin.menu.destroy', ':id') }}'.replace(':id', id),
                     type: 'DELETE',

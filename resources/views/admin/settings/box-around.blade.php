@@ -1,5 +1,5 @@
 @extends('admin.layout.index')
-@section('title', 'Quản lý Adventurous')
+@section('title', 'Quản lý Box around')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
