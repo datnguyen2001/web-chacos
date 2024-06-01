@@ -31,7 +31,7 @@
         <div class="row m-0">
             <div class="col-lg-3 p-1">
                 <input type="text" name="variant[{{$count}}][data][0][size]" class="form-control size"
-                       placeholder="size" required>
+                       placeholder="Kích cỡ" required>
             </div>
             <div class="col-lg-3 p-1">
                 <input name="variant[{{$count}}][data][0][quantity]" type="text" class="form-control quantity"

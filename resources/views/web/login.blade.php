@@ -29,7 +29,7 @@
                         <input class="input-checkbox" type="checkbox" name="remember" id="dwfrm_login_rememberme"
                             value="true" {{ old('remember') ? 'checked' : '' }}>
                         <label for="dwfrm_login_rememberme" class="checkbox-label-login ">
-                            Remember Me
+                            Duy trì đăng nhập
                         </label>
                     </div>
                     <a href="#" class="link-forgot-pass">Quên mật khẩu?</a>

@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="isActive" class="form-label me-3">Is active?</label>
+                    <label for="isActive" class="form-label me-3">Hiển thị?</label>
                     <label class="switch">
                         <input type="checkbox" id="isActive" name="isActive" value="true"
                             {{ $isActive ? 'checked' : '' }}>

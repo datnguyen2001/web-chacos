@@ -1,25 +1,26 @@
 <div class="box-header">
     <div class="header-top">
         <div class="box-big-header-top">
-            <a href="{{ route('easy-free-returns') }}" class="title-header-top title-header-left">Easy & Free Returns</a>
+            <a href="{{ route('easy-free-returns') }}" class="title-header-top title-header-left">Trả lại dễ dàng và miễn
+                phí</a>
             <div class="box-item-header-top">
-                <span class="title-header-top box-help-header position-relative">Help</span>
+                <span class="title-header-top box-help-header position-relative">Trợ giúp</span>
                 <ul class="dropdown-menu dropdown-menu-help">
-                    <li><a class="dropdown-item-help dropdown-item" href="#"><img
+                    <li><a class="dropdown-item-help dropdown-item" href="{{ route('order-history') }}"><img
                                 src="{{ asset('assets/image/Icon-clock.png') }}" class="mr-2"><span
-                                style="padding-left: 5px;">ORDER STATUS</span></a></li>
+                                style="padding-left: 5px;">Trạng thái đơn hàng</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
                                 src="{{ asset('assets/image/Icon-chat-new.png') }}" class="mr-2"><span
                                 style="padding-left: 5px;">CHAT</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
                                 src="{{ asset('assets/image/Icon-service-new.png') }}" class="mr-2"><span
-                                style="padding-left: 5px;">CUSTOMER SERVICE</span></a></li>
+                                style="padding-left: 5px;">Dịch vụ khách hàng</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="{{ route('easy-free-returns') }}"><img
                                 src="{{ asset('assets/image/Icon-return-new.png') }}" class="mr-2"><span
-                                style="padding-left: 5px;">EXCHANGE & RETURN</span></a></li>
+                                style="padding-left: 5px;">ĐỔI & TRẢ LẠI</span></a></li>
                     <li><a class="dropdown-item-help dropdown-item" href="#"><img
                                 src="{{ asset('assets/image/Icon-truck-new.png') }}" class="mr-2"><span
-                                style="padding-left: 5px;">SHIPPING INFO</span></a></li>
+                                style="padding-left: 5px;">THÔNG TIN VẬN CHUYỂN</span></a></li>
                     <li>
                         <a class="dropdown-item-help dropdown-item d-flex align-items-baseline"
                             href="{{ Auth::check() ? route('my-account') : route('login') }}">
@@ -37,7 +38,7 @@
                                 </g>
                             </svg>
                             <span
-                                style="padding-left: 5px;">{{ Auth::check() ? 'MANAGE ACCOUNT' : 'ACCOUNT SIGN IN' }}</span>
+                                style="padding-left: 5px;">{{ Auth::check() ? 'QUẢN LÝ TÀI KHOẢN' : 'ĐĂNG NHẬP' }}</span>
                         </a>
                     </li>
                 </ul>
@@ -56,8 +57,14 @@
     <div class="header-center">
         <div class="box-big-header-center">
             @php
-                function renderMenuSection($categories, $menuName, $menuBelong)
+                function renderMenuSection($categories, $menuName, $menuBelong, $isDesktop = true)
                 {
+                    if ($isDesktop) {
+                        $itemClass = 'item-menu-header-col text-black';
+                    } else {
+                        $itemClass = 'item-menu-1-mobile';
+                    }
+
                     foreach ($categories as $cate) {
                         $menuBelongs = array_merge(
                             explode(',', $cate->menu_belong),
@@ -69,17 +76,13 @@
                             ($isBelong || in_array($menuBelong, explode(',', $cate->menu_belong))) &&
                             $cate->parent_id == 0
                         ) {
-                            echo '<div class="item-menu-header-col">';
-                            echo '<p class="title-big-menu-item">' . $cate->name . '</p>';
-                            echo '<div class="d-flex flex-column">';
-                            foreach ($cate->children as $child) {
-                                echo '<a href="' .
-                                    route('category', ['slug' => $child->slug]) .
-                                    '" class="name-small-item-menu">' .
-                                    $child->name .
-                                    '</a>';
-                            }
-                            echo '</div></div>';
+                            echo '<a href="' .
+                                route('category', ['slug' => $cate->slug]) .
+                                '" class="' .
+                                $itemClass .
+                                '">' .
+                                $cate->name .
+                                '</a>';
                         }
                     }
                 }
@@ -104,12 +107,11 @@
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div class="position-relative box-search-header">
-                    <input type="text" class="input-search-header" id="searchInputs" placeholder="Search">
+                    <input type="text" class="input-search-header" id="searchInputs" placeholder="Tìm kiếm">
                     <img src="{{ asset('assets/image/search-sm.png') }}" class="btn-search-header">
                 </div>
-                <img src="{{ asset('assets/image/shopping-cart.png') }}" class="icon-cart"
-                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightCart"
-                    aria-controls="offcanvasRightCart">
+                <img src="{{ asset('assets/image/shopping-cart.png') }}" class="icon-cart" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRightCart" aria-controls="offcanvasRightCart">
             </div>
         </div>
     </div>
@@ -117,7 +119,7 @@
     @foreach ($coupons as $coupon)
         <div class="header-bottom header-bottom-active">
             <span class="title-header-bottom">{{ $coupon->details }}</span>
-            <a href="#" class="title-link-header-bottom">Use Code: <span
+            <a href="#" class="title-link-header-bottom">Sử dụng mã giảm giá: <span
                     class="name-code">{{ $coupon->code }}</span> »</a>
         </div>
     @endforeach
@@ -145,12 +147,12 @@
 
         </div>
         <div class="box-content-search-header-right">
-            <p class="title-suggest-search">Recent Searches</p>
+            <p class="title-suggest-search">Tìm kiếm gần đây</p>
             <div class="d-flex flex-column mb-3" id="searchSuggestions">
 
             </div>
             @if (count($key_search) > 0)
-                <p class="title-suggest-search">Popular Searches</p>
+                <p class="title-suggest-search">Tìm kiếm phổ biến</p>
                 <div class="d-flex flex-column mb-3">
                     @foreach ($key_search as $key)
                         <a href="{{ $key->url }}" class="item-search-suggest">{{ $key->name }}</a>
@@ -179,27 +181,28 @@
 </div>
 
 <!-- model sale -->
-<div class="offcanvas offcanvas-end offcanvasSale" tabindex="-1" id="offcanvasSale" aria-labelledby="offcanvasSaleLabel">
+<div class="offcanvas offcanvas-end offcanvasSale" tabindex="-1" id="offcanvasSale"
+    aria-labelledby="offcanvasSaleLabel">
     <div class="offcanvas-body">
         <button type="button" class="btn-close" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSale"
             aria-controls="offcanvasSale" aria-label="Close"></button>
         <div class="box-sale-style mt-0">
-            <div style="color: black;font-weight: bold;text-align: center;font-size: 18px;margin: 12px 0;">Today's
-                Offers
+            <div style="color: black;font-weight: bold;text-align: center;font-size: 18px;margin: 12px 0;">
+                Đề nghị hôm nay
             </div>
-            <div style="color: black;text-align: center;font-size: 14px;margin-bottom: 14px;">Click offer codes below
-                to
-                apply in checkout.</div>
-            @if(count($today_offer)>0)
-            @foreach($today_offer as $today)
-            <a href="{{$today->url}}" class="item-sale-style">
-                <img src="{{ asset($today->image) }}" class="w-100">
-                <div class="line-sale-style">
-                   {{$today->title}}
-                </div>
-            </a>
-            @endforeach
-                @endif
+            <div style="color: black;text-align: center;font-size: 14px;margin-bottom: 14px;">
+                Nhấp vào mã ưu đãi bên dưới để áp dụng khi thanh toán
+            </div>
+            @if (count($today_offer) > 0)
+                @foreach ($today_offer as $today)
+                    <a href="{{ $today->url }}" class="item-sale-style">
+                        <img src="{{ asset($today->image) }}" class="w-100">
+                        <div class="line-sale-style">
+                            {{ $today->title }}
+                        </div>
+                    </a>
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
@@ -209,107 +212,29 @@
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-body p-0">
         <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        NEW
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse bg-item-menu" aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample">
-
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed line-menu-1-mobile" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                    aria-expanded="false" aria-controls="flush-collapseOne">
-                                    SHOP NEW
-                                </button>
-                            </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse box-item-2-menu"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-
-                                <a href="" class="line-menu-2-mobile">SHOP MENU 1</a>
-                                <a href="" class="line-menu-2-mobile">SHOP MENU 2</a>
-
-                            </div>
+            @foreach ($menu as $key => $m)
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ $key }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse{{ $key }}" aria-expanded="false"
+                            aria-controls="collapse{{ $key }}">
+                            {{ $m->name }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ $key }}" class="accordion-collapse bg-item-menu collapse"
+                        aria-labelledby="heading{{ $key }}" data-bs-parent="#accordionExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            @php
+                                renderMenuSection($categories, $m->name, $m->id, false);
+                            @endphp
                         </div>
-
                     </div>
-                    <a href="" class="line-menu-1-mobile">SHOP NOW</a>
                 </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading2">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                        NEW 2
-                    </button>
-                </h2>
-                <div id="collapse2" class="accordion-collapse collapse bg-item-menu" aria-labelledby="heading2"
-                    data-bs-parent="#accordionExample">
-
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-heading1">
-                                <button class="accordion-button collapsed line-menu-1-mobile" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false"
-                                    aria-controls="flush-collapse1">
-                                    SHOP NEW
-                                </button>
-                            </h2>
-                            <div id="flush-collapse1" class="accordion-collapse collapse box-item-2-menu"
-                                aria-labelledby="flush-heading1" data-bs-parent="#accordionFlushExample">
-
-                                <a href="" class="line-menu-2-mobile">SHOP MENU 1</a>
-                                <a href="" class="line-menu-2-mobile">SHOP MENU 2</a>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <a href="" class="line-menu-1-mobile">SHOP NOW 2</a>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading3">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                        NEW 3
-                    </button>
-                </h2>
-                <div id="collapse3" class="accordion-collapse collapse bg-item-menu" aria-labelledby="heading3"
-                    data-bs-parent="#accordionExample">
-
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headings1">
-                                <button class="accordion-button collapsed line-menu-1-mobile" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-headings1" aria-expanded="false"
-                                    aria-controls="flush-headings1">
-                                    SHOP NEW 3
-                                </button>
-                            </h2>
-                            <div id="flush-headings1" class="accordion-collapse collapse box-item-2-menu"
-                                aria-labelledby="flush-headings1" data-bs-parent="#accordionFlushExample">
-
-                                <a href="" class="line-menu-2-mobile">SHOP MENU 1</a>
-                                <a href="" class="line-menu-2-mobile">SHOP MENU 2</a>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <a href="" class="line-menu-1-mobile">SHOP NOW 3</a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
+
 
 <!-- model search -->
 <div class="offcanvas offcanvas-end w-100 border-0" tabindex="-1" id="offcanvasSearchRight"
@@ -329,12 +254,12 @@
             style="width: 23px;margin-left: 13px;margin-right: 13px;">
     </div>
     <div class="offcanvas-body" style="padding: 24px;">
-        <p class="title-suggest-search">Recent Searches</p>
+        <p class="title-suggest-search">Tìm kiếm gần đây</p>
         <div class="d-flex flex-column mb-3" id="searchSuggestionsMobile">
 
         </div>
         @if (count($key_search) > 0)
-            <p style="font-weight: 600;color: black;margin-bottom: 10px;">Popular Searches</p>
+            <p style="font-weight: 600;color: black;margin-bottom: 10px;">Tìm kiếm phổ biến</p>
             <div class="d-flex flex-column">
                 @foreach ($key_search as $key)
                     <a href="{{ $key->url }}" class="item-search-hot">{{ $key->name }}</a>

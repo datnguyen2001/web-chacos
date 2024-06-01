@@ -9,21 +9,21 @@
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Today Offers</h1>
+            <h1 class="h3 mb-4 text-gray-800">Ưu đãi hôm nay</h1>
             <hr>
 
             <div class="d-flex justify-content-start">
                 <a type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCategory"><i
-                        class="fa-solid fa-rotate"></i>Add today offer</a>
+                        class="fa-solid fa-rotate"></i>Thêm mới ưu đãi hôm nay</a>
             </div>
 
             <table class="table" id="tableListCategories">
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">STT</th>
-                        <th scope="col" class="text-center">Title</th>
-                        <th scope="col" class="text-center">Image</th>
-                        <th scope="col" class="text-center">Url</th>
+                        <th scope="col" class="text-center">Tiêu đề</th>
+                        <th scope="col" class="text-center">Hình ảnh</th>
+                        <th scope="col" class="text-center">Đường dẫn</th>
                         <th scope="col" class="text-center"></th>
                     </tr>
                 </thead>
@@ -60,21 +60,21 @@
                     <form method="POST" action="{{ route('admin.settings.store.today_offer') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addCategoryLabel">Thêm today offer</h5>
+                            <h5 class="modal-title" id="addCategoryLabel">Thêm ưu đãi hôm nay</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="add-category-name" class="form-label">Title</label>
+                                <label for="add-category-name" class="form-label">Tiêu đề</label>
                                 <input type="text" class="form-control" id="add-category-slug" name="title"
                                        value="{{ old('title') }}">
                             </div>
                             <div class="mb-3">
-                                <label for="add-category-name" class="form-label w-100">Image</label>
+                                <label for="add-category-name" class="form-label w-100">Hình ảnh</label>
                                 <input type="file" name="image">
                             </div>
                             <div class="mb-3">
-                                <label for="add-category-slug" class="form-label">Url</label>
+                                <label for="add-category-slug" class="form-label">Đường dẫn</label>
                                 <input type="text" class="form-control" id="add-category-slug" name="url"
                                     value="{{ old('url') }}">
                             </div>
@@ -99,7 +99,7 @@
                             @method('PUT')
                             @csrf
                             <div class="modal-header">
-                                <h5 class="modal-title" id="editCategoryLabel">Sửa today offer</h5>
+                                <h5 class="modal-title" id="editCategoryLabel">Sửa ưu đãi hôm nay</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -111,11 +111,11 @@
                                            value="{{ old('title', $cate->title) }}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="add-category-name" class="form-label w-100">Image</label>
+                                    <label for="add-category-name" class="form-label w-100">Hình ảnh</label>
                                     <input type="file" name="image">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edit-category-slug-{{ $cate->id }}" class="form-label">Url</label>
+                                    <label for="edit-category-slug-{{ $cate->id }}" class="form-label">Đường dẫn</label>
                                     <input type="text" class="form-control edit-category-slug"
                                         id="edit-category-slug-{{ $cate->id }}" name="url"
                                         value="{{ old('url', $cate->url) }}">

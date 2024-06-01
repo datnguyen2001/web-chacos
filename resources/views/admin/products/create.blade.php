@@ -37,8 +37,8 @@
                                     <select class="form-select" name="type"
                                             aria-label="Default select example">
                                         <option class="bg-info" value="0">Không phân loại</option>
-                                        <option class="bg-info" value="1">Medium</option>
-                                        <option class="bg-info" value="2">Wide</option>
+                                        <option class="bg-info" value="1">Vừa</option>
+                                        <option class="bg-info" value="2">Rộng</option>
                                     </select>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                                         <div class="row m-0">
                                             <div class="col-lg-3 p-1">
                                                 <input type="text" name="variant[0][data][0][size]"
-                                                       class="form-control size" placeholder="size"
+                                                       class="form-control size" placeholder="Kích cỡ"
                                                        required>
                                             </div>
                                             <div class="col-lg-3 p-1">
@@ -174,11 +174,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-2">
                             <label class="col-sm-3 col-form-label">SP nổi bật: </label>
                             <div class="col-sm-8">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" name="is_hot" type="checkbox"
+                                           id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Hiện </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="col-sm-3 col-form-label">Hiển thị tại "Favorites": </label>
+                            <div class="col-sm-8">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" name="isFavoritesSwiper" type="checkbox"
+                                           id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Hiện </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="col-sm-3 col-form-label">Hiển thị tại "Picked": </label>
+                            <div class="col-sm-8">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" name="isPickedSwiper" type="checkbox"
                                            id="flexSwitchCheckChecked">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Hiện </label>
                                 </div>

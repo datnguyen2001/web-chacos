@@ -85,10 +85,10 @@
                         <label class="title-lable-info" for="name">Tên địa chỉ</label>
                         <input type="text" class="input-value-reg" id="name" name="name"
                             value="{{ old('name') }}">
-                        <label class="title-lable-info" for="first_name">* First Name</label>
+                        <label class="title-lable-info" for="first_name">* Tên</label>
                         <input required type="text" class="input-value-reg" id="first_name" name="first_name"
                             value="{{ old('first_name') }}">
-                        <label class="title-lable-info" for="last_name">* Last Name</label>
+                        <label class="title-lable-info" for="last_name">* Họ</label>
                         <input required type="text" class="input-value-reg" id="last_name" name="last_name"
                             value="{{ old('last_name') }}">
                         <label class="title-lable-info" for="address">* Địa chỉ</label>
@@ -148,10 +148,10 @@
                             <label class="title-lable-info" for="name">Tên địa chỉ</label>
                             <input type="text" class="input-value-reg" id="name" name="name"
                                 value="{{ old('name', $add->name) }}">
-                            <label class="title-lable-info" for="first_name">* First Name</label>
+                            <label class="title-lable-info" for="first_name">* Tên</label>
                             <input required type="text" class="input-value-reg" id="first_name" name="first_name"
                                 value="{{ old('first_name', $add->first_name) }}">
-                            <label class="title-lable-info" for="last_name">* Last Name</label>
+                            <label class="title-lable-info" for="last_name">* Họ</label>
                             <input required type="text" class="input-value-reg" id="last_name" name="last_name"
                                 value="{{ old('last_name', $add->last_name) }}">
                             <label class="title-lable-info" for="address">* Địa chỉ</label>

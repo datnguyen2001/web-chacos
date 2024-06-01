@@ -33,10 +33,10 @@
                         </div>
                         <div class="content-info-reg">
                             <div class="col-left-info">
-                                <label class="title-lable-info" for="first_name">* First Name</label>
+                                <label class="title-lable-info" for="first_name">* Tên</label>
                                 <input id="first_name" type="text" class="input-value-reg" name="first_name"
                                     value="{{ old('first_name') }}" autofocus>
-                                <label class="title-lable-info" for="last_name">* Last Name</label>
+                                <label class="title-lable-info" for="last_name">* Họ</label>
                                 <input id="last_name" type="text" class="input-value-reg" name="last_name"
                                     value="{{ old('last_name') }}">
                             </div>

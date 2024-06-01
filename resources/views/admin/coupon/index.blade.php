@@ -1,5 +1,5 @@
 @extends('admin.layout.index')
-@section('title', 'Coupon management')
+@section('title', 'Quản lý mã giảm giá')
 
 @section('style')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
@@ -274,7 +274,7 @@
     <script>
         function deleteCoupon(id) {
             var couponTr = $('#coupon-' + id);
-            if (confirm("Are you sure you want to delete this coupon?")) {
+            if (confirm("Bạn muốn xoá mã giảm giá này không?")) {
                 $.ajax({
                     url: '{{ route('admin.coupon.destroy', ':id') }}'.replace(':id', id),
                     type: 'DELETE',

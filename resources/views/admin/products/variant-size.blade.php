@@ -1,6 +1,6 @@
 <div class="row m-0">
     <div class="col-lg-3 p-1">
-        <input type="text" name="variant[{{$index}}][data][{{$count}}][size]" required class="form-control size" placeholder="Size">
+        <input type="text" name="variant[{{$index}}][data][{{$count}}][size]" required class="form-control size" placeholder="Kích cỡ">
     </div>
     <div class="col-lg-3 p-1">
         <input name="variant[{{$index}}][data][{{$count}}][quantity]" type="text" class="form-control quantity" required placeholder="Số lượng">

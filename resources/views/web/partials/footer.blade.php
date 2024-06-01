@@ -2,26 +2,26 @@
     <div class="box-footer">
         <div class="d-flex justify-content-between align-center flex-wrap">
             <div class="box-help">
-                <p class="text-help">NEED HELP?</p>
+                <p class="text-help">Cần giúp đỡ?</p>
                 <div class="w-100 d-flex align-items-center">
                     <div class="box-item-help">
-                        <img src="{{asset('assets/image/call.png')}}" class="icon-contanct">
-                        <span>(888) 211 - 1908</span>
+                        <img src="{{ asset('assets/image/call.png') }}" class="icon-contanct">
+                        <span>(888) 888 - 888</span>
                     </div>
-                    <div  class="box-item-help">
-                        <img src="{{asset('assets/image/chat.png')}}" class="icon-contanct">
-                        <span>Chat Now</span>
+                    <div class="box-item-help">
+                        <img src="{{ asset('assets/image/chat.png') }}" class="icon-contanct">
+                        <span>Trò chuyện ngay</span>
                     </div>
                 </div>
             </div>
 
             <div class="box-join">
-                <p class="text-help">JOIN THE #CHACONATION</p>
+                <p class="text-help">GIA NHẬP #CHACONATION</p>
                 <div class="d-flex align-items-center justify-content-between">
-                    <img src="{{asset('assets/image/instagram.png')}}" class="icon-contanct">
-                    <img src="{{asset('assets/image/tik-tok.png')}}" class="icon-contanct">
-                    <img src="{{asset('assets/image/pinterest.png')}}" class="icon-contanct">
-                    <img src="{{asset('assets/image/youtube.png')}}" class="icon-contanct">
+                    <img src="{{ asset('assets/image/instagram.png') }}" class="icon-contanct">
+                    <img src="{{ asset('assets/image/tik-tok.png') }}" class="icon-contanct">
+                    <img src="{{ asset('assets/image/pinterest.png') }}" class="icon-contanct">
+                    <img src="{{ asset('assets/image/youtube.png') }}" class="icon-contanct">
                 </div>
             </div>
 
@@ -70,12 +70,14 @@
             </div>
             <div class="d-flex flex-column">
                 <p class="title-footer-link">POPULAR LINKS</p>
-                <p class="title-small-footer">Get 20% off your first order! Plus, be the first to know about new arrivals, stories, and events</p>
+                <p class="title-small-footer">Get 20% off your first order! Plus, be the first to know about new
+                    arrivals, stories, and events</p>
                 <div>
                     <input type="text" class="input-footer-sign" placeholder="Email Address">
                     <button class="btn-sign-footer">Sign up</button>
                 </div>
-                <p class="title-small-footer">This site is protected by reCAPTCHA and the Policy and Terms of Service apply.</p>
+                <p class="title-small-footer">This site is protected by reCAPTCHA and the Policy and Terms of Service
+                    apply.</p>
             </div>
         </div>
 

@@ -9,7 +9,7 @@
     <main id="main" class="main d-flex flex-column justify-content-center">
         <div class="">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Product advertising</h1>
+            <h1 class="h3 mb-4 text-gray-800">Quảng cáo sản phẩm</h1>
             <hr>
 
             <div class="d-flex justify-content-start">
@@ -21,9 +21,9 @@
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">STT</th>
-                        <th scope="col" class="text-center">Category</th>
-                        <th scope="col" class="text-center">Image</th>
-                        <th scope="col" class="text-center">Url</th>
+                        <th scope="col" class="text-center">Danh mục</th>
+                        <th scope="col" class="text-center">Hình ảnh</th>
+                        <th scope="col" class="text-center">Đường dẫn</th>
                         <th scope="col" class="text-center"></th>
                     </tr>
                 </thead>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="add-category-name" class="form-label">Category</label>
+                                <label for="add-category-name" class="form-label">Danh mục</label>
                                 <select name="category_id" class="form-control" required>
                                     @foreach($category as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -73,11 +73,11 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="add-category-name" class="form-label w-100">Image</label>
+                                <label for="add-category-name" class="form-label w-100">Hình ảnh</label>
                                 <input type="file" name="image">
                             </div>
                             <div class="mb-3">
-                                <label for="add-category-slug" class="form-label">Url</label>
+                                <label for="add-category-slug" class="form-label">Đường dẫn</label>
                                 <input type="text" class="form-control" id="add-category-slug" name="url"
                                     value="{{ old('url') }}">
                             </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="edit-category-name-{{ $cate->id }}" class="form-label">Category</label>
+                                    <label for="edit-category-name-{{ $cate->id }}" class="form-label">Danh mục</label>
                                     <select name="category_id" class="form-control" required>
                                         @foreach($category as $item)
                                             <option value="{{$item->id}}" @if($cate->category_id == $item->id) selected @endif>{{$item->name}}</option>
@@ -116,11 +116,11 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="add-category-name" class="form-label w-100">Image</label>
+                                    <label for="add-category-name" class="form-label w-100">Hình ảnh</label>
                                     <input type="file" name="image">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edit-category-slug-{{ $cate->id }}" class="form-label">Url</label>
+                                    <label for="edit-category-slug-{{ $cate->id }}" class="form-label">Đường dẫn</label>
                                     <input type="text" class="form-control edit-category-slug"
                                         id="edit-category-slug-{{ $cate->id }}" name="url"
                                         value="{{ old('url', $cate->url) }}">
