@@ -15,7 +15,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="card-title">{{$titlePage}}</h5>
                                 <a class="btn btn-success"
-                                   href="{{route('admin.technology.create')}}">Add Technology</a>
+                                   href="{{route('admin.technology.create')}}">Thêm công nghệ</a>
                             </div>
                             <div class="mb-3 d-flex justify-content-end">
                                 <form class="d-flex align-items-center w-50" method="get"

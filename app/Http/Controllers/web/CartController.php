@@ -299,7 +299,7 @@ class CartController extends Controller
             });
 
             if ($existingProductIndex === false) {
-                return response()->json(['error' => -1, 'message' => "Not found product in cart"], 400);
+                return response()->json(['error' => -1, 'message' => "Không tìm thấy sản phẩm có trong giỏ hàng"], 400);
             }
             // Update cart product's quantity
             $cartItems[$existingProductIndex]['quantity'] = $quantity;

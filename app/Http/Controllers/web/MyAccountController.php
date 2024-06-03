@@ -223,7 +223,7 @@ class MyAccountController extends Controller
             $address = Address::find($id);
 
             if (!$address) {
-                return response()->json(['error' => -1, 'message' => "Not found address"], 400);
+                return response()->json(['error' => -1, 'message' => "Không tìm thấy địa chỉ"], 400);
             }
 
             $address->delete();

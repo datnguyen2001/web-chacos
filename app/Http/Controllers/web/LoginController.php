@@ -83,15 +83,15 @@ class LoginController extends Controller
                 if ($user->status == 1) {
                     Auth::login($user, $request->has('remember'));
 
-                    toastr()->success('Welcome ' . $user->first_name . ' ' . $user->last_name);
+                    toastr()->success('Chào mừng ' . $user->first_name . ' ' . $user->last_name);
                     return redirect()->intended(route('home'));
                 } else {
-                    toastr()->error("Your account is not activated yet");
+                    toastr()->error("Tài khoản của bạn chưa được kích hoạt");
                     return back()->withInput();
                 }
             }
 
-            toastr()->error("Wrong email or password");
+            toastr()->error("Sai tài khoản hoặc mật khẩu");
             return back()->withInput();
         } catch (\Exception $e) {
             toastr()->error($e->getMessage());
@@ -103,10 +103,10 @@ class LoginController extends Controller
     {
         if (Auth::check()) {
             Auth::logout();
-            toastr()->success('Goodbye & Hope to you again');
+            toastr()->success('Tạm biệt và mong gặp lại bạn sớm');
             return redirect()->route('home');
         }
-        toastr()->success('Something when wrong');
+        toastr()->success('Có gì đó không ổn');
         return back();
     }
 }

@@ -70,21 +70,21 @@
                                 <form action="{{route('admin.doLogin')}}" method="POST" class="row g-3 needs-validation" novalidate>
                                     @csrf
                                     <div class="col-12">
-                                        <label for="yourUsername" class="form-label">Username</label>
+                                        <label for="yourUsername" class="form-label">Tài khoản</label>
                                         <div class="input-group has-validation">
                                             <span class="input-group-text" id="inputGroupPrepend">Phone</span>
                                             <input type="text" name="username" class="form-control" id="yourUsername" required>
-                                            <div class="invalid-feedback">Please enter your username.</div>
+                                            <div class="invalid-feedback">Vui lòng nhập tên tài khoản của bạn.</div>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
+                                        <label for="yourPassword" class="form-label">Mật khẩu</label>
                                         <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                        <div class="invalid-feedback">Please enter your password!</div>
+                                        <div class="invalid-feedback">Vui lòng nhập mật khẩu của bạn!</div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        <button class="btn btn-primary w-100" type="submit">Đăng nhập</button>
                                     </div>
                                 </form>
 
