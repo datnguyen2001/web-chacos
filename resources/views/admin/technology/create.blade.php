@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Add {{$titlePage}}</h5>
+                            <h5 class="card-title">Thêm {{$titlePage}}</h5>
                             <!-- General Form Elements -->
                             @if (session('error'))
                                 <div
@@ -21,7 +21,7 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">Title</label>
+                                    <label for="inputText" class="col-sm-3 col-form-label">Tiêu đề</label>
                                     <div class="col-sm-8">
                                         <input type="text" name="title" required class="form-control">
                                     </div>
